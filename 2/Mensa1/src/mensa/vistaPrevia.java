@@ -6,7 +6,7 @@ package mensa;
 
 /**
  *
- * @author aleja
+ * @author UO281827 // Rodriguez Lopez, Alejandro
  */
 public class VistaPrevia extends javax.swing.JFrame {
 public VistaPrevia() {
@@ -14,30 +14,35 @@ public VistaPrevia() {
  Ori=""; Des=""; Texto="";
  }
 
-private void repinta(){
- String TextoFinal="";
- if(Ori.length()>0)
- TextoFinal="Origen: "+Ori+"\n";
- if(Des.length()>0)
- TextoFinal=TextoFinal+"Destino: "+Des+"\n";
- TextoFinal=TextoFinal+Texto;
- this.TA_vistaPrevia.setText(TextoFinal);
+private void repinta() {
+ 	String TextoFinal="";
+	 if(Ori.length()>0)
+ 		TextoFinal="Origen: "+Ori+"\n";
+	 if(Des.length()>0)
+ 		TextoFinal=TextoFinal+"Destino: "+Des+"\n";
+ 	TextoFinal=TextoFinal+Texto;
+ 	this.TA_vistaPrevia.setText(TextoFinal);
  }
+
 public void setDestinatario(String Des){
- this.Des=Des;
- repinta();
+	 this.Des=Des;
+ 	repinta();
  }
+
 public void setRemitente(String Ori){
- this.Ori=Ori;
- repinta();
+	 this.Ori=Ori;
+ 	repinta();
  }
+
 public void setTexto(String Texto){
- this.Texto=Texto;
- repinta();
+	 this.Texto=Texto;
+	 repinta();
  }
+
 public void setColorFondo(java.awt.Color C){
- this.TA_vistaPrevia.setBackground(C);
+	 this.TA_vistaPrevia.setBackground(C);
  }
+
 private String Des;
 private String Ori;
 private String Texto;

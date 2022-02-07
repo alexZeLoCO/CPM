@@ -12,7 +12,7 @@ import java.awt.Color;
  */
 public class Opciones extends javax.swing.JFrame {
 
-	private Envio e;		// Reference of Envio.java
+	Envio e;		// Reference of Envio.java
 	
 	/**
 	 * Creates new form Opciones
@@ -135,37 +135,37 @@ public class Opciones extends javax.swing.JFrame {
 
         private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
                 // TODO add your handling code here:
-		this.e.getVP().TA_vistaPrevia.setBackground(Color.white);
-		e.getVP().repaint();
+		this.e.vp.TA_vistaPrevia.setBackground(Color.white);
+		e.vp.repaint();
         }//GEN-LAST:event_jRadioButton1ActionPerformed
 
         private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
                 // TODO add your handling code here:
-		this.e.getVP().TA_vistaPrevia.setBackground(Color.gray);
-		e.getVP().repaint();
+		this.e.vp.TA_vistaPrevia.setBackground(Color.gray);
+		e.vp.repaint();
         }//GEN-LAST:event_jRadioButton2ActionPerformed
 
         private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
                 // TODO add your handling code here:
-		this.e.getVP().TA_vistaPrevia.setBackground(new java.awt.Color(200, 200, 255));
-		e.getVP().repaint();
+		this.e.vp.TA_vistaPrevia.setBackground(new java.awt.Color(200, 200, 255));
+		e.vp.repaint();
         }//GEN-LAST:event_jRadioButton3ActionPerformed
 
         private void CB_DestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_DestinoActionPerformed
                 // TODO add your handling code here:
 		if (CB_Destino.isSelected()) {
-			this.e.getVP().setDestinatario(this.e.TF_Destino.getText());
+			this.e.vp.setDestinatario(this.e.TF_Destino.getText());
 		} else {
-			this.e.getVP().setDestinatario("");
+			this.e.vp.setDestinatario("");
 		}
         }//GEN-LAST:event_CB_DestinoActionPerformed
 
         private void CB_RemitenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_RemitenteActionPerformed
                 // TODO add your handling code here:
 		if (CB_Remitente.isSelected()) {
-			this.e.getVP().setRemitente(this.e.TF_Remitente.getText());
+			this.e.vp.setRemitente(this.e.TF_Remitente.getText());
 		} else {
-			this.e.getVP().setRemitente("");
+			this.e.vp.setRemitente("");
 		}
         }//GEN-LAST:event_CB_RemitenteActionPerformed
 
