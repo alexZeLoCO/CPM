@@ -46,10 +46,25 @@ public class Envio extends javax.swing.JFrame {
                 jLabel7 = new javax.swing.JLabel();
                 CB_Nacional = new javax.swing.JComboBox();
                 TF_Municipio = new javax.swing.JTextField();
-                jPanel4 = new javax.swing.JPanel();
                 jPanel5 = new javax.swing.JPanel();
                 jPanel3 = new javax.swing.JPanel();
                 jPanel6 = new javax.swing.JPanel();
+                jPanel4 = new javax.swing.JPanel();
+                CB_ClienteRegistrado = new javax.swing.JCheckBox();
+                TF_CodigoCliente = new javax.swing.JTextField();
+                jButton3 = new javax.swing.JButton();
+                jSeparator2 = new javax.swing.JSeparator();
+                PL_Organizacion = new javax.swing.JPanel();
+                jLabel8 = new javax.swing.JLabel();
+                jLabel9 = new javax.swing.JLabel();
+                jLabel10 = new javax.swing.JLabel();
+                TF_NombreApellidos = new javax.swing.JTextField();
+                TF_DireccionPostal = new javax.swing.JTextField();
+                CB_Organizacion = new javax.swing.JComboBox<>();
+                jButton1 = new javax.swing.JButton();
+                jButton2 = new javax.swing.JButton();
+                jScrollPane1 = new javax.swing.JScrollPane();
+                jList1 = new javax.swing.JList<>();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 jMenuItem1 = new javax.swing.JMenuItem();
@@ -61,9 +76,9 @@ public class Envio extends javax.swing.JFrame {
                 RBMI_Nacional = new javax.swing.JRadioButtonMenuItem();
                 RBMI_Internacional = new javax.swing.JRadioButtonMenuItem();
                 jMenu5 = new javax.swing.JMenu();
-                jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
-                jRadioButtonMenuItem5 = new javax.swing.JRadioButtonMenuItem();
-                jRadioButtonMenuItem6 = new javax.swing.JRadioButtonMenuItem();
+                RBM_Personal = new javax.swing.JRadioButtonMenuItem();
+                RBM_Empresarial = new javax.swing.JRadioButtonMenuItem();
+                RBM_Publica = new javax.swing.JRadioButtonMenuItem();
                 jMenu2 = new javax.swing.JMenu();
                 jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
                 jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
@@ -200,23 +215,10 @@ public class Envio extends javax.swing.JFrame {
                                         .addComponent(jLabel7)
                                         .addComponent(RB_Internacional)
                                         .addComponent(CB_Nacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(46, Short.MAX_VALUE))
+                                .addContainerGap(87, Short.MAX_VALUE))
                 );
 
                 jTabbedPane1.addTab("Destinatario", jPanel1);
-
-                javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-                jPanel4.setLayout(jPanel4Layout);
-                jPanel4Layout.setHorizontalGroup(
-                        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 589, Short.MAX_VALUE)
-                );
-                jPanel4Layout.setVerticalGroup(
-                        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 292, Short.MAX_VALUE)
-                );
-
-                jTabbedPane1.addTab("Remitente", jPanel4);
 
                 javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
                 jPanel5.setLayout(jPanel5Layout);
@@ -226,7 +228,7 @@ public class Envio extends javax.swing.JFrame {
                 );
                 jPanel5Layout.setVerticalGroup(
                         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 292, Short.MAX_VALUE)
+                        .addGap(0, 317, Short.MAX_VALUE)
                 );
 
                 jTabbedPane1.addTab("Etiqueta", jPanel5);
@@ -239,7 +241,7 @@ public class Envio extends javax.swing.JFrame {
                 );
                 jPanel3Layout.setVerticalGroup(
                         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 292, Short.MAX_VALUE)
+                        .addGap(0, 317, Short.MAX_VALUE)
                 );
 
                 jTabbedPane1.addTab("Ruta y tarifa", jPanel3);
@@ -252,10 +254,129 @@ public class Envio extends javax.swing.JFrame {
                 );
                 jPanel6Layout.setVerticalGroup(
                         jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 292, Short.MAX_VALUE)
+                        .addGap(0, 317, Short.MAX_VALUE)
                 );
 
                 jTabbedPane1.addTab("Pago", jPanel6);
+
+                CB_ClienteRegistrado.setText("Cliente Registrado");
+                CB_ClienteRegistrado.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                CB_ClienteRegistradoActionPerformed(evt);
+                        }
+                });
+
+                TF_CodigoCliente.setText("Código de cliente");
+                TF_CodigoCliente.setEnabled(false);
+                TF_CodigoCliente.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                TF_CodigoClienteActionPerformed(evt);
+                        }
+                });
+
+                jButton3.setText("OK");
+
+                jLabel8.setText("Nombre y Apellidos:");
+
+                jLabel9.setText("Dirección Postal:");
+
+                jLabel10.setText("Organización:");
+
+                CB_Organizacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personal", "Empresarial", "Pública" }));
+                CB_Organizacion.addItemListener(new java.awt.event.ItemListener() {
+                        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                                CB_OrganizacionItemStateChanged(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout PL_OrganizacionLayout = new javax.swing.GroupLayout(PL_Organizacion);
+                PL_Organizacion.setLayout(PL_OrganizacionLayout);
+                PL_OrganizacionLayout.setHorizontalGroup(
+                        PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PL_OrganizacionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel10))
+                                .addGap(18, 18, 18)
+                                .addGroup(PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TF_NombreApellidos)
+                                        .addComponent(TF_DireccionPostal)
+                                        .addGroup(PL_OrganizacionLayout.createSequentialGroup()
+                                                .addComponent(CB_Organizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                );
+                PL_OrganizacionLayout.setVerticalGroup(
+                        PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PL_OrganizacionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel8)
+                                        .addComponent(TF_NombreApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(TF_DireccionPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(PL_OrganizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(CB_Organizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+
+                jButton1.setText("Añadir Remitente");
+
+                jButton2.setText("Eliminar Remitente");
+
+                jScrollPane1.setViewportView(jList1);
+
+                javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+                jPanel4.setLayout(jPanel4Layout);
+                jPanel4Layout.setHorizontalGroup(
+                        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1)
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                .addComponent(CB_ClienteRegistrado)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                                .addComponent(TF_CodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(104, 104, 104)
+                                                .addComponent(jButton3))
+                                        .addComponent(PL_Organizacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jButton1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jButton2)))
+                                .addContainerGap())
+                );
+                jPanel4Layout.setVerticalGroup(
+                        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CB_ClienteRegistrado)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(TF_CodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jButton3)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PL_Organizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButton1)
+                                        .addComponent(jButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+
+                jTabbedPane1.addTab("Remitente", jPanel4);
 
                 jMenu1.setText("Envío");
 
@@ -303,18 +424,33 @@ public class Envio extends javax.swing.JFrame {
 
                 jMenu5.setText("Organización");
 
-                bGOrganizacion.add(jRadioButtonMenuItem4);
-                jRadioButtonMenuItem4.setSelected(true);
-                jRadioButtonMenuItem4.setText("Personal");
-                jMenu5.add(jRadioButtonMenuItem4);
+                bGOrganizacion.add(RBM_Personal);
+                RBM_Personal.setSelected(true);
+                RBM_Personal.setText("Personal");
+                RBM_Personal.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                RBM_PersonalActionPerformed(evt);
+                        }
+                });
+                jMenu5.add(RBM_Personal);
 
-                bGOrganizacion.add(jRadioButtonMenuItem5);
-                jRadioButtonMenuItem5.setText("Empresarial");
-                jMenu5.add(jRadioButtonMenuItem5);
+                bGOrganizacion.add(RBM_Empresarial);
+                RBM_Empresarial.setText("Empresarial");
+                RBM_Empresarial.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                RBM_EmpresarialActionPerformed(evt);
+                        }
+                });
+                jMenu5.add(RBM_Empresarial);
 
-                bGOrganizacion.add(jRadioButtonMenuItem6);
-                jRadioButtonMenuItem6.setText("Pública");
-                jMenu5.add(jRadioButtonMenuItem6);
+                bGOrganizacion.add(RBM_Publica);
+                RBM_Publica.setText("Pública");
+                RBM_Publica.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                RBM_PublicaActionPerformed(evt);
+                        }
+                });
+                jMenu5.add(RBM_Publica);
 
                 jMenu3.add(jMenu5);
 
@@ -352,8 +488,8 @@ public class Envio extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPane1)
                                 .addGap(10, 10, 10))
                 );
 
@@ -432,6 +568,65 @@ public class Envio extends javax.swing.JFrame {
 		municipioSetEnabled();
         }//GEN-LAST:event_RB_ProvincialItemStateChanged
 
+        private void CB_ClienteRegistradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ClienteRegistradoActionPerformed
+                // TODO add your handling code here:
+		TF_CodigoCliente.setEnabled(CB_ClienteRegistrado.isSelected());
+		PL_Organizacion.setEnabled(!CB_ClienteRegistrado.isSelected());
+		TF_NombreApellidos.setEnabled(!CB_ClienteRegistrado.isSelected());
+		TF_DireccionPostal.setEnabled(!CB_ClienteRegistrado.isSelected());
+		CB_Organizacion.setEnabled(!CB_ClienteRegistrado.isSelected());
+		
+        }//GEN-LAST:event_CB_ClienteRegistradoActionPerformed
+
+        private void CB_OrganizacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_OrganizacionItemStateChanged
+                // TODO add your handling code here:
+	setOrganizacion(CB_Organizacion.getSelectedIndex());
+        }//GEN-LAST:event_CB_OrganizacionItemStateChanged
+
+        private void RBM_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBM_PersonalActionPerformed
+                // TODO add your handling code here:
+	if (RBM_Personal.isSelected()) {
+		setOrganizacion(0);
+	}
+        }//GEN-LAST:event_RBM_PersonalActionPerformed
+
+        private void RBM_EmpresarialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBM_EmpresarialActionPerformed
+                // TODO add your handling code here:
+	if (RBM_Empresarial.isSelected()) {
+		setOrganizacion(1);
+	}
+        }//GEN-LAST:event_RBM_EmpresarialActionPerformed
+
+        private void RBM_PublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBM_PublicaActionPerformed
+                // TODO add your handling code here:
+	if (RBM_Publica.isSelected()) {
+		setOrganizacion(2);
+	}
+        }//GEN-LAST:event_RBM_PublicaActionPerformed
+
+        private void TF_CodigoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_CodigoClienteActionPerformed
+                // TODO add your handling code here:
+	if (Integer.valueOf(TF_CodigoCliente.getText().charAt(0)) < 0 && Integer.valueOf(TF_CodigoCliente.getText().charAt(0)) > 9) {
+		
+	}
+        }//GEN-LAST:event_TF_CodigoClienteActionPerformed
+
+	 private void setOrganizacion (int elem) {
+		 String element = "";
+		 switch (elem) {
+			 case (0): element = "Personal";      RBM_Personal.setSelected(true);	
+				break;
+			 case (1): element = "Empresarial"; RBM_Empresarial.setSelected(true);	
+				break;
+			 case (2): element = "Pública";         RBM_Publica.setSelected(true);		
+				break;
+		 }
+		 if (!CB_Organizacion.getSelectedItem().equals(element)) {
+			CB_Organizacion.setSelectedItem(element);
+		 }
+		 
+	}
+	
 	// Apartado 4
 
 	private int c;
@@ -474,27 +669,43 @@ public class Envio extends javax.swing.JFrame {
         });
     }
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JCheckBox CB_ClienteRegistrado;
         private javax.swing.JComboBox CB_Nacional;
+        private javax.swing.JComboBox<String> CB_Organizacion;
         private javax.swing.JComboBox CB_Provincial;
+        private javax.swing.JPanel PL_Organizacion;
         private javax.swing.JRadioButtonMenuItem RBMI_Internacional;
         private javax.swing.JRadioButtonMenuItem RBMI_Nacional;
         private javax.swing.JRadioButtonMenuItem RBMI_Provincial;
+        private javax.swing.JRadioButtonMenuItem RBM_Empresarial;
+        private javax.swing.JRadioButtonMenuItem RBM_Personal;
+        private javax.swing.JRadioButtonMenuItem RBM_Publica;
         private javax.swing.JRadioButton RB_Internacional;
         private javax.swing.JRadioButton RB_Nacional;
         private javax.swing.JRadioButton RB_Provincial;
+        private javax.swing.JTextField TF_CodigoCliente;
+        private javax.swing.JTextField TF_DireccionPostal;
         private javax.swing.JTextField TF_Municipio;
+        private javax.swing.JTextField TF_NombreApellidos;
         private javax.swing.ButtonGroup bGDestino;
         private javax.swing.ButtonGroup bGDestinoTab;
         private javax.swing.ButtonGroup bGOrganizacion;
+        private javax.swing.JButton jButton1;
+        private javax.swing.JButton jButton2;
+        private javax.swing.JButton jButton3;
         private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
         private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
         private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel10;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel5;
         private javax.swing.JLabel jLabel6;
         private javax.swing.JLabel jLabel7;
+        private javax.swing.JLabel jLabel8;
+        private javax.swing.JLabel jLabel9;
+        private javax.swing.JList<String> jList1;
         private javax.swing.JMenu jMenu1;
         private javax.swing.JMenu jMenu2;
         private javax.swing.JMenu jMenu3;
@@ -508,10 +719,9 @@ public class Envio extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel4;
         private javax.swing.JPanel jPanel5;
         private javax.swing.JPanel jPanel6;
-        private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
-        private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem5;
-        private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem6;
+        private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JPopupMenu.Separator jSeparator1;
+        private javax.swing.JSeparator jSeparator2;
         private javax.swing.JTabbedPane jTabbedPane1;
         private javax.swing.JTextField jTextField1;
         private javax.swing.JTextField jTextField2;
