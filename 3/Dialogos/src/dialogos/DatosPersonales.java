@@ -39,7 +39,7 @@ public class DatosPersonales extends javax.swing.JDialog {
 	 * Retorna el anno del TextField
 	 * @return Anno del textField
 	 */
-	public int getAnno() {
+	public int getAnno() throws NumberFormatException {
 		return Integer.parseInt(this.TF_Anno.getText());
 	}
 
