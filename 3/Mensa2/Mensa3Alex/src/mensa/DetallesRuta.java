@@ -50,6 +50,7 @@ public class DetallesRuta extends javax.swing.JDialog {
 
                 jLabel1.setText("Detalles de Ruta:");
 
+                SL_Frag.setMaximum(10);
                 SL_Frag.addChangeListener(new javax.swing.event.ChangeListener() {
                         public void stateChanged(javax.swing.event.ChangeEvent evt) {
                                 SL_FragStateChanged(evt);
@@ -62,7 +63,7 @@ public class DetallesRuta extends javax.swing.JDialog {
 
                 jLabel4.setText("Valor:");
 
-                LB_Frag.setText("100");
+                LB_Frag.setText("10");
 
                 CB_VPos.setText("Mantener posición vertical");
 
@@ -107,7 +108,7 @@ public class DetallesRuta extends javax.swing.JDialog {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(LB_Frag))
                                                         .addComponent(CB_VPos))
-                                                .addGap(0, 16, Short.MAX_VALUE))
+                                                .addGap(0, 24, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(BT_Cancel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

@@ -477,6 +477,8 @@ public class Envio extends javax.swing.JFrame {
                         }
                 });
 
+                jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
                 javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
                 jPanel3.setLayout(jPanel3Layout);
                 jPanel3Layout.setHorizontalGroup(
@@ -495,8 +497,8 @@ public class Envio extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(BT_Guardar)))
                                 .addGap(12, 12, 12)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 306, Short.MAX_VALUE))
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 313, Short.MAX_VALUE))
                 );
                 jPanel3Layout.setVerticalGroup(
                         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

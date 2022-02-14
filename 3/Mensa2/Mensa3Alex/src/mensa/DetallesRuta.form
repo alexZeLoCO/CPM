@@ -47,7 +47,7 @@
                           </Group>
                           <Component id="CB_VPos" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="BT_Cancel" min="-2" max="-2" attributes="0"/>
@@ -96,6 +96,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="SL_Frag">
+      <Properties>
+        <Property name="maximum" type="int" value="10"/>
+      </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SL_FragStateChanged"/>
       </Events>
@@ -117,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LB_Frag">
       <Properties>
-        <Property name="text" type="java.lang.String" value="100"/>
+        <Property name="text" type="java.lang.String" value="10"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="CB_VPos">
