@@ -34,6 +34,7 @@ public class master extends javax.swing.JFrame {
 		this.entities = new EntityHashMap (8);
 		this.vD = new Debug (this);
 		this.JFC = new JFileChooser ();
+		this.info = new Info();
 	}
 
 	/**
@@ -75,6 +76,8 @@ public class master extends javax.swing.JFrame {
                 MI_Salir = new javax.swing.JMenuItem();
                 jMenu2 = new javax.swing.JMenu();
                 MI_VistaPrevia = new javax.swing.JMenuItem();
+                jMenu3 = new javax.swing.JMenu();
+                MI_Info = new javax.swing.JMenuItem();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,6 +216,19 @@ public class master extends javax.swing.JFrame {
                 jMenu2.add(MI_VistaPrevia);
 
                 jMenuBar1.add(jMenu2);
+
+                jMenu3.setText("Ayuda");
+
+                MI_Info.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+                MI_Info.setText("Información");
+                MI_Info.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_InfoActionPerformed(evt);
+                        }
+                });
+                jMenu3.add(MI_Info);
+
+                jMenuBar1.add(jMenu3);
 
                 setJMenuBar(jMenuBar1);
 
@@ -484,6 +500,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_MI_AbrirActionPerformed
 
+        private void MI_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_InfoActionPerformed
+                // TODO add your handling code here:
+	this.info.setVisible(true);	
+        }//GEN-LAST:event_MI_InfoActionPerformed
+
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
 		this.SL_Monstruos.setValue(Math.min(this.SL_Monstruos.getValue(), this.SL_Monstruos.getMaximum()));
@@ -525,6 +546,7 @@ public class master extends javax.swing.JFrame {
 	private int maxEntities;
 	PersonalizarEntidades vPe;
 	Debug vD;
+	Info info;
 	private EntityHashMap entities;
 	private JFileChooser JFC;
         // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -532,6 +554,7 @@ public class master extends javax.swing.JFrame {
         private javax.swing.JButton BT_Personalizar;
         private javax.swing.JMenuItem MI_Abrir;
         private javax.swing.JMenuItem MI_Guardar;
+        private javax.swing.JMenuItem MI_Info;
         private javax.swing.JMenuItem MI_Salir;
         private javax.swing.JMenuItem MI_VistaPrevia;
         private javax.swing.JSlider SL_Alto;
@@ -554,6 +577,7 @@ public class master extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel8;
         private javax.swing.JMenu jMenu1;
         private javax.swing.JMenu jMenu2;
+        private javax.swing.JMenu jMenu3;
         private javax.swing.JMenuBar jMenuBar1;
         private javax.swing.JSeparator jSeparator1;
         private javax.swing.JSeparator jSeparator2;
