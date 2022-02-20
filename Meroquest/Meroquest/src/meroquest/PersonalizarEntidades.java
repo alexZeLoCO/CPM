@@ -46,26 +46,38 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.vM = master;
 
 		this.monstruosTotales = this.vM.getMaxMonstruos();
+		this.heroesTotales = this.vM.getMaxHeroes(); 
 
-		this.previous = new EntityHashMap (8);
-		this.current = new EntityHashMap (8);
+		this.previous = new EntityHashMap (entities);
+		this.current = new EntityHashMap (entities);
 
-		this.entidadesMarcadas = this.SL_Barbaro.getValue();
+		this.heroesMarcados = this.SL_Barbaro.getValue();
+		this.monstruosMarcados = this.SL_Momia.getValue();
 
-		this.SL_Barbaro.setValue(this.monstruosTotales);
+		this.SL_Barbaro.setValue(this.heroesTotales);
+		this.SL_Momia.setValue(this.monstruosTotales);
+		this.SP_Barbaro.setValue(this.heroesTotales);
+		this.SP_Momia.setValue(this.monstruosTotales);
 
-		this.LB_Restantes.setText(String.format("%d", 0));
-		this.SL_Barbaro.setValue(this.monstruosTotales);
-		this.SP_Barbaro.setValue(this.monstruosTotales);
-		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
-		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
-
-		for (int i = 1; i < 8 ; i++) {
+		for (int i = 0; i < 8 ; i++) {
 			this.previous.put(entities[i], 0);
 			this.current.put(entities[i], 0);
 			this.entitiesSliders[i].setMaximum(this.monstruosTotales);				
 			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
 		}
+
+		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
+		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
+		this.previous.put(entities[MOMIA], this.SL_Momia.getValue());		
+		this.current.put(entities[MOMIA], this.SL_Momia.getValue());
+		
+		this.entitiesSpinners[ENANO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[ENANO].getModel().getValue())), 0, this.heroesTotales, 1));
+		this.entitiesSpinners[BARBARO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[BARBARO].getModel().getValue())), 0, this.heroesTotales, 1));
+		this.SL_Barbaro.setMaximum(this.heroesTotales);
+		this.SL_Enano.setMaximum(this.heroesTotales);
+		
+		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
 
 	/**
@@ -115,8 +127,10 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 BT_Cancelar = new javax.swing.JButton();
                 jSeparator1 = new javax.swing.JSeparator();
                 jLabel3 = new javax.swing.JLabel();
-                LB_Restantes = new javax.swing.JLabel();
+                LB_MRestantes = new javax.swing.JLabel();
                 BT_Debug = new javax.swing.JButton();
+                jLabel9 = new javax.swing.JLabel();
+                LB_HRestantes = new javax.swing.JLabel();
 
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
                 jLabel1.setText("Personalizar Entidades");
@@ -209,6 +223,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 jLabel8.setText("Momia");
                 jPanel1.add(jLabel8);
 
+                CB_Momia.setSelected(true);
                 CB_Momia.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 CB_MomiaActionPerformed(evt);
@@ -216,8 +231,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 });
                 jPanel1.add(CB_Momia);
 
-                SL_Momia.setValue(0);
-                SL_Momia.setEnabled(false);
+                SL_Momia.setMaximum(5);
+                SL_Momia.setValue(5);
                 SL_Momia.addChangeListener(new javax.swing.event.ChangeListener() {
                         public void stateChanged(javax.swing.event.ChangeEvent evt) {
                                 SL_MomiaStateChanged(evt);
@@ -226,7 +241,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 jPanel1.add(SL_Momia);
 
                 SP_Momia.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-                SP_Momia.setEnabled(false);
                 SP_Momia.addChangeListener(new javax.swing.event.ChangeListener() {
                         public void stateChanged(javax.swing.event.ChangeEvent evt) {
                                 SP_MomiaStateChanged(evt);
@@ -365,7 +379,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
                 jLabel3.setText("Monstruos restantes:");
 
-                LB_Restantes.setText("100");
+                LB_MRestantes.setText("100");
 
                 BT_Debug.setText("Debug");
                 BT_Debug.addActionListener(new java.awt.event.ActionListener() {
@@ -373,6 +387,10 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                 BT_DebugActionPerformed(evt);
                         }
                 });
+
+                jLabel9.setText("Héroes Restantes:");
+
+                LB_HRestantes.setText("100");
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -385,11 +403,15 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(LB_Restantes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(LB_MRestantes)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(LB_HRestantes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(BT_Debug, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
@@ -402,12 +424,16 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jSeparator1)
-                                        .addComponent(BT_Debug)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(LB_Restantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(LB_MRestantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(BT_Debug)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(LB_HRestantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -449,13 +475,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Barbaro.getValue().toString()) != this.SL_Barbaro.getValue()) {
 		this.SP_Barbaro.setValue(this.SL_Barbaro.getValue());
 	}
-	if (SL_Barbaro.getValue() > this.previous.get(entities[BARBARO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Barbaro.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Barbaro.getValue() > this.previous.get(entities[BARBARO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
+		SL_Barbaro.setValue(this.heroesTotales - this.heroesMarcados);
 	} else {
 		this.current.put(entities[BARBARO], SL_Barbaro.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Barbaro.getValue() - this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
+		this.heroesMarcados= this.heroesMarcados+ (this.SL_Barbaro.getValue() - this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[BARBARO], this.current.get(entities[BARBARO]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}
         }//GEN-LAST:event_SL_BarbaroStateChanged
 
@@ -476,13 +502,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enano.getValue().toString()) != this.SL_Enano.getValue()) {
 		this.SP_Enano.setValue(this.SL_Enano.getValue());
 	}
-	if (SL_Enano.getValue() > this.previous.get(entities[ENANO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Enano.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Enano.getValue() > this.previous.get(entities[ENANO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
+		SL_Enano.setValue(this.heroesTotales- this.heroesMarcados);
 	} else {
 		this.current.put(entities[ENANO], SL_Enano.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enano.getValue() - this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
+		this.heroesMarcados= this.heroesMarcados+ (this.SL_Enano.getValue() - this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[ENANO], this.current.get(entities[ENANO]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}
         }//GEN-LAST:event_SL_EnanoStateChanged
 
@@ -525,13 +551,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Goblin.getValue().toString()) != this.SL_Goblin.getValue()) {
 		this.SP_Goblin.setValue(this.SL_Goblin.getValue());
 	}
-	if (SL_Goblin.getValue() > this.previous.get(entities[GOBLIN]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Goblin.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Goblin.getValue() > this.previous.get(entities[GOBLIN]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+		SL_Goblin.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[GOBLIN], SL_Goblin.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Goblin.getValue() - this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Goblin.getValue() - this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[GOBLIN], this.current.get(entities[GOBLIN]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_GoblinStateChanged
 
@@ -593,13 +619,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Momia.getValue().toString()) != this.SL_Momia.getValue()) {
 		this.SP_Momia.setValue(this.SL_Momia.getValue());
 	}
-	if (SL_Momia.getValue() > this.previous.get(entities[MOMIA]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Momia.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Momia.getValue() > this.previous.get(entities[MOMIA]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+		SL_Momia.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[MOMIA], SL_Momia.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Momia.getValue() - this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Momia.getValue() - this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[MOMIA], this.current.get(entities[MOMIA]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_MomiaStateChanged
 
@@ -608,13 +634,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enjambre.getValue().toString()) != this.SL_Enjambre.getValue()) {
 		this.SP_Enjambre.setValue(this.SL_Enjambre.getValue());
 	}
-	if (SL_Enjambre.getValue() > this.previous.get(entities[ENJAMBRE]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Enjambre.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Enjambre.getValue() > this.previous.get(entities[ENJAMBRE]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+		SL_Enjambre.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[ENJAMBRE], SL_Enjambre.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enjambre.getValue() - this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Enjambre.getValue() - this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[ENJAMBRE], this.current.get(entities[ENJAMBRE]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_EnjambreStateChanged
 
@@ -623,13 +649,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Vampiro.getValue().toString()) != this.SL_Vampiro.getValue()) {
 		this.SP_Vampiro.setValue(this.SL_Vampiro.getValue());
 	}
-	if (SL_Vampiro.getValue() > this.previous.get(entities[VAMPIRO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Vampiro.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Vampiro.getValue() > this.previous.get(entities[VAMPIRO]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+		SL_Vampiro.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[VAMPIRO], SL_Vampiro.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Vampiro.getValue() - this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados = this.monstruosMarcados+ (this.SL_Vampiro.getValue() - this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[VAMPIRO], this.current.get(entities[VAMPIRO]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_VampiroStateChanged
 
@@ -638,13 +664,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Virus.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Virus.setValue(this.SL_Virus.getValue());
 	}
-	if (SL_Virus.getValue() > this.previous.get(entities[VIRUS]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Virus.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Virus.getValue() > this.previous.get(entities[VIRUS]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+		SL_Virus.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[VIRUS], SL_Virus.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Virus.getValue() - this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Virus.getValue() - this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[VIRUS], this.current.get(entities[VIRUS]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_VirusStateChanged
 
@@ -653,13 +679,15 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Guardian.setValue(this.SL_Guardian.getValue());
 	}
-	if (SL_Guardian.getValue() > this.previous.get(entities[GUARDIAN]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
-		SL_Guardian.setValue(this.monstruosTotales - this.entidadesMarcadas);
+	if (SL_Guardian.getValue() > this.previous.get(entities[GUARDIAN]).getSegundo() + this.monstruosTotales + this.heroesTotales - this.heroesMarcados - this.monstruosMarcados) {
+		SL_Guardian.setValue(this.monstruosTotales + this.heroesTotales - this.heroesMarcados - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[GUARDIAN], SL_Guardian.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
+		this.heroesMarcados = this.heroesMarcados + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados  = this.monstruosMarcados + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[GUARDIAN], this.current.get(entities[GUARDIAN]).getSegundo());	// Actualizar previo para siguiente cambio
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}
         }//GEN-LAST:event_SL_GuardianStateChanged
 
@@ -724,7 +752,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		if (SL_Virus.getMaximum() != this.SL_Virus.getValue() + restantes) {
 			this.SL_Virus.setMaximum(this.SL_Vampiro.getValue() + restantes);
 		}
-		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
 
 	/**
@@ -765,8 +793,11 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	private EntityHashMap current;
 	private EntityHashMap previous;
 
-	private int entidadesMarcadas;	// this.entidadesMarcadas + (diferencia) ==> this.entidadesMarcadas + (this.SL_Entidad.getValue() - this.previous.get(this.SL_Entidad));
+	private int monstruosMarcados;	// this.entidadesMarcadas + (diferencia) ==> this.entidadesMarcadas + (this.SL_Entidad.getValue() - this.previous.get(this.SL_Entidad));
 	private int monstruosTotales;	// this.vM.getMonstruos();
+	private int heroesTotales;
+	private int heroesMarcados;
+
 	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Aceptar;
@@ -780,7 +811,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
         private javax.swing.JCheckBox CB_Momia;
         private javax.swing.JCheckBox CB_Vampiro;
         private javax.swing.JCheckBox CB_Virus;
-        private javax.swing.JLabel LB_Restantes;
+        private javax.swing.JLabel LB_HRestantes;
+        private javax.swing.JLabel LB_MRestantes;
         private javax.swing.JSlider SL_Barbaro;
         private javax.swing.JSlider SL_Enano;
         private javax.swing.JSlider SL_Enjambre;
@@ -807,6 +839,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel6;
         private javax.swing.JLabel jLabel7;
         private javax.swing.JLabel jLabel8;
+        private javax.swing.JLabel jLabel9;
         private javax.swing.JPanel jPanel1;
         private javax.swing.JSeparator jSeparator1;
         // End of variables declaration//GEN-END:variables

@@ -66,6 +66,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea1">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="&quot;Meroquest&quot; es una interfaz dise&#xf1;ada para facilitar el acceso y la&#xa;configuraci&#xf3;n de &quot;Jeroquest&quot;. &#xa;&#xa;S&#xf3;lamente la interfaz de este men&#xfa; ha sido dise&#xf1;ada por el alumno&#xa;(Rodr&#xed;guez L&#xf3;pez, Alejandro // UO281827) ya que la programaci&#xf3;n &#xa;principal del juego original Jeroquest, ha sido realizada completamente&#xa;por los profesores de Metodolog&#xed;a de Programaci&#xf3;n. &#xa;&#xa;Entre los personajes disponibles, una parte son originales del proyecto&#xa;de los profesores, mientras que otra son parte de ex&#xe1;menes de a&#xf1;os&#xa;anteriores realizados por el alumno como pr&#xe1;citca para el estudio&#xa;de la asignatura."/>

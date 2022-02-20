@@ -40,6 +40,7 @@ public class Info extends javax.swing.JDialog {
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
                 jLabel1.setText("Información Meroquest");
 
+                jTextArea1.setEditable(false);
                 jTextArea1.setColumns(20);
                 jTextArea1.setRows(5);
                 jTextArea1.setText("\"Meroquest\" es una interfaz diseñada para facilitar el acceso y la\nconfiguración de \"Jeroquest\". \n\nSólamente la interfaz de este menú ha sido diseñada por el alumno\n(Rodríguez López, Alejandro // UO281827) ya que la programación \nprincipal del juego original Jeroquest, ha sido realizada completamente\npor los profesores de Metodología de Programación. \n\nEntre los personajes disponibles, una parte son originales del proyecto\nde los profesores, mientras que otra son parte de exámenes de años\nanteriores realizados por el alumno como prácitca para el estudio\nde la asignatura.");

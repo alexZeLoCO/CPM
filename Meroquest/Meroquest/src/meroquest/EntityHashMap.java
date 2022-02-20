@@ -21,8 +21,12 @@ public class EntityHashMap implements Serializable {
 	public EntityHashMap (int size) {
 		this.entities = 0;
 		this.data = new HashMap<Integer, Pair> (size);
-		for (Map.Entry<Integer, Pair> e : this.data.entrySet()) {
-			e.setValue(new Pair ("none", 0));
+	}
+
+	public EntityHashMap (String[] elems) {
+		this(elems.length);
+		for (String s : elems) {
+			this.data.put(s.hashCode(), new Pair (s, 0));
 		}
 	}
 
