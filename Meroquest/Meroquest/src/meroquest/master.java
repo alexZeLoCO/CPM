@@ -22,8 +22,8 @@ public class master extends javax.swing.JFrame {
 		this.SP_Turnos.setValue(this.SL_Turnos.getValue());
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
-		//this.vPe = new PersonalizarEntidades (this);
 		this.entities = new EntityHashMap (8);
+		this.vPe = new PersonalizarEntidades (this);
 		this.vD = new Debug (this);
 	}
 
@@ -302,10 +302,11 @@ public class master extends javax.swing.JFrame {
 
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
-	this.vPe = new PersonalizarEntidades (this);		// FIXME: I need all data to be updated to this point in vPe.
 	this.vPe.setVisible(true);
 	if (!vPe.isOk()) {
 		this.entities = new EntityHashMap (this.vPe.getOriginal());
+	} else {
+		this.entities = new EntityHashMap (this.vPe.getPrevious());
 	}
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
 
