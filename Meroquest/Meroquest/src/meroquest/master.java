@@ -4,6 +4,15 @@
  */
 package meroquest;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Rodriguez Lopez, Alejandro // UO281827
@@ -23,8 +32,8 @@ public class master extends javax.swing.JFrame {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 		this.entities = new EntityHashMap (8);
-		this.vPe = new PersonalizarEntidades (this);
 		this.vD = new Debug (this);
+		this.JFC = new JFileChooser ();
 	}
 
 	/**
@@ -60,6 +69,10 @@ public class master extends javax.swing.JFrame {
                 jSeparator2 = new javax.swing.JSeparator();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
+                MI_Abrir = new javax.swing.JMenuItem();
+                MI_Guardar = new javax.swing.JMenuItem();
+                jSeparator3 = new javax.swing.JPopupMenu.Separator();
+                MI_Salir = new javax.swing.JMenuItem();
                 jMenu2 = new javax.swing.JMenu();
                 MI_VistaPrevia = new javax.swing.JMenuItem();
 
@@ -164,6 +177,29 @@ public class master extends javax.swing.JFrame {
                 BT_Iniciar.setText("Iniciar");
 
                 jMenu1.setText("Archivo");
+
+                MI_Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+                MI_Abrir.setText("Abrir");
+                MI_Abrir.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_AbrirActionPerformed(evt);
+                        }
+                });
+                jMenu1.add(MI_Abrir);
+
+                MI_Guardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+                MI_Guardar.setText("Guardar");
+                MI_Guardar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_GuardarActionPerformed(evt);
+                        }
+                });
+                jMenu1.add(MI_Guardar);
+                jMenu1.add(jSeparator3);
+
+                MI_Salir.setText("Salir");
+                jMenu1.add(MI_Salir);
+
                 jMenuBar1.add(jMenu1);
 
                 jMenu2.setText("Opciones");
@@ -282,7 +318,7 @@ public class master extends javax.swing.JFrame {
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(BT_Iniciar)
-                                .addContainerGap(15, Short.MAX_VALUE))
+                                .addContainerGap(16, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -300,14 +336,14 @@ public class master extends javax.swing.JFrame {
 		return this.entities;
 	}
 
+	public void setEntities (EntityHashMap e) {
+		this.entities = new EntityHashMap (e);
+	}
+
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
+	this.vPe = new PersonalizarEntidades (this);
 	this.vPe.setVisible(true);
-	if (!vPe.isOk()) {
-		this.entities = new EntityHashMap (this.vPe.getOriginal());
-	} else {
-		this.entities = new EntityHashMap (this.vPe.getPrevious());
-	}
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
 
         private void SL_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MonstruosStateChanged
@@ -422,6 +458,32 @@ public class master extends javax.swing.JFrame {
 	this.vD.setVisible(true);
         }//GEN-LAST:event_MI_VistaPreviaActionPerformed
 
+        private void MI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GuardarActionPerformed
+                // TODO add your handling code here:
+	if (this.JFC.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+		try {
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath()));
+			os.writeObject(this.entities);
+		} catch (IOException ex) {
+			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+        }//GEN-LAST:event_MI_GuardarActionPerformed
+
+        private void MI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AbrirActionPerformed
+                // TODO add your handling code here:
+	if (this.JFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+		try {
+			ObjectInputStream  is =new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath()));
+			this.entities = new EntityHashMap ((EntityHashMap) is.readObject());	
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+        }//GEN-LAST:event_MI_AbrirActionPerformed
+
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
 		this.SL_Monstruos.setValue(Math.min(this.SL_Monstruos.getValue(), this.SL_Monstruos.getMaximum()));
@@ -464,9 +526,13 @@ public class master extends javax.swing.JFrame {
 	PersonalizarEntidades vPe;
 	Debug vD;
 	private EntityHashMap entities;
+	private JFileChooser JFC;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Iniciar;
         private javax.swing.JButton BT_Personalizar;
+        private javax.swing.JMenuItem MI_Abrir;
+        private javax.swing.JMenuItem MI_Guardar;
+        private javax.swing.JMenuItem MI_Salir;
         private javax.swing.JMenuItem MI_VistaPrevia;
         private javax.swing.JSlider SL_Alto;
         private javax.swing.JSlider SL_Ancho;
@@ -491,5 +557,6 @@ public class master extends javax.swing.JFrame {
         private javax.swing.JMenuBar jMenuBar1;
         private javax.swing.JSeparator jSeparator1;
         private javax.swing.JSeparator jSeparator2;
+        private javax.swing.JPopupMenu.Separator jSeparator3;
         // End of variables declaration//GEN-END:variables
 }

@@ -31,7 +31,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	 * Creates new form PersonalizarEntidades
 	 */
 	private PersonalizarEntidades() {
-		this.pOk = false;
 		this.entitiesSliders = new JSlider[]{SL_Barbaro, SL_Enano, SL_Enjambre, SL_Goblin, SL_Guardian, SL_Momia, SL_Vampiro, SL_Virus};
 		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
 		this.entities = new String[] {"Bárbaro", "Enano", "Enjambre", "Goblin", "Guardián", "Momia", "Vampiro", "Virus"};
@@ -47,37 +46,25 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.vM = master;
 
 		this.monstruosTotales = this.vM.getMaxMonstruos();
-		this.original = new EntityHashMap (this.vM.getEntities());
 
-		if (this.vM.getEntities().size() != this.entities.length || this.vM.getEntities().nEntities() > this.monstruosTotales) {
-			this.previous = new EntityHashMap (8);
-			this.current = new EntityHashMap (8);
+		this.previous = new EntityHashMap (8);
+		this.current = new EntityHashMap (8);
 
-			this.entidadesMarcadas = this.SL_Barbaro.getValue();
+		this.entidadesMarcadas = this.SL_Barbaro.getValue();
 
-			this.SL_Barbaro.setValue(this.monstruosTotales);
+		this.SL_Barbaro.setValue(this.monstruosTotales);
 
-			this.LB_Restantes.setText(String.format("%d", 0));
-			this.SL_Barbaro.setValue(this.monstruosTotales);
-			this.SP_Barbaro.setValue(this.monstruosTotales);
-			this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());
-			this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
+		this.LB_Restantes.setText(String.format("%d", 0));
+		this.SL_Barbaro.setValue(this.monstruosTotales);
+		this.SP_Barbaro.setValue(this.monstruosTotales);
+		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
+		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
 
-			for (int i = 1; i < 8 ; i++) {
-				this.previous.put(entities[i], 0);
-				this.current.put(entities[i], 0);
-				this.entitiesSliders[i].setMaximum(this.monstruosTotales);
-				this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
-			}
-		} else {
-			this.previous = new EntityHashMap (this.vM.getEntities());
-			this.current = new EntityHashMap (this.vM.getEntities());
-			this.entidadesMarcadas = this.vM.getEntities().nEntities();
-			this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
-			for (int i = 1;i < 8 ; i++) {
-				this.entitiesSliders[i].setMaximum(this.monstruosTotales);
-				this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
-			}
+		for (int i = 1; i < 8 ; i++) {
+			this.previous.put(entities[i], 0);
+			this.current.put(entities[i], 0);
+			this.entitiesSliders[i].setMaximum(this.monstruosTotales);				
+			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
 		}
 	}
 
@@ -445,13 +432,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		return this.current;
 	}
 
-	public boolean isOk() {
-		return this.pOk;
-	}
-
-	public EntityHashMap getOriginal () {
-		return this.original;
-	}
 
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
@@ -460,7 +440,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void BT_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AceptarActionPerformed
                 // TODO add your handling code here:
-	this.pOk = true;
+	this.vM.setEntities(this.current); 
 	this.setVisible (false);
         }//GEN-LAST:event_BT_AceptarActionPerformed
 
@@ -782,11 +762,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		});
 	}
 
-	private boolean pOk;
-
 	private EntityHashMap current;
 	private EntityHashMap previous;
-	private EntityHashMap original;
 
 	private int entidadesMarcadas;	// this.entidadesMarcadas + (diferencia) ==> this.entidadesMarcadas + (this.SL_Entidad.getValue() - this.previous.get(this.SL_Entidad));
 	private int monstruosTotales;	// this.vM.getMonstruos();

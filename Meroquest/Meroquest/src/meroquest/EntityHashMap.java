@@ -4,6 +4,7 @@
  */
 package meroquest;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
  *
  * @author Rodriguez Lopez, Alejandro // UO281827 
  */
-public class EntityHashMap {
+public class EntityHashMap implements Serializable {
 
 	private final HashMap<Integer, Pair> data;
 	private int entities;
@@ -20,6 +21,9 @@ public class EntityHashMap {
 	public EntityHashMap (int size) {
 		this.entities = 0;
 		this.data = new HashMap<Integer, Pair> (size);
+		for (Map.Entry<Integer, Pair> e : this.data.entrySet()) {
+			e.setValue(new Pair ("none", 0));
+		}
 	}
 
 	public EntityHashMap (EntityHashMap ref) {
@@ -68,7 +72,7 @@ public class EntityHashMap {
 		return out;
 	}
 		
-	public final class Pair {
+	public final class Pair implements Serializable {
 		private final String primero;
 		private final Integer segundo;
 
