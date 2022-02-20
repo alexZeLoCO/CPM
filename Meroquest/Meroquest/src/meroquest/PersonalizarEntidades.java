@@ -31,6 +31,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	 * Creates new form PersonalizarEntidades
 	 */
 	private PersonalizarEntidades() {
+		this.pOk = false;
 		this.entitiesSliders = new JSlider[]{SL_Barbaro, SL_Enano, SL_Enjambre, SL_Goblin, SL_Guardian, SL_Momia, SL_Vampiro, SL_Virus};
 		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
 		this.entities = new String[] {"Bárbaro", "Enano", "Enjambre", "Goblin", "Guardián", "Momia", "Vampiro", "Virus"};
@@ -43,10 +44,11 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
 		this.entities = new String[] {"Bárbaro", "Enano", "Enjambre", "Goblin", "Guardián", "Momia", "Vampiro", "Virus"};
 		
-		this.previous = new EntityHashMap (8);
-		this.current = new EntityHashMap (8);
-
 		this.vM = master;
+		this.previous = new EntityHashMap (8);
+
+
+		this.original = new EntityHashMap (this.vM.getEntities());
 
 		this.monstruosTotales = this.vM.getMaxMonstruos();
 		this.entidadesMarcadas = this.SL_Barbaro.getValue();
@@ -56,20 +58,16 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.LB_Restantes.setText(String.format("%d", 0));
 		this.SL_Barbaro.setValue(this.monstruosTotales);
 		this.SP_Barbaro.setValue(this.monstruosTotales);
-		this.previous.put(entities[BARBARO], SL_Barbaro.hashCode(), this.SL_Barbaro.getValue());
-		this.current.put(entities[BARBARO], SL_Barbaro.hashCode(), this.SL_Barbaro.getValue());
+		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());
+		this.vM.getEntities().put(entities[BARBARO], this.SL_Barbaro.getValue());
 		for (int i = 1; i < 8 ; i++) {
-			this.previous.put(entities[i], this.entitiesSliders[i].hashCode(), 0);
-			this.current.put(entities[i], this.entitiesSliders[i].hashCode(), 0);
+			this.previous.put(entities[i], 0);
+			this.vM.getEntities().put(entities[i], 0);
 		}
 		for (int i = 0; i < this.entitiesSliders.length; i++) {
 			this.entitiesSliders[i].setMaximum(this.monstruosTotales);
 			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
 		}
-
-		this.vD = new Debug(this);
-
-
 	}
 
 	/**
@@ -432,13 +430,16 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		return this.previous;
 	}
 
-	public EntityHashMap getCurrent () {
-		return this.current;
+	public boolean isOk() {
+		return this.pOk;
+	}
+
+	public EntityHashMap getOriginal () {
+		return this.original;
 	}
 
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
-	this.pOk = false;
 	this.setVisible(false);
         }//GEN-LAST:event_BT_CancelarActionPerformed
 
@@ -453,12 +454,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Barbaro.getValue().toString()) != this.SL_Barbaro.getValue()) {
 		this.SP_Barbaro.setValue(this.SL_Barbaro.getValue());
 	}
-	if (SL_Barbaro.getValue() > this.previous.get(SL_Barbaro.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Barbaro.getValue() > this.previous.get(entities[BARBARO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Barbaro.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[BARBARO], SL_Barbaro.hashCode(), SL_Barbaro.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Barbaro.getValue() - this.previous.get(SL_Barbaro.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[BARBARO], SL_Barbaro.hashCode(), this.current.get(SL_Barbaro.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[BARBARO], SL_Barbaro.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Barbaro.getValue() - this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[BARBARO], this.vM.getEntities().get(entities[BARBARO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_BarbaroStateChanged
@@ -472,7 +473,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void BT_DebugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_DebugActionPerformed
                 // TODO add your handling code here:
-	this.vD.setVisible(true);
+	this.vM.vD.setVisible(true);
         }//GEN-LAST:event_BT_DebugActionPerformed
 
         private void SL_EnanoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_EnanoStateChanged
@@ -480,12 +481,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enano.getValue().toString()) != this.SL_Enano.getValue()) {
 		this.SP_Enano.setValue(this.SL_Enano.getValue());
 	}
-	if (SL_Enano.getValue() > this.previous.get(SL_Enano.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Enano.getValue() > this.previous.get(entities[ENANO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Enano.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[ENANO], SL_Enano.hashCode(), SL_Enano.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enano.getValue() - this.previous.get(SL_Enano.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[ENANO], SL_Enano.hashCode(), this.current.get(SL_Enano.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[ENANO], SL_Enano.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enano.getValue() - this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[ENANO], this.vM.getEntities().get(entities[ENANO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_EnanoStateChanged
@@ -529,12 +530,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Goblin.getValue().toString()) != this.SL_Goblin.getValue()) {
 		this.SP_Goblin.setValue(this.SL_Goblin.getValue());
 	}
-	if (SL_Goblin.getValue() > this.previous.get(SL_Goblin.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Goblin.getValue() > this.previous.get(entities[GOBLIN]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Goblin.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[GOBLIN], SL_Goblin.hashCode(), SL_Goblin.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Goblin.getValue() - this.previous.get(SL_Goblin.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[GOBLIN], SL_Goblin.hashCode(), this.current.get(SL_Goblin.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[GOBLIN], SL_Goblin.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Goblin.getValue() - this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[GOBLIN], this.vM.getEntities().get(entities[GOBLIN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_GoblinStateChanged
@@ -550,70 +551,46 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	this.SL_Momia.setEnabled(this.CB_Momia.isSelected());
 	this.SP_Momia.setEnabled(this.CB_Momia.isSelected());
-	if (this.CB_Momia.isSelected()) {
-		this.current.put(entities[MOMIA], SL_Momia.hashCode(), SL_Momia.getValue());
-		this.entidadesMarcadas += this.current.get(SL_Momia.hashCode()).getSegundo();
-	} else {
-		this.current.put(entities[MOMIA], SL_Momia.hashCode(), 0);
-		this.entidadesMarcadas -= this.current.get(SL_Momia.hashCode()).getSegundo();
-	}
-	this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+	if (!this.CB_Momia.isSelected()) {
+		this.SL_Momia.setValue(0);
+	} 
+        
         }//GEN-LAST:event_CB_MomiaActionPerformed
 
         private void CB_EnjambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_EnjambreActionPerformed
                 // TODO add your handling code here:
 	this.SL_Enjambre.setEnabled(this.CB_Enjambre.isSelected());
 	this.SP_Enjambre.setEnabled(this.CB_Enjambre.isSelected());
-	if (this.CB_Enjambre.isSelected()) {
-		this.current.put(entities[ENJAMBRE], SL_Enjambre.hashCode(), SL_Enjambre.getValue());
-		this.entidadesMarcadas += this.current.get(SL_Enjambre.hashCode()).getSegundo();
-	} else {
-		this.current.put(entities[ENJAMBRE], SL_Enjambre.hashCode(), 0);
-		this.entidadesMarcadas -= this.current.get(SL_Enjambre.hashCode()).getSegundo();
-	}
-	this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+	if (!this.CB_Enjambre.isSelected()) {
+		this.SL_Enjambre.setValue(0);
+	} 
         }//GEN-LAST:event_CB_EnjambreActionPerformed
 
         private void CB_VampiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_VampiroActionPerformed
                 // TODO add your handling code here:
 	this.SL_Vampiro.setEnabled(this.CB_Vampiro.isSelected());
 	this.SP_Vampiro.setEnabled(this.CB_Vampiro.isSelected());
-	if (this.CB_Vampiro.isSelected()) {
-		this.current.put(entities[VAMPIRO], SL_Vampiro.hashCode(), SL_Vampiro.getValue());
-		this.entidadesMarcadas += this.current.get(SL_Vampiro.hashCode()).getSegundo();
-	} else {
-		this.current.put(entities[VAMPIRO], SL_Vampiro.hashCode(), 0);
-		this.entidadesMarcadas -= this.current.get(SL_Vampiro.hashCode()).getSegundo();
-	}
-	this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+	if (!this.CB_Vampiro.isSelected()) {
+		this.SL_Vampiro.setValue(0);
+	} 
         }//GEN-LAST:event_CB_VampiroActionPerformed
 
         private void CB_VirusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_VirusActionPerformed
                 // TODO add your handling code here:
 	this.SL_Virus.setEnabled(this.CB_Virus.isSelected());
 	this.SP_Virus.setEnabled(this.CB_Virus.isSelected());
-	if (this.CB_Virus.isSelected()) {
-		this.current.put(entities[VIRUS], SL_Virus.hashCode(), SL_Virus.getValue());
-		this.entidadesMarcadas += this.current.get(SL_Virus.hashCode()).getSegundo();
-	} else {
-		this.current.put(entities[VIRUS], SL_Virus.hashCode(), 0);
-		this.entidadesMarcadas -= this.current.get(SL_Virus.hashCode()).getSegundo();
-	}
-	this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+	if (!this.CB_Virus.isSelected()) {
+		this.SL_Virus.setValue(0);
+	} 
         }//GEN-LAST:event_CB_VirusActionPerformed
 
         private void CB_GuardianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_GuardianActionPerformed
                 // TODO add your handling code here:
 	this.SL_Guardian.setEnabled(this.CB_Guardian.isSelected());
 	this.SP_Guardian.setEnabled(this.CB_Guardian.isSelected());
-	if (this.CB_Guardian.isSelected()) {
-		this.current.put(entities[GUARDIAN], SL_Guardian.hashCode(), SL_Guardian.getValue());
-		this.entidadesMarcadas += this.current.get(SL_Guardian.hashCode()).getSegundo();
-	} else {
-		this.current.put(entities[GUARDIAN], SL_Guardian.hashCode(), 0);
-		this.entidadesMarcadas -= this.current.get(SL_Guardian.hashCode()).getSegundo();
-	}
-	this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
+	if (!this.CB_Guardian.isSelected()) {
+		this.SL_Guardian.setValue(0);
+	} 
         }//GEN-LAST:event_CB_GuardianActionPerformed
 
         private void SL_MomiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MomiaStateChanged
@@ -621,12 +598,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Momia.getValue().toString()) != this.SL_Momia.getValue()) {
 		this.SP_Momia.setValue(this.SL_Momia.getValue());
 	}
-	if (SL_Momia.getValue() > this.previous.get(SL_Momia.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Momia.getValue() > this.previous.get(entities[MOMIA]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Momia.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[MOMIA], SL_Momia.hashCode(), SL_Momia.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Momia.getValue() - this.previous.get(SL_Momia.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[MOMIA], SL_Momia.hashCode(), this.current.get(SL_Momia.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[MOMIA], SL_Momia.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Momia.getValue() - this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[MOMIA], this.vM.getEntities().get(entities[MOMIA]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_MomiaStateChanged
@@ -636,12 +613,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enjambre.getValue().toString()) != this.SL_Enjambre.getValue()) {
 		this.SP_Enjambre.setValue(this.SL_Enjambre.getValue());
 	}
-	if (SL_Enjambre.getValue() > this.previous.get(SL_Enjambre.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Enjambre.getValue() > this.previous.get(entities[ENJAMBRE]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Enjambre.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[ENJAMBRE], SL_Enjambre.hashCode(), SL_Enjambre.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enjambre.getValue() - this.previous.get(SL_Enjambre.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[ENJAMBRE], SL_Enjambre.hashCode(), this.current.get(SL_Enjambre.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[ENJAMBRE], SL_Enjambre.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Enjambre.getValue() - this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[ENJAMBRE], this.vM.getEntities().get(entities[ENJAMBRE]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_EnjambreStateChanged
@@ -651,12 +628,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Vampiro.getValue().toString()) != this.SL_Vampiro.getValue()) {
 		this.SP_Vampiro.setValue(this.SL_Vampiro.getValue());
 	}
-	if (SL_Vampiro.getValue() > this.previous.get(SL_Vampiro.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Vampiro.getValue() > this.previous.get(entities[VAMPIRO]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Vampiro.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[VAMPIRO], SL_Vampiro.hashCode(), SL_Vampiro.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Vampiro.getValue() - this.previous.get(SL_Vampiro.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[VAMPIRO], SL_Vampiro.hashCode(), this.current.get(SL_Vampiro.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[VAMPIRO], SL_Vampiro.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Vampiro.getValue() - this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[VAMPIRO], this.vM.getEntities().get(entities[VAMPIRO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_VampiroStateChanged
@@ -666,12 +643,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Virus.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Virus.setValue(this.SL_Virus.getValue());
 	}
-	if (SL_Virus.getValue() > this.previous.get(SL_Virus.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Virus.getValue() > this.previous.get(entities[VIRUS]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Virus.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[VIRUS], SL_Virus.hashCode(), SL_Virus.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Virus.getValue() - this.previous.get(SL_Virus.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[VIRUS], SL_Virus.hashCode(), this.current.get(SL_Virus.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[VIRUS], SL_Virus.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Virus.getValue() - this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[VIRUS], this.vM.getEntities().get(entities[VIRUS]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_VirusStateChanged
@@ -681,12 +658,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Guardian.setValue(this.SL_Guardian.getValue());
 	}
-	if (SL_Guardian.getValue() > this.previous.get(SL_Guardian.hashCode()).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
+	if (SL_Guardian.getValue() > this.previous.get(entities[GUARDIAN]).getSegundo() + this.monstruosTotales - this.entidadesMarcadas) {
 		SL_Guardian.setValue(this.monstruosTotales - this.entidadesMarcadas);
 	} else {
-		this.current.put(entities[GUARDIAN], SL_Guardian.hashCode(), SL_Guardian.getValue());	// Actualizar valor actual
-		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Guardian.getValue() - this.previous.get(SL_Guardian.hashCode()).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[GUARDIAN], SL_Guardian.hashCode(), this.current.get(SL_Guardian.hashCode()).getSegundo());	// Actualizar previo para siguiente cambio
+		this.vM.getEntities().put(entities[GUARDIAN], SL_Guardian.getValue());	// Actualizar valor actual
+		this.entidadesMarcadas = this.entidadesMarcadas + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[GUARDIAN], this.vM.getEntities().get(entities[GUARDIAN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_Restantes.setText(String.format("%d", this.monstruosTotales - this.entidadesMarcadas));
 	}
         }//GEN-LAST:event_SL_GuardianStateChanged
@@ -790,14 +767,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		});
 	}
 
-	Debug vD;
+	private boolean pOk;
 
 	private EntityHashMap previous;
-	private EntityHashMap current;
+	private EntityHashMap original;
 
 	private int entidadesMarcadas;	// this.entidadesMarcadas + (diferencia) ==> this.entidadesMarcadas + (this.SL_Entidad.getValue() - this.previous.get(this.SL_Entidad));
 	private int monstruosTotales;	// this.vM.getMonstruos();
-	private boolean pOk;
 	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Aceptar;

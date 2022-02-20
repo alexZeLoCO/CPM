@@ -17,11 +17,10 @@ public class Debug extends javax.swing.JFrame {
 		initComponents();
 	}
 
-	public Debug (PersonalizarEntidades pE) {
+	public Debug (master master) {
 		this();
-		this.pE = pE;
-		TA_Previous.setText(this.pE.getPrevious().toString());
-		TA_Current.setText(this.pE.getCurrent().toString());
+		this.vM = master;
+		TA_Current.setText(this.vM.getEntities().toString());
 	}
 
 	/**
@@ -33,19 +32,10 @@ public class Debug extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
-                jScrollPane1 = new javax.swing.JScrollPane();
-                TA_Previous = new javax.swing.JTextArea();
-                jSeparator1 = new javax.swing.JSeparator();
                 jScrollPane2 = new javax.swing.JScrollPane();
                 TA_Current = new javax.swing.JTextArea();
                 jLabel1 = new javax.swing.JLabel();
                 BT_Actualizar = new javax.swing.JButton();
-
-                TA_Previous.setColumns(20);
-                TA_Previous.setRows(5);
-                jScrollPane1.setViewportView(TA_Previous);
-
-                jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
                 TA_Current.setColumns(20);
                 TA_Current.setRows(5);
@@ -67,19 +57,13 @@ public class Debug extends javax.swing.JFrame {
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane2)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(BT_Actualizar))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                                                .addComponent(BT_Actualizar)))
+                                .addContainerGap())
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,10 +73,7 @@ public class Debug extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addComponent(BT_Actualizar))
                                 .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jSeparator1)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                 );
 
@@ -101,8 +82,7 @@ public class Debug extends javax.swing.JFrame {
 
         private void BT_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ActualizarActionPerformed
                 // TODO add your handling code here:
-	TA_Previous.setText(this.pE.getPrevious().toString());
-	TA_Current.setText(this.pE.getCurrent().toString());	
+	TA_Current.setText(this.vM.getEntities().toString());	
         }//GEN-LAST:event_BT_ActualizarActionPerformed
 
 	/**
@@ -141,15 +121,11 @@ public class Debug extends javax.swing.JFrame {
 		});
 	}
 
-	PersonalizarEntidades pE;
-
+	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Actualizar;
         private javax.swing.JTextArea TA_Current;
-        private javax.swing.JTextArea TA_Previous;
         private javax.swing.JLabel jLabel1;
-        private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JScrollPane jScrollPane2;
-        private javax.swing.JSeparator jSeparator1;
         // End of variables declaration//GEN-END:variables
 }

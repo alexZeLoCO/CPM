@@ -15,21 +15,36 @@ import java.util.Map;
 public class EntityHashMap {
 
 	private final HashMap<Integer, Pair> data;
+	private int entities;
 
 	public EntityHashMap (int size) {
+		this.entities = 0;
 		this.data = new HashMap<Integer, Pair> (size);
+	}
+
+	public EntityHashMap (EntityHashMap ref) {
+		this(ref.size());
+		for (Map.Entry<Integer, Pair> e : ref.data.entrySet()) {
+			this.put(e.getValue().getPrimero(), e.getValue().getSegundo());
+		}
 	}
 
 	public int size(){
 		return this.data.size();
 	}
 
-	public Integer put (String nombre, Integer key, Integer value) {
+	public int nEntities () {
+		return this.entities;
+	}
+
+	public Integer put (String nombre, Integer value) {
 		Integer out = null;
-		if (this.data.containsKey(key)) {
-			out = this.data.get(key).getSegundo();
+		if (this.data.containsKey(nombre.hashCode())) {
+			out = this.data.get(nombre.hashCode()).getSegundo();
+			this.entities-=this.data.get(nombre.hashCode()).getSegundo();
 		}
-		this.data.put(key, new Pair (nombre, value));
+		this.data.put(nombre.hashCode(), new Pair (nombre, value));
+		this.entities+=this.data.get(nombre.hashCode()).getSegundo();
 		return out;
 	}
 
@@ -37,9 +52,13 @@ public class EntityHashMap {
 		return this.data.get(key);
 	}
 
+	public Pair get (String nombre) {
+		return this.get(nombre.hashCode());
+	}
+
 	@Override
 	public String toString () {
-		String out = "";
+		String out = "Entidad\tCódigo ~> Cantidad\n";
 		Iterator<Map.Entry<Integer, Pair>> itr = this.data.entrySet().iterator();
 		Map.Entry<Integer, Pair> current;
 		while (itr.hasNext()) {

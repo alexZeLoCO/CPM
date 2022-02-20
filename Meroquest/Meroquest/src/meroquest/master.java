@@ -23,6 +23,8 @@ public class master extends javax.swing.JFrame {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 		//this.vPe = new PersonalizarEntidades (this);
+		this.entities = new EntityHashMap (8);
+		this.vD = new Debug (this);
 	}
 
 	/**
@@ -59,6 +61,7 @@ public class master extends javax.swing.JFrame {
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 jMenu2 = new javax.swing.JMenu();
+                MI_VistaPrevia = new javax.swing.JMenuItem();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,6 +167,15 @@ public class master extends javax.swing.JFrame {
                 jMenuBar1.add(jMenu1);
 
                 jMenu2.setText("Opciones");
+
+                MI_VistaPrevia.setText("Vista Previa");
+                MI_VistaPrevia.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_VistaPreviaActionPerformed(evt);
+                        }
+                });
+                jMenu2.add(MI_VistaPrevia);
+
                 jMenuBar1.add(jMenu2);
 
                 setJMenuBar(jMenuBar1);
@@ -284,10 +296,17 @@ public class master extends javax.swing.JFrame {
 		return this.SL_Monstruos.getValue(); 
 	}
 
+	public EntityHashMap getEntities () {
+		return this.entities;
+	}
+
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
 	this.vPe = new PersonalizarEntidades (this);		// FIXME: I need all data to be updated to this point in vPe.
 	this.vPe.setVisible(true);
+	if (!vPe.isOk()) {
+		this.entities = new EntityHashMap (this.vPe.getOriginal());
+	}
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
 
         private void SL_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MonstruosStateChanged
@@ -397,6 +416,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_AnchoStateChanged
 
+        private void MI_VistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_VistaPreviaActionPerformed
+                // TODO add your handling code here:
+	this.vD.setVisible(true);
+        }//GEN-LAST:event_MI_VistaPreviaActionPerformed
+
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
 		this.SL_Monstruos.setValue(Math.min(this.SL_Monstruos.getValue(), this.SL_Monstruos.getMaximum()));
@@ -437,9 +461,12 @@ public class master extends javax.swing.JFrame {
 
 	private int maxEntities;
 	PersonalizarEntidades vPe;
+	Debug vD;
+	private EntityHashMap entities;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Iniciar;
         private javax.swing.JButton BT_Personalizar;
+        private javax.swing.JMenuItem MI_VistaPrevia;
         private javax.swing.JSlider SL_Alto;
         private javax.swing.JSlider SL_Ancho;
         private javax.swing.JSlider SL_Heroes;
