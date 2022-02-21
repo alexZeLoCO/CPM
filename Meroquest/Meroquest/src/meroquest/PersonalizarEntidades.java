@@ -31,9 +31,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	 * Creates new form PersonalizarEntidades
 	 */
 	private PersonalizarEntidades() {
-		this.entitiesSliders = new JSlider[]{SL_Barbaro, SL_Enano, SL_Enjambre, SL_Goblin, SL_Guardian, SL_Momia, SL_Vampiro, SL_Virus};
-		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
-		this.entities = new String[] {"Bárbaro", "Enano", "Enjambre", "Goblin", "Guardián", "Momia", "Vampiro", "Virus"};
 		initComponents();
 	}
 
@@ -43,39 +40,46 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
 		this.entities = new String[] {"Bárbaro", "Enano", "Enjambre", "Goblin", "Guardián", "Momia", "Vampiro", "Virus"};
 		
-		this.vM = master;
+		this.previous = new EntityHashMap (entities);	// Crea estructura previa
+		this.current = new EntityHashMap (entities);	// Crea estructura actual
 
-		this.monstruosTotales = this.vM.getMaxMonstruos();
-		this.heroesTotales = this.vM.getMaxHeroes(); 
+		this.vM = master;	// Referencia a principal
 
-		this.previous = new EntityHashMap (entities);
-		this.current = new EntityHashMap (entities);
+		this.monstruosTotales = this.vM.getMaxMonstruos();	// Monstruos totales
+		this.heroesTotales = this.vM.getMaxHeroes(); 	// Heroes totales
 
-		this.heroesMarcados = this.SL_Barbaro.getValue();
-		this.monstruosMarcados = this.SL_Momia.getValue();
-
-		this.SL_Barbaro.setValue(this.heroesTotales);
-		this.SL_Momia.setValue(this.monstruosTotales);
-		this.SP_Barbaro.setValue(this.heroesTotales);
-		this.SP_Momia.setValue(this.monstruosTotales);
-
+		// Estado inicial de estructura, sliders y spinners.
 		for (int i = 0; i < 8 ; i++) {
 			this.previous.put(entities[i], 0);
 			this.current.put(entities[i], 0);
 			this.entitiesSliders[i].setMaximum(this.monstruosTotales);				
 			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
 		}
-
-		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
-		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
-		this.previous.put(entities[MOMIA], this.SL_Momia.getValue());		
-		this.current.put(entities[MOMIA], this.SL_Momia.getValue());
-		
+	
+		// Maximos de sliders y spinners para heroes
 		this.entitiesSpinners[ENANO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[ENANO].getModel().getValue())), 0, this.heroesTotales, 1));
 		this.entitiesSpinners[BARBARO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[BARBARO].getModel().getValue())), 0, this.heroesTotales, 1));
 		this.SL_Barbaro.setMaximum(this.heroesTotales);
 		this.SL_Enano.setMaximum(this.heroesTotales);
 		
+		// Valores por defecto de heroes y monstruos
+		this.SL_Barbaro.setValue(this.heroesTotales);
+		this.SL_Momia.setValue(this.monstruosTotales);
+		this.SP_Barbaro.setValue(this.heroesTotales);
+		this.SP_Momia.setValue(this.monstruosTotales);
+
+		// Contadores de entidades marcadas
+		this.heroesMarcados = this.SL_Barbaro.getValue();
+		this.monstruosMarcados = this.SL_Momia.getValue();
+
+		// Actualización de estructuras
+		// NOTA: JSlider.setValue(Integer) no acciona un stateChanged.
+		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
+		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
+		this.previous.put(entities[MOMIA], this.SL_Momia.getValue());		
+		this.current.put(entities[MOMIA], this.SL_Momia.getValue());
+
+		// Actualizacion de etiquetas
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
@@ -446,19 +450,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-	public void setMaxMonstruos (int max) {
-		this.monstruosTotales = max;
-	}
-
-	public EntityHashMap getPrevious() {
-		return this.previous;
-	}
-
-	public EntityHashMap getCurent () {
-		return this.current;
-	}
-
-
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
 	this.setVisible(false);
@@ -726,6 +717,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	}	
         }//GEN-LAST:event_SP_GuardianStateChanged
 
+
 	@Deprecated
 	private void actualizarLimites (int restantes) {
 		if (SL_Barbaro.getMaximum() != this.SL_Barbaro.getValue() + restantes) {
@@ -793,8 +785,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	private EntityHashMap current;
 	private EntityHashMap previous;
 
-	private int monstruosMarcados;	// this.entidadesMarcadas + (diferencia) ==> this.entidadesMarcadas + (this.SL_Entidad.getValue() - this.previous.get(this.SL_Entidad));
-	private int monstruosTotales;	// this.vM.getMonstruos();
+	private int monstruosMarcados;	
+	private int monstruosTotales;	
 	private int heroesTotales;
 	private int heroesMarcados;
 
