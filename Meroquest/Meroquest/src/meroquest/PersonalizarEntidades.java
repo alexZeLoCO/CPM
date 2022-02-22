@@ -450,6 +450,10 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	public EntityHashMap getCurrent () {
+		return this.current;
+	}
+
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
 	this.setVisible(false);

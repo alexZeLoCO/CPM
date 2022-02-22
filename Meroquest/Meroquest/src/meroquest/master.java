@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,6 +36,7 @@ public class master extends javax.swing.JFrame {
 		this.vD = new Debug (this);
 		this.JFC = new JFileChooser ();
 		this.info = new Info();
+		this.BT_Check.setVisible(false);
 	}
 
 	/**
@@ -68,6 +70,7 @@ public class master extends javax.swing.JFrame {
                 BT_Personalizar = new javax.swing.JButton();
                 BT_Iniciar = new javax.swing.JButton();
                 jSeparator2 = new javax.swing.JSeparator();
+                BT_Check = new javax.swing.JButton();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 MI_Abrir = new javax.swing.JMenuItem();
@@ -178,6 +181,14 @@ public class master extends javax.swing.JFrame {
                 });
 
                 BT_Iniciar.setText("Iniciar");
+                BT_Iniciar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                BT_IniciarActionPerformed(evt);
+                        }
+                });
+
+                BT_Check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/meroquest/iconCheck.png"))); // NOI18N
+                BT_Check.setEnabled(false);
 
                 jMenu1.setText("Archivo");
 
@@ -249,6 +260,8 @@ public class master extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(BT_Personalizar)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(BT_Check)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -333,12 +346,14 @@ public class master extends javax.swing.JFrame {
                                         .addComponent(SL_Monstruos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(SP_Monstruos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BT_Personalizar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(BT_Personalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BT_Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(BT_Iniciar)
-                                .addContainerGap(16, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -362,6 +377,8 @@ public class master extends javax.swing.JFrame {
 
 	public void setEntities (EntityHashMap e) {
 		this.entities = new EntityHashMap (e);
+		this.BT_Check.setVisible(true);
+		this.BT_Check.setEnabled(true);
 	}
 
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
@@ -486,8 +503,7 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	if (this.JFC.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath()));
-			os.writeObject(this.entities);
+			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(this.entities);
 		} catch (IOException ex) {
 			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -498,8 +514,7 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	if (this.JFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
-			ObjectInputStream  is =new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath()));
-			this.entities = new EntityHashMap ((EntityHashMap) is.readObject());	
+			this.setEntities((EntityHashMap) new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath())).readObject());	
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
@@ -512,6 +527,14 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	this.info.setVisible(true);	
         }//GEN-LAST:event_MI_InfoActionPerformed
+
+        private void BT_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_IniciarActionPerformed
+                // TODO add your handling code here:
+	if (JOptionPane.showConfirmDialog(null, "¿Iniciar?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ==
+		JOptionPane.YES_OPTION) {
+		// TODO: Call JQ
+	}
+        }//GEN-LAST:event_BT_IniciarActionPerformed
 
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
@@ -558,6 +581,7 @@ public class master extends javax.swing.JFrame {
 	private EntityHashMap entities;
 	private JFileChooser JFC;
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        javax.swing.JButton BT_Check;
         private javax.swing.JButton BT_Iniciar;
         private javax.swing.JButton BT_Personalizar;
         private javax.swing.JMenuItem MI_Abrir;

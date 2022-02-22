@@ -20,7 +20,7 @@ public class Debug extends javax.swing.JFrame {
 	public Debug (master master) {
 		this();
 		this.vM = master;
-		TA_Current.setText(this.vM.getEntities().toString());
+		this.update();
 	}
 
 	/**
@@ -80,9 +80,21 @@ public class Debug extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Updates the structure view.
+	 * If the structure if being changed, it will show the current modifications.
+	 */
+	private void update () {
+		if (this.vM.vPe != null && this.vM.vPe.isVisible()) {
+			this.TA_Current.setText(this.vM.vPe.getCurrent().toString());
+		} else {
+			this.TA_Current.setText(this.vM.getEntities().toString());
+		}
+	}
+	
         private void BT_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ActualizarActionPerformed
                 // TODO add your handling code here:
-	TA_Current.setText(this.vM.getEntities().toString());	
+		this.update();
         }//GEN-LAST:event_BT_ActualizarActionPerformed
 
 	/**
