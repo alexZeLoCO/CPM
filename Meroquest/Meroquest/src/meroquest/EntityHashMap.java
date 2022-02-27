@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -62,6 +63,10 @@ public class EntityHashMap implements Serializable {
 
 	public Pair get (String nombre) {
 		return this.get(nombre.hashCode());
+	}
+
+	public Set <Map.Entry<Integer, Pair>> entrySet () {
+		return this.data.entrySet();
 	}
 
 	@Override

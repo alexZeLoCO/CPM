@@ -40,7 +40,7 @@ public class JeroquestWindow extends JFrame {
 		// set the dimensions of the window
 		pack();
 		// set that the window cannot change size
-		setResizable(false);
+		setResizable(true);
 		// make the window visible
 		setVisible(true);
 	}

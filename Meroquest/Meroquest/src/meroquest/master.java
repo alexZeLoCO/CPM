@@ -9,10 +9,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import jeroquest.logic.Jeroquest;
 
 /**
  *
@@ -515,6 +518,18 @@ public class master extends javax.swing.JFrame {
 	if (this.JFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
 			this.setEntities((EntityHashMap) new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath())).readObject());	
+			this.SL_Heroes.setValue(0);
+			this.SL_Monstruos.setValue(0);
+			for (Map.Entry<Integer, EntityHashMap.Pair> e : this.entities.entrySet()) {
+				if (e.getValue().getPrimero().equals("Bárbaro") || e.getValue().getPrimero().equals("Enano")) {
+					this.SL_Heroes.setValue(this.SL_Heroes.getValue() + e.getValue().getSegundo());
+				} else {
+					this.SL_Monstruos.setValue(this.SL_Monstruos.getValue() + e.getValue().getSegundo());
+					if (e.getValue().getPrimero().equals("Guardián")) {
+						this.SL_Heroes.setValue(this.SL_Heroes.getValue()+e.getValue().getSegundo());
+					}
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
@@ -532,7 +547,12 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	if (JOptionPane.showConfirmDialog(null, "¿Iniciar?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ==
 		JOptionPane.YES_OPTION) {
-		// TODO: Call JQ
+		
+		// Call JQ
+		Jeroquest jq = new Jeroquest();
+		jq.newGame(this.getMaxHeroes(), this.getMaxMonstruos(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities);
+		jq.toPlay();
+
 	}
         }//GEN-LAST:event_BT_IniciarActionPerformed
 

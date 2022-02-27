@@ -8,6 +8,7 @@ import jeroquest.gui.JeroquestWindow;
 import jeroquest.gui.MyKeyboard;
 import jeroquest.units.*;
 import jeroquest.units.Character;
+import meroquest.EntityHashMap;
 
 /**
  * Programming Methodology Practice. Jeroquest - An example of Object Oriented
@@ -96,9 +97,10 @@ public class Jeroquest {
 	 * @param rows        height of the board
 	 * @param columns     width of the board
 	 * @param totalRounds total number of rounds
+	 * @param struct structure holding the number of entities
 	 */
-	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds) { // Ready for round 1
-		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds);
+	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct) { // Ready for round 1
+		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds, struct);
 
 		// place the characters in the board randomly
 		placeCharacters();

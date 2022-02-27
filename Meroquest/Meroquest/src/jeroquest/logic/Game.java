@@ -1,8 +1,11 @@
 package jeroquest.logic;
+import java.util.Map;
 import jeroquest.boardgame.Board;
 import jeroquest.boardgame.Dice;
 import jeroquest.units.*;
 import jeroquest.units.Character;
+import meroquest.EntityHashMap;
+import meroquest.EntityHashMap.Pair;
 
 /**
  * Programming Methodology Practice. Jeroquest - An example of Object Oriented
@@ -47,49 +50,99 @@ public class Game {
 	 * @param rows        height of the board to create
 	 * @param columns     width of the board to create
 	 * @param totalRounds total number of rounds to play
+	 * @param struct structure containing the number of entities
 	 */
-	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds) {
+	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct) {
 		// total number of rounds
 		setTotalRounds(totalRounds);
 
 		// Create a board with the given dimensions
 		board = new Board(rows, columns);
+		//Number of characters
+		int barbarian = 0;
+		int dwarf = 0;
+		int mummy = 0;
+		int goblin = 0;
+		int swarm =0;
+		int vampire = 0;
+		int guardian = 0;
+		int virus = 0;
 
-		// create the characters
-		characters = new Character[numHeroes + numMonsters+5];
-
-		// random heroes
-		for (int x = 0; x < numHeroes; x++)
-			if (Dice.roll() % 2 == 0)// if even create a barbarian
-				characters[x] = new Barbarian("Barbarian" + x, "<NoPlayer>");
-			else // if odd create a Dwarf
-				characters[x] = new Dwarf("Dwarf" + x, "<NoPlayer>");
-
-		// random monsters
-		for (int y = 0; y < numMonsters; y++) {
-			switch (Dice.roll(4)) {
-				case (1):
-					characters[numHeroes + y] = new Mummy("Mummy" + y);
-					break;
-				case (2):
-					characters[numHeroes + y] = new Goblin("Goblin" + y);
-					break;
-				case (3):
-					characters[numHeroes + y] = new Swarm("Swarm" + y);
-					break;
-				case (4):
-					characters[numHeroes + y] = new Vampire("Vampire" + y);
-					break;
+		for (Map.Entry<Integer, Pair> e : struct.entrySet()) {
+			switch (e.getValue().getPrimero()) {
+				case("Bárbaro"):	barbarian = e.getValue().getSegundo(); break;
+				case("Enano"):	dwarf = e.getValue().getSegundo(); break;
+				case("Momia"):	mummy = e.getValue().getSegundo(); break;
+				case("Goblin"):	goblin = e.getValue().getSegundo(); break;
+				case("Enjambre"):	swarm = e.getValue().getSegundo(); break;
+				case("Vampiro"):	vampire = e.getValue().getSegundo(); break;
+				case("Guardián"):	guardian = e.getValue().getSegundo(); break;
+				case("Virus"):	virus = e.getValue().getSegundo(); break;
 			}
 		}
 
-		for (int z = 0; z < 3; z++) {
-			characters[numHeroes+numMonsters + z]=new Guardian("Guardian" + z);
+		numHeroes-=guardian;
+
+		// create the characters
+		characters = new Character[numHeroes + numMonsters];
+
+		// setting heroes
+		for (int i = 0 ; i < barbarian ; i++){
+			characters[i] = new Barbarian ("Barbarian" + i, "<NoPlayer>");
+		}
+		for (int i = 0; i < dwarf ; i++) {
+			characters[i + barbarian] = new Dwarf ("Dwarf" + i, "<NoPlayer>");
 		}
 
-		for (int z = 0; z<2;z++) {
-			characters[numHeroes+numMonsters + z+3]=new Virus("Virus" + z);
+		// setting monsters
+		for (int i = 0; i < mummy ; i++) {
+			characters[i + numHeroes] = new Mummy ("Mummy" + i);
 		}
+		for (int i = 0; i < goblin ; i++) {
+			characters[i + numHeroes + mummy] = new Goblin ("Goblin" + i);
+		}
+		for (int i = 0; i < swarm ;i++) {
+			characters[i + numHeroes + mummy + goblin]= new Swarm ("Swarm" + i);
+		}
+		for (int i = 0; i < vampire ; i++) {
+			characters[i + numHeroes + mummy + goblin + swarm] = new Vampire ("Vampire" + i);
+		}
+		for (int i = 0; i < virus ; i++) {
+			characters[i + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + i);
+		}
+
+		// setting guardians
+		for (int i = 0; i < guardian; i++) {
+			characters[i + numHeroes + numMonsters - guardian] =new Guardian("Guardian" + i);
+		}
+		
+		// Rest of heroes
+		for (int x = 0; x < numHeroes - barbarian - dwarf - guardian;x++)
+			if (Dice.roll() % 2 == 0)// if even create a barbarian
+				characters[x + dwarf + barbarian] = new Barbarian("Barbarian" + x, "<NoPlayer>");
+			else // if odd create a Dwarf
+				characters[x + dwarf + barbarian] = new Dwarf("Dwarf" + x, "<NoPlayer>");
+			
+		// Rest of monsters
+		for (int y = 0; y < numMonsters - mummy - goblin - swarm - vampire - virus - guardian ;y++) {
+			switch (Dice.roll(5)) {
+				case (1):
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Mummy("Mummy" + y);
+					break;
+				case (2):
+					characters [y + numHeroes + mummy + goblin + swarm + vampire]  = new Goblin("Goblin" + y);
+					break;
+				case (3):
+					characters  [y + numHeroes + mummy + goblin + swarm + vampire] = new Swarm("Swarm" + y);
+					break;
+				case (4):
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Vampire("Vampire" + y);
+					break;
+				case (5):
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + y);
+			}
+		}
+		
 
 		boolean leader = false;
 		for (int i=0;i<characters.length && !leader ; i++) {
@@ -99,10 +152,28 @@ public class Game {
 			}
 		}
 
+		this.secureIntegrity();
+		
 		// first round
 		currentRound = 1;
 	}
 
+	private void secureIntegrity () {
+		int nulls = 0;
+		for (int i = 0 ; i < this.characters.length ; i++) {
+			if (this.characters[i] == null) {
+				for (int j = i; j < this.characters.length-1 ; j++) {
+					this.characters[j] = characters[j+1];
+				}
+				nulls++;
+			}	
+		}
+		Character [] neu = new Character [this.characters.length-nulls];
+		for (int i = 0; i < neu.length ; i++) {
+			neu[i]=this.characters[i];
+		}
+		this.characters = neu;
+	}
 	/**
 	 * Get the current round in the game
 	 * 

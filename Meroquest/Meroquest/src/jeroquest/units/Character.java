@@ -205,6 +205,7 @@ public abstract class Character implements Piece, GraphicElement {
 	public int attack() {
 		int impacts = 0;
 		for (int x = 0; x < getAttack(); x++)
+			// if (this.roll() + this.roll() > this.maxRoll() / 2)
 			if (Dice.roll() > 3)
 				impacts++;
 		if (impacts >= 1) {
