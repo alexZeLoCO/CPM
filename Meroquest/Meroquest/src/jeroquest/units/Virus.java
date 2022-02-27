@@ -6,7 +6,7 @@ import jeroquest.utils.DynamicVectorCharacters;
 
 import javax.swing.*;
 
-public class Virus extends Character {
+public class Virus extends Character implements Suspect{
 
 	// initial values for the attributes
 	protected static final int MOVEMENT = 1;
@@ -14,6 +14,7 @@ public class Virus extends Character {
 	protected static final int DEFENCE = 0;
 	protected static final int BODY = 7;
 	private final boolean infected = true;
+	private boolean violent = false;
 
 	/**
 	 * Create a mummy from its name
@@ -26,6 +27,7 @@ public class Virus extends Character {
 
 	@Override
 	public boolean actionCombat(Game currentGame) {
+		this.setViolent(true);
 		return true;
 	}
 
@@ -66,5 +68,15 @@ public class Virus extends Character {
 
 	public Icon getImage() {
 		return icon;
+	}
+
+	@Override
+	public boolean isViolent() {
+		return this.violent;
+	}
+
+	@Override
+	public void setViolent(boolean violent) {
+		this.violent = violent;
 	}
 }

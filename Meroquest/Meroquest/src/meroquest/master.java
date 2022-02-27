@@ -28,6 +28,7 @@ public class master extends javax.swing.JFrame {
 	 */
 	public master() {
 		initComponents();
+
 		this.maxEntities = this.SL_Alto.getValue() * this.SL_Ancho.getValue();
 		this.updateEntityNumber(this.maxEntities);
 		this.SP_Ancho.setValue(this.SL_Ancho.getValue());
@@ -550,7 +551,10 @@ public class master extends javax.swing.JFrame {
 		
 		// Call JQ
 		Jeroquest jq = new Jeroquest();
-		jq.newGame(this.getMaxHeroes(), this.getMaxMonstruos(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities);
+		// let's play a game with 3 Heroes against 4 Monsters
+		// in a board of 7 by 10
+		// in 20 turns
+		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities);
 		jq.toPlay();
 
 	}
