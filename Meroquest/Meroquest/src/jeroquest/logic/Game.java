@@ -52,7 +52,7 @@ public class Game {
 	 * @param totalRounds total number of rounds to play
 	 * @param struct structure containing the number of entities
 	 */
-	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct) {
+	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides) {
 		// total number of rounds
 		setTotalRounds(totalRounds);
 
@@ -88,58 +88,58 @@ public class Game {
 
 		// setting heroes
 		for (int i = 0 ; i < barbarian ; i++){
-			characters[i] = new Barbarian ("Barbarian" + i, "<NoPlayer>");
+			characters[i] = new Barbarian ("Barbarian" + i, "<NoPlayer>", sides);
 		}
 		for (int i = 0; i < dwarf ; i++) {
-			characters[i + barbarian] = new Dwarf ("Dwarf" + i, "<NoPlayer>");
+			characters[i + barbarian] = new Dwarf ("Dwarf" + i, "<NoPlayer>", sides);
 		}
 
 		// setting monsters
 		for (int i = 0; i < mummy ; i++) {
-			characters[i + numHeroes] = new Mummy ("Mummy" + i);
+			characters[i + numHeroes] = new Mummy ("Mummy" + i, sides);
 		}
 		for (int i = 0; i < goblin ; i++) {
-			characters[i + numHeroes + mummy] = new Goblin ("Goblin" + i);
+			characters[i + numHeroes + mummy] = new Goblin ("Goblin" + i, sides);
 		}
 		for (int i = 0; i < swarm ;i++) {
-			characters[i + numHeroes + mummy + goblin]= new Swarm ("Swarm" + i);
+			characters[i + numHeroes + mummy + goblin]= new Swarm ("Swarm" + i, sides);
 		}
 		for (int i = 0; i < vampire ; i++) {
-			characters[i + numHeroes + mummy + goblin + swarm] = new Vampire ("Vampire" + i);
+			characters[i + numHeroes + mummy + goblin + swarm] = new Vampire ("Vampire" + i, sides);
 		}
 		for (int i = 0; i < virus ; i++) {
-			characters[i + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + i);
+			characters[i + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + i, sides);
 		}
 
 		// setting guardians
 		for (int i = 0; i < guardian; i++) {
-			characters[i + numHeroes + numMonsters - guardian] =new Guardian("Guardian" + i);
+			characters[i + numHeroes + numMonsters - guardian] =new Guardian("Guardian" + i, sides);
 		}
 		
 		// Rest of heroes
 		for (int x = 0; x < numHeroes - barbarian - dwarf - guardian;x++)
 			if (Dice.roll() % 2 == 0)// if even create a barbarian
-				characters[x + dwarf + barbarian] = new Barbarian("Barbarian" + x, "<NoPlayer>");
+				characters[x + dwarf + barbarian] = new Barbarian("Barbarian" + x, "<NoPlayer>", sides);
 			else // if odd create a Dwarf
-				characters[x + dwarf + barbarian] = new Dwarf("Dwarf" + x, "<NoPlayer>");
+				characters[x + dwarf + barbarian] = new Dwarf("Dwarf" + x, "<NoPlayer>", sides);
 			
 		// Rest of monsters
 		for (int y = 0; y < numMonsters - mummy - goblin - swarm - vampire - virus - guardian ;y++) {
 			switch (Dice.roll(5)) {
 				case (1):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Mummy("Mummy" + y);
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Mummy("Mummy" + y, sides);
 					break;
 				case (2):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire]  = new Goblin("Goblin" + y);
+					characters [y + numHeroes + mummy + goblin + swarm + vampire]  = new Goblin("Goblin" + y, sides);
 					break;
 				case (3):
-					characters  [y + numHeroes + mummy + goblin + swarm + vampire] = new Swarm("Swarm" + y);
+					characters  [y + numHeroes + mummy + goblin + swarm + vampire] = new Swarm("Swarm" + y, sides);
 					break;
 				case (4):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Vampire("Vampire" + y);
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Vampire("Vampire" + y, sides);
 					break;
 				case (5):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + y);
+					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + y, sides);
 			}
 		}
 		

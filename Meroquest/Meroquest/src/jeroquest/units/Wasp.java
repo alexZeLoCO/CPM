@@ -15,12 +15,12 @@ public class Wasp extends Monster {
 	 *
 	 * @param name name of the Wasp
 	 */
-	public Wasp(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Wasp(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
-	public Wasp (String name, int ATTAK, int DEFENCE){
-		super (name, MOVEMENT, ATTAK, DEFENCE, BODY);
+	public Wasp (String name, int ATTAK, int DEFENCE, int sides){
+		super (name, MOVEMENT, ATTAK, DEFENCE, BODY, sides);
 	}
 
 	// He protec he attak ^^

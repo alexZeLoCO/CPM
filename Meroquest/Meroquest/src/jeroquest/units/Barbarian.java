@@ -16,8 +16,8 @@ public class Barbarian extends Hero {
 	 * @param name   barbarian's name
 	 * @param player name of the player that controls it
 	 */
-	public Barbarian(String name, String player) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, player, new Weapon("Broadsword", 3));
+	public Barbarian(String name, String player, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, player, new Weapon("Broadsword", 3), sides);
 	}
 
 	/************************************************

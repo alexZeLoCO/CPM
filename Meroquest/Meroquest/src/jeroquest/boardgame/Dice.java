@@ -14,7 +14,12 @@ import java.util.Random; // random numbers generator
 
 public class Dice {
 
+	private int sides;
 	private static Random generator = new Random(); // random numbers generator
+
+	public Dice (int sides) {
+		this.sides = sides;
+	}
 
 	/**
 	 * Sets the seed to generate random numbers
@@ -22,6 +27,14 @@ public class Dice {
 	 */
 	public static void setSeed(long seed) {
 		generator.setSeed(seed);
+	}
+
+	public int getSides () {
+		return this.sides;
+	}
+
+	public int use() {
+		return Dice.roll(this.sides);
 	}
 
 	/**

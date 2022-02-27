@@ -19,8 +19,8 @@ public class Guardian extends Character {
 	 *
 	 * @param name name of the Guardian
 	 */
-	public Guardian(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Guardian(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
 	/************************************************

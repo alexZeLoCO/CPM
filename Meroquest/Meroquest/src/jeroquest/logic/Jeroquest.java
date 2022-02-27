@@ -99,8 +99,8 @@ public class Jeroquest {
 	 * @param totalRounds total number of rounds
 	 * @param struct structure holding the number of entities
 	 */
-	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct) { // Ready for round 1
-		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds, struct);
+	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides) { // Ready for round 1
+		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds, struct, sides);
 
 		// place the characters in the board randomly
 		placeCharacters();

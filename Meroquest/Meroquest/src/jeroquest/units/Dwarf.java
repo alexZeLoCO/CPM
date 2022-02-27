@@ -16,8 +16,8 @@ public class Dwarf extends Hero implements Sabroso {
 	 * @param name   dwarf's name
 	 * @param player name of the player that controls it
 	 */
-	public Dwarf(String name, String player) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, player, new Weapon("Hand axe", 2));
+	public Dwarf(String name, String player, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, player, new Weapon("Hand axe", 2), sides);
 	}
 
 	public int sangrado () {

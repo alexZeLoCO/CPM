@@ -15,12 +15,11 @@ import meroquest.EntityHashMap;
 public class Jeroquest_Main {
 
 	public static void main(String[] args) {
-
 		Jeroquest jq = new Jeroquest();
 		// let's play a game with 3 Heroes against 4 Monsters
 		// in a board of 7 by 10
 		// in 20 turns
-		jq.newGame(7, 7, 5, 5, 12, new EntityHashMap(0));
+		jq.newGame(7, 7, 5, 5, 12, new EntityHashMap(0), 20);
 		jq.toPlay();
 	}
 

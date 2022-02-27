@@ -16,8 +16,8 @@ public class Goblin extends Monster implements Guard,Sabroso {
 	 * 
 	 * @param name goblin's name
 	 */
-	public Goblin(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Goblin(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
 	public int sangrado () {

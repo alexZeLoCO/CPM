@@ -17,14 +17,14 @@ public class Swarm extends Monster {
 	 *
 	 * @param name name of the Swarm
 	 */
-	public Swarm(String name) {
-		super(name, MOVEMENT, 0, 0, 0);
+	public Swarm(String name, int sides) {
+		super(name, MOVEMENT, 0, 0, 0, sides);
 
 		for (int i = 0; i < this.getWasps().length; i++) {
 			if (Dice.roll(2)==1) {
-				this.getWasps()[i] = new Wasp("Wasp" + i);
+				this.getWasps()[i] = new Wasp("Wasp" + i, this.dice.getSides());
 			} else {
-				this.getWasps()[i] = new Hornet ("Hornet" + i);
+				this.getWasps()[i] = new Hornet ("Hornet" + i, this.dice.getSides());
 			}
 
 			this.setBody(this.getBody()+this.getWasps()[i].getBody());

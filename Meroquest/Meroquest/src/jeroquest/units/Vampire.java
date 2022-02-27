@@ -21,8 +21,8 @@ public class Vampire extends Monster implements Leader {
 	 *
 	 * @param name name of the Vampire
 	 */
-	public Vampire(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Vampire(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 		this.setReserva(0);
 		this.setLeader(false);
 	}

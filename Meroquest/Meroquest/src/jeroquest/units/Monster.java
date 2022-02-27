@@ -30,8 +30,8 @@ public abstract class Monster extends Character implements Suspect, Carrier {
 	 * @param defence  dices to roll for the defence
 	 * @param body     initial life
 	 */
-	public Monster(String name, int movement, int attack, int defence, int body) {
-		super(name, movement, attack, defence, body);
+	public Monster(String name, int movement, int attack, int defence, int body, int sides) {
+		super(name, movement, attack, defence, body, sides);
 		setViolent(false);
 		setNoPlayTurns(0);
 		setInfected(false);

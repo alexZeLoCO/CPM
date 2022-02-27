@@ -41,6 +41,7 @@ public class master extends javax.swing.JFrame {
 		this.JFC = new JFileChooser ();
 		this.info = new Info();
 		this.BT_Check.setVisible(false);
+		this.vDado = new Dado();
 	}
 
 	/**
@@ -546,17 +547,15 @@ public class master extends javax.swing.JFrame {
 
         private void BT_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_IniciarActionPerformed
                 // TODO add your handling code here:
-	if (JOptionPane.showConfirmDialog(null, "¿Iniciar?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ==
-		JOptionPane.YES_OPTION) {
-		
+	this.vDado.showDialog();
+	if (this.vDado.isOk()) {
 		// Call JQ
 		Jeroquest jq = new Jeroquest();
 		// let's play a game with 3 Heroes against 4 Monsters
 		// in a board of 7 by 10
 		// in 20 turns
-		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities);
+		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities, this.vDado.getDado());
 		jq.toPlay();
-
 	}
         }//GEN-LAST:event_BT_IniciarActionPerformed
 
@@ -602,6 +601,7 @@ public class master extends javax.swing.JFrame {
 	PersonalizarEntidades vPe;
 	Debug vD;
 	Info info;
+	Dado vDado;
 	private EntityHashMap entities;
 	private JFileChooser JFC;
         // Variables declaration - do not modify//GEN-BEGIN:variables

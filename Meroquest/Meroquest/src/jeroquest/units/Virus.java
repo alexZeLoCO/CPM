@@ -21,8 +21,8 @@ public class Virus extends Character implements Suspect{
 	 *
 	 * @param name name of the mummy
 	 */
-	public Virus(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Virus(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
 	@Override

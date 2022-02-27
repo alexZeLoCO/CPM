@@ -16,8 +16,8 @@ public class Mummy extends Monster {
 	 * 
 	 * @param name name of the mummy
 	 */
-	public Mummy(String name) {
-		super(name, MOVEMENT, ATTACK, DEFENCE, BODY);
+	public Mummy(String name, int sides) {
+		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
 	/************************************************

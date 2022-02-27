@@ -11,8 +11,8 @@ public class Hornet extends Wasp {
 	 *
 	 * @param name name of the Hornet
 	 */
-	public Hornet(String name) {
-		super(name, ATTACK, BODY);
+	public Hornet(String name, int sides) {
+		super(name, ATTACK, BODY, sides);
 	}
 
 }

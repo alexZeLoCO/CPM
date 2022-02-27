@@ -40,6 +40,9 @@ public abstract class Character implements Piece, GraphicElement {
 
 	private String name; // character's name
 
+	protected Dice dice;
+
+
 	/**
 	 * Create a character from its name and its initial values for the attributes,
 	 * initially its position is null (outside of the board)
@@ -50,8 +53,9 @@ public abstract class Character implements Piece, GraphicElement {
 	 * @param defence  total of defence dices
 	 * @param body     body points
 	 */
-	public Character(String name, int movement, int attack, int defence, int body) {
+	public Character(String name, int movement, int attack, int defence, int body, int sides) {
 
+		this.dice = new Dice (sides);
 		this.name = name;
 
 		// setting the initial values
@@ -205,8 +209,8 @@ public abstract class Character implements Piece, GraphicElement {
 	public int attack() {
 		int impacts = 0;
 		for (int x = 0; x < getAttack(); x++)
-			// if (this.roll() + this.roll() > this.maxRoll() / 2)
-			if (Dice.roll() > 3)
+			// if (Dice.roll() > 3)
+			if (this.dice.use() + this.dice.use() > this.dice.getSides() / 2)
 				impacts++;
 		if (impacts >= 1) {
 			((Suspect)this).setViolent(true);

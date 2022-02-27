@@ -33,8 +33,8 @@ public abstract class Hero extends Character implements Suspect, Guard, Carrier 
 	 * @param weapon   the initial weapon
 	 */
 
-	public Hero(String name, int movement, int attack, int defence, int body, String player, Weapon weapon) {
-		super(name, movement, attack, defence, body);
+	public Hero(String name, int movement, int attack, int defence, int body, String player, Weapon weapon, int sides) {
+		super(name, movement, attack, defence, body, sides);
 		this.player = player;
 		this.setWeapon(weapon);
 		this.setInfected (false);
