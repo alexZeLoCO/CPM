@@ -5,7 +5,7 @@ import jeroquest.boardgame.Dice;
 import jeroquest.units.*;
 import jeroquest.units.Character;
 import meroquest.data.EntityHashMap;
-import meroquest.data.EntityHashMap.Pair;
+import meroquest.data.Pair;
 
 /**
  * Programming Methodology Practice. Jeroquest - An example of Object Oriented
@@ -68,16 +68,16 @@ public class Game {
 		int guardian = 0;
 		int virus = 0;
 
-		for (Map.Entry<Integer, Pair> e : struct.entrySet()) {
-			switch (e.getValue().getPrimero()) {
-				case("Bárbaro"):	barbarian = e.getValue().getSegundo(); break;
-				case("Enano"):	dwarf = e.getValue().getSegundo(); break;
-				case("Momia"):	mummy = e.getValue().getSegundo(); break;
-				case("Goblin"):	goblin = e.getValue().getSegundo(); break;
-				case("Enjambre"):	swarm = e.getValue().getSegundo(); break;
-				case("Vampiro"):	vampire = e.getValue().getSegundo(); break;
-				case("Guardián"):	guardian = e.getValue().getSegundo(); break;
-				case("Virus"):	virus = e.getValue().getSegundo(); break;
+		for (Map.Entry<Integer, Pair<String, Integer>> e : struct.entrySet()) {
+			switch ((String) e.getValue().getPrimero()) {
+				case("Bárbaro"):	barbarian = (Integer) e.getValue().getSegundo(); break;
+				case("Enano"):	dwarf = (Integer) e.getValue().getSegundo(); break;
+				case("Momia"):	mummy = (Integer) e.getValue().getSegundo(); break;
+				case("Goblin"):	goblin = (Integer) e.getValue().getSegundo(); break;
+				case("Enjambre"):	swarm = (Integer) e.getValue().getSegundo(); break;
+				case("Vampiro"):	vampire = (Integer) e.getValue().getSegundo(); break;
+				case("Guardián"):	guardian = (Integer) e.getValue().getSegundo(); break;
+				case("Virus"):	virus = (Integer) e.getValue().getSegundo(); break;
 			}
 		}
 

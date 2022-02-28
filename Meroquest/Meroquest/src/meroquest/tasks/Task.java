@@ -60,6 +60,7 @@ abstract public class Task implements SincroForeBack {
 		System.out.println("Start");
 		start();
 
+		this.heroesWin = 0;
 		this.setTarget(10);
 		this.originalTarget = this.target;
 

@@ -48,6 +48,7 @@ public class Jeroquest {
 			monitor.showGame();
 	}
 
+	// TODO: Replace return value with more complex structure to keep statistics.
 	/**
 	 * Simulate a Jeroquest game
 	 */

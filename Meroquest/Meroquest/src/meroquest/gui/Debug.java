@@ -36,9 +36,10 @@ public class Debug extends javax.swing.JFrame {
                 TA_Current = new javax.swing.JTextArea();
                 jLabel1 = new javax.swing.JLabel();
                 BT_Actualizar = new javax.swing.JButton();
+                jSeparator1 = new javax.swing.JSeparator();
 
-                TA_Current.setColumns(20);
-                TA_Current.setRows(5);
+                TA_Current.setColumns(15);
+                TA_Current.setRows(3);
                 jScrollPane2.setViewportView(TA_Current);
 
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -51,6 +52,8 @@ public class Debug extends javax.swing.JFrame {
                         }
                 });
 
+                jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -58,10 +61,12 @@ public class Debug extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jScrollPane2)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(BT_Actualizar)))
                                 .addContainerGap())
                 );
@@ -71,7 +76,8 @@ public class Debug extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
-                                        .addComponent(BT_Actualizar))
+                                        .addComponent(BT_Actualizar)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(11, 11, 11)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -96,6 +102,14 @@ public class Debug extends javax.swing.JFrame {
                 // TODO add your handling code here:
 		this.update();
         }//GEN-LAST:event_BT_ActualizarActionPerformed
+
+	@Override
+	public void setVisible(boolean b) {
+		super.setVisible(b);
+		if (b) {
+			this.update();
+		}
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -139,5 +153,6 @@ public class Debug extends javax.swing.JFrame {
         private javax.swing.JTextArea TA_Current;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JScrollPane jScrollPane2;
+        private javax.swing.JSeparator jSeparator1;
         // End of variables declaration//GEN-END:variables
 }

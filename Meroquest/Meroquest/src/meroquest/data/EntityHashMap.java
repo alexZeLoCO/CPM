@@ -16,24 +16,24 @@ import java.util.Set;
  */
 public class EntityHashMap implements Serializable {
 
-	private final HashMap<Integer, Pair> data;
+	private final HashMap<Integer, Pair<String, Integer>> data;
 	private int entities;
 
 	public EntityHashMap (int size) {
 		this.entities = 0;
-		this.data = new HashMap<Integer, Pair> (size);
+		this.data = new HashMap<Integer, Pair<String, Integer>> (size);
 	}
 
 	public EntityHashMap (String[] elems) {
 		this(elems.length);
 		for (String s : elems) {
-			this.data.put(s.hashCode(), new Pair (s, 0));
+			this.data.put(s.hashCode(), new Pair <String, Integer> (s, 0));
 		}
 	}
 
 	public EntityHashMap (EntityHashMap ref) {
 		this(ref.size());
-		for (Map.Entry<Integer, Pair> e : ref.data.entrySet()) {
+		for (Map.Entry<Integer, Pair<String, Integer>> e : ref.data.entrySet()) {
 			this.put(e.getValue().getPrimero(), e.getValue().getSegundo());
 		}
 	}
@@ -65,37 +65,19 @@ public class EntityHashMap implements Serializable {
 		return this.get(nombre.hashCode());
 	}
 
-	public Set <Map.Entry<Integer, Pair>> entrySet () {
+	public Set <Map.Entry<Integer, Pair<String, Integer>>> entrySet () {
 		return this.data.entrySet();
 	}
 
 	@Override
 	public String toString () {
 		String out = "Entidad\tCódigo ~> Cantidad\n";
-		Iterator<Map.Entry<Integer, Pair>> itr = this.data.entrySet().iterator();
-		Map.Entry<Integer, Pair> current;
+		Iterator<Map.Entry<Integer, Pair<String, Integer>>> itr = this.data.entrySet().iterator();
+		Map.Entry<Integer, Pair<String, Integer>> current;
 		while (itr.hasNext()) {
 			current = itr.next();
 			out+=current.getValue().getPrimero() + "\t" + current.getKey() + "  ~> " + current.getValue().getSegundo() + "\n";
 		}
 		return out;
-	}
-		
-	public final class Pair implements Serializable {
-		private final String primero;
-		private final Integer segundo;
-
-		protected Pair (String primero, Integer segundo) {
-			this.primero = primero;
-			this.segundo = segundo;
-		}
-
-		public String getPrimero() {
-			return this.primero;
-		}
-
-		public Integer getSegundo() {
-			return this.segundo;
-		}
 	}
 }

@@ -470,12 +470,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Barbaro.getValue().toString()) != this.SL_Barbaro.getValue()) {
 		this.SP_Barbaro.setValue(this.SL_Barbaro.getValue());
 	}
-	if (SL_Barbaro.getValue() > this.previous.get(entities[BARBARO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
+	if (SL_Barbaro.getValue() > (Integer) this.previous.get(entities[BARBARO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
 		SL_Barbaro.setValue(this.heroesTotales - this.heroesMarcados);
 	} else {
 		this.current.put(entities[BARBARO], SL_Barbaro.getValue());	// Actualizar valor actual
-		this.heroesMarcados= this.heroesMarcados+ (this.SL_Barbaro.getValue() - this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[BARBARO], this.current.get(entities[BARBARO]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.heroesMarcados= this.heroesMarcados+ (this.SL_Barbaro.getValue() - (Integer) this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[BARBARO], (Integer) this.current.get(entities[BARBARO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}
         }//GEN-LAST:event_SL_BarbaroStateChanged
@@ -497,12 +497,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enano.getValue().toString()) != this.SL_Enano.getValue()) {
 		this.SP_Enano.setValue(this.SL_Enano.getValue());
 	}
-	if (SL_Enano.getValue() > this.previous.get(entities[ENANO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
+	if (SL_Enano.getValue() > (Integer) this.previous.get(entities[ENANO]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
 		SL_Enano.setValue(this.heroesTotales- this.heroesMarcados);
 	} else {
 		this.current.put(entities[ENANO], SL_Enano.getValue());	// Actualizar valor actual
-		this.heroesMarcados= this.heroesMarcados+ (this.SL_Enano.getValue() - this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[ENANO], this.current.get(entities[ENANO]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.heroesMarcados= this.heroesMarcados+ (this.SL_Enano.getValue() - (Integer) this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[ENANO], (Integer) this.current.get(entities[ENANO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}
         }//GEN-LAST:event_SL_EnanoStateChanged
@@ -546,12 +546,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Goblin.getValue().toString()) != this.SL_Goblin.getValue()) {
 		this.SP_Goblin.setValue(this.SL_Goblin.getValue());
 	}
-	if (SL_Goblin.getValue() > this.previous.get(entities[GOBLIN]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+	if (SL_Goblin.getValue() > (Integer) this.previous.get(entities[GOBLIN]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
 		SL_Goblin.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[GOBLIN], SL_Goblin.getValue());	// Actualizar valor actual
-		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Goblin.getValue() - this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[GOBLIN], this.current.get(entities[GOBLIN]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Goblin.getValue() - (Integer) this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[GOBLIN], (Integer) this.current.get(entities[GOBLIN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_GoblinStateChanged
@@ -614,12 +614,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Momia.getValue().toString()) != this.SL_Momia.getValue()) {
 		this.SP_Momia.setValue(this.SL_Momia.getValue());
 	}
-	if (SL_Momia.getValue() > this.previous.get(entities[MOMIA]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+	if (SL_Momia.getValue() > (Integer) this.previous.get(entities[MOMIA]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
 		SL_Momia.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[MOMIA], SL_Momia.getValue());	// Actualizar valor actual
-		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Momia.getValue() - this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[MOMIA], this.current.get(entities[MOMIA]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Momia.getValue() - (Integer) this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[MOMIA], (Integer) this.current.get(entities[MOMIA]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_MomiaStateChanged
@@ -629,12 +629,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Enjambre.getValue().toString()) != this.SL_Enjambre.getValue()) {
 		this.SP_Enjambre.setValue(this.SL_Enjambre.getValue());
 	}
-	if (SL_Enjambre.getValue() > this.previous.get(entities[ENJAMBRE]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+	if (SL_Enjambre.getValue() > (Integer) this.previous.get(entities[ENJAMBRE]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
 		SL_Enjambre.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[ENJAMBRE], SL_Enjambre.getValue());	// Actualizar valor actual
-		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Enjambre.getValue() - this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[ENJAMBRE], this.current.get(entities[ENJAMBRE]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Enjambre.getValue() - (Integer) this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[ENJAMBRE], (Integer) this.current.get(entities[ENJAMBRE]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_EnjambreStateChanged
@@ -644,12 +644,12 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Vampiro.getValue().toString()) != this.SL_Vampiro.getValue()) {
 		this.SP_Vampiro.setValue(this.SL_Vampiro.getValue());
 	}
-	if (SL_Vampiro.getValue() > this.previous.get(entities[VAMPIRO]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+	if (SL_Vampiro.getValue() > (Integer) this.previous.get(entities[VAMPIRO]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
 		SL_Vampiro.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[VAMPIRO], SL_Vampiro.getValue());	// Actualizar valor actual
-		this.monstruosMarcados = this.monstruosMarcados+ (this.SL_Vampiro.getValue() - this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[VAMPIRO], this.current.get(entities[VAMPIRO]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.monstruosMarcados = this.monstruosMarcados+ (this.SL_Vampiro.getValue() - (Integer) this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[VAMPIRO], (Integer) this.current.get(entities[VAMPIRO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_VampiroStateChanged
@@ -659,28 +659,29 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	if (Integer.parseInt(this.SP_Virus.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Virus.setValue(this.SL_Virus.getValue());
 	}
-	if (SL_Virus.getValue() > this.previous.get(entities[VIRUS]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
+	if (SL_Virus.getValue() > (Integer) this.previous.get(entities[VIRUS]).getSegundo() + this.monstruosTotales - this.monstruosMarcados) {
 		SL_Virus.setValue(this.monstruosTotales - this.monstruosMarcados);
 	} else {
 		this.current.put(entities[VIRUS], SL_Virus.getValue());	// Actualizar valor actual
-		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Virus.getValue() - this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[VIRUS], this.current.get(entities[VIRUS]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Virus.getValue() - (Integer) this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[VIRUS], (Integer) this.current.get(entities[VIRUS]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 	}
         }//GEN-LAST:event_SL_VirusStateChanged
 
         private void SL_GuardianStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_GuardianStateChanged
                 // TODO add your handling code here:
-	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Virus.getValue()) {
+	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Guardian.getValue()) {
 		this.SP_Guardian.setValue(this.SL_Guardian.getValue());
 	}
-	if (SL_Guardian.getValue() > this.previous.get(entities[GUARDIAN]).getSegundo() + this.monstruosTotales + this.heroesTotales - this.heroesMarcados - this.monstruosMarcados) {
-		SL_Guardian.setValue(this.monstruosTotales + this.heroesTotales - this.heroesMarcados - this.monstruosMarcados);
+	if (SL_Guardian.getValue() > (Integer) this.previous.get(entities[GUARDIAN]).getSegundo() + this.monstruosTotales - this.monstruosMarcados ||
+		SL_Guardian.getValue() > (Integer) this.previous.get(entities[GUARDIAN]).getSegundo() + this.heroesTotales - this.heroesMarcados) {
+		SL_Guardian.setValue(Math.min(this.monstruosTotales - this.monstruosMarcados,  this.heroesTotales - this.heroesMarcados));
 	} else {
 		this.current.put(entities[GUARDIAN], SL_Guardian.getValue());	// Actualizar valor actual
-		this.heroesMarcados = this.heroesMarcados + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
-		this.monstruosMarcados  = this.monstruosMarcados + (this.SL_Guardian.getValue() - this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
-		this.previous.put(entities[GUARDIAN], this.current.get(entities[GUARDIAN]).getSegundo());	// Actualizar previo para siguiente cambio
+		this.heroesMarcados = this.heroesMarcados + (this.SL_Guardian.getValue() - (Integer) this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
+		this.monstruosMarcados  = this.monstruosMarcados + (this.SL_Guardian.getValue() - (Integer) this.previous.get(entities[GUARDIAN]).getSegundo());	// Actualizar entidades marcadas
+		this.previous.put(entities[GUARDIAN], (Integer) this.current.get(entities[GUARDIAN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
 	}

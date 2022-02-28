@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 import jeroquest.logic.Jeroquest;
+import meroquest.data.GameSave;
+import meroquest.data.Pair;
 
 /**
  *
@@ -569,7 +571,7 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	if (this.JFC.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
-			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(this.entities);
+			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(new GameSave (this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities));
 		} catch (IOException ex) {
 			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -580,19 +582,13 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	if (this.JFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
-			this.setEntities((EntityHashMap) new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath())).readObject());	
-			this.SL_Heroes.setValue(0);
-			this.SL_Monstruos.setValue(0);
-			for (Map.Entry<Integer, EntityHashMap.Pair> e : this.entities.entrySet()) {
-				if (e.getValue().getPrimero().equals("Bárbaro") || e.getValue().getPrimero().equals("Enano")) {
-					this.SL_Heroes.setValue(this.SL_Heroes.getValue() + e.getValue().getSegundo());
-				} else {
-					this.SL_Monstruos.setValue(this.SL_Monstruos.getValue() + e.getValue().getSegundo());
-					if (e.getValue().getPrimero().equals("Guardián")) {
-						this.SL_Heroes.setValue(this.SL_Heroes.getValue()+e.getValue().getSegundo());
-					}
-				}
-			}
+			GameSave gs = new GameSave ((GameSave) new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath())).readObject());
+			this.setEntities(gs.getEntities());
+			this.SL_Heroes.setValue(gs.getHeroes());
+			this.SL_Monstruos.setValue(gs.getMonsters());
+			this.SL_Alto.setValue(gs.getRows());
+			this.SL_Ancho.setValue(gs.getCols());
+			this.SL_Turnos.setValue(gs.getTurns());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
