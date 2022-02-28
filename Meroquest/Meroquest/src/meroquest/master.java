@@ -43,6 +43,7 @@ public class master extends javax.swing.JFrame {
 		this.vDado = new Dado();
 		this.task = new TaskMeroquest(this);
 		this.LB_Detencion.setVisible(false);
+		this.gameTask = new GameTaskMeroquest();
 	}
 
 	/**
@@ -605,14 +606,15 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	this.vDado.showDialog();
 	if (this.vDado.isOk()) {
-		System.out.println("Running");
-		Jeroquest jq = new Jeroquest();
-		// let's play a game with 3 Heroes against 4 Monsters
-		// in a board of 7 by 10
-		// in 20 turns
-		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities, this.vDado.getDado(), 10);
-		jq.toPlay();
-	 }
+		this.gameTask.setAll(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.vDado.getDado(), this.entities);
+		this.gameThread = new Thread () {
+			@Override
+			public void run () {
+				master.this.gameTask.run();
+			}
+		};
+		this.gameThread.start();
+	}
         }//GEN-LAST:event_BT_IniciarActionPerformed
 
         private void BT_TaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_TaskActionPerformed
@@ -689,6 +691,8 @@ public class master extends javax.swing.JFrame {
 	TaskMeroquest task;
 	Thread hiloBack;
 	
+	GameTaskMeroquest gameTask;
+	Thread gameThread;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         javax.swing.JButton BT_Check;
         javax.swing.JButton BT_Iniciar;
