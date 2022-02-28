@@ -36,6 +36,7 @@ public class Info extends javax.swing.JDialog {
                 jTextArea1 = new javax.swing.JTextArea();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+                setTitle("Meroquest | Información");
 
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
                 jLabel1.setText("Información Meroquest");

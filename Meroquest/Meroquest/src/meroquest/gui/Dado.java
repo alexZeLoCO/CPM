@@ -41,6 +41,7 @@ public class Dado extends javax.swing.JDialog {
                 BT_Ok = new javax.swing.JButton();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+                setTitle("Meroquest | Dado");
 
                 BT_Cancelar.setText("Cancelar");
                 BT_Cancelar.addActionListener(new java.awt.event.ActionListener() {
