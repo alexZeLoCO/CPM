@@ -4,6 +4,7 @@
  */
 package meroquest;
 
+import meroquest.data.EntityHashMap;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;

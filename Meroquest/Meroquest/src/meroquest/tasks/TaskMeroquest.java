@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package meroquest;
+package meroquest.tasks;
 
 import javax.swing.JOptionPane;
+import meroquest.master;
 
 /**
  *
@@ -26,6 +27,7 @@ public class TaskMeroquest extends Task {
 
 	@Override
 	public void finish() {
+		this.master.LB_Task.setEnabled(true);
 		this.master.BT_Task.setEnabled(true);
 		this.master.BT_StopTask.setEnabled(false);
 		JOptionPane.showMessageDialog(null, "Fin de estudio:Han ganado " + this.getHeroesWin() + " veces. Los héroes ganarán con una probabilidad de: " + ((float)this.getHeroesWin()) / this.getOriginalTarget(), "Informe", JOptionPane.INFORMATION_MESSAGE);	

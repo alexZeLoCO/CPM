@@ -2,7 +2,7 @@ package jeroquest;
 // Demo of the class Jeroquest
 
 import jeroquest.logic.Jeroquest;
-import meroquest.EntityHashMap;
+import meroquest.data.EntityHashMap;
 
 /**
  * Main program to test the game Jeroquest

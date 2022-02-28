@@ -4,6 +4,9 @@
  */
 package meroquest;
 
+import meroquest.data.EntityHashMap;
+import meroquest.tasks.TaskMeroquest;
+import meroquest.tasks.GameTaskMeroquest;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -96,6 +99,7 @@ public class master extends javax.swing.JFrame {
                 MI_Info = new javax.swing.JMenuItem();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setTitle("Meroquest");
 
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
                 jLabel1.setText("MEROQUEST");
@@ -633,7 +637,9 @@ public class master extends javax.swing.JFrame {
 	};
 	this.hiloBack.start();
 
-	this.LB_Task.setEnabled(false);
+	this.BT_Iniciar.setEnabled(false);
+	this.BT_Task.setEnabled(false);
+	this.LB_Task.setEnabled(true);
 	this.BT_StopTask.setEnabled(true);
         }//GEN-LAST:event_BT_TaskActionPerformed
 
@@ -697,16 +703,16 @@ public class master extends javax.swing.JFrame {
         javax.swing.JButton BT_Check;
         javax.swing.JButton BT_Iniciar;
         javax.swing.JButton BT_Personalizar;
-        javax.swing.JButton BT_StopTask;
-        javax.swing.JButton BT_Task;
+        public javax.swing.JButton BT_StopTask;
+        public javax.swing.JButton BT_Task;
         javax.swing.JLabel LB_Detencion;
-        javax.swing.JLabel LB_Task;
+        public javax.swing.JLabel LB_Task;
         javax.swing.JMenuItem MI_Abrir;
         javax.swing.JMenuItem MI_Guardar;
         javax.swing.JMenuItem MI_Info;
         javax.swing.JMenuItem MI_Salir;
         javax.swing.JMenuItem MI_VistaPrevia;
-        javax.swing.JProgressBar PB_Task;
+        public javax.swing.JProgressBar PB_Task;
         javax.swing.JSlider SL_Alto;
         javax.swing.JSlider SL_Ancho;
         javax.swing.JSlider SL_Heroes;

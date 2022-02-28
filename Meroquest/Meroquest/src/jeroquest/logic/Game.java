@@ -4,8 +4,8 @@ import jeroquest.boardgame.Board;
 import jeroquest.boardgame.Dice;
 import jeroquest.units.*;
 import jeroquest.units.Character;
-import meroquest.EntityHashMap;
-import meroquest.EntityHashMap.Pair;
+import meroquest.data.EntityHashMap;
+import meroquest.data.EntityHashMap.Pair;
 
 /**
  * Programming Methodology Practice. Jeroquest - An example of Object Oriented

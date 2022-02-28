@@ -10,7 +10,7 @@ import jeroquest.gui.JeroquestWindow;
 import jeroquest.gui.MyKeyboard;
 import jeroquest.units.*;
 import jeroquest.units.Character;
-import meroquest.EntityHashMap;
+import meroquest.data.EntityHashMap;
 
 /**
  * Programming Methodology Practice. Jeroquest - An example of Object Oriented
