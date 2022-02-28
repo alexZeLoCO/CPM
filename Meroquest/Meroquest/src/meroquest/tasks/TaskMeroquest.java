@@ -5,7 +5,7 @@
 package meroquest.tasks;
 
 import javax.swing.JOptionPane;
-import meroquest.master;
+import meroquest.gui.master;
 
 /**
  *

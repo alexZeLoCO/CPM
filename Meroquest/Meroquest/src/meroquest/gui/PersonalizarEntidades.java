@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package meroquest;
+package meroquest.gui;
 
 import meroquest.data.EntityHashMap;
 import javax.swing.JSlider;
@@ -237,7 +237,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 jPanel1.add(CB_Momia);
 
                 SL_Momia.setMaximum(5);
-                SL_Momia.setValue(5);
                 SL_Momia.addChangeListener(new javax.swing.event.ChangeListener() {
                         public void stateChanged(javax.swing.event.ChangeEvent evt) {
                                 SL_MomiaStateChanged(evt);

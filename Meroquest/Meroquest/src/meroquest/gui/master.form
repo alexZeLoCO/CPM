@@ -416,7 +416,7 @@
     <Component class="javax.swing.JButton" name="BT_Check">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/meroquest/iconCheck.png"/>
+          <Image iconType="3" name="/meroquest/gui/iconCheck.png"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>

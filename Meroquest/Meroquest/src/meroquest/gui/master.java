@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package meroquest;
+package meroquest.gui;
 
 import meroquest.data.EntityHashMap;
 import meroquest.tasks.TaskMeroquest;
@@ -204,7 +204,7 @@ public class master extends javax.swing.JFrame {
                         }
                 });
 
-                BT_Check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/meroquest/iconCheck.png"))); // NOI18N
+                BT_Check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/meroquest/gui/iconCheck.png"))); // NOI18N
                 BT_Check.setEnabled(false);
 
                 BT_Task.setText("Probabilidades");
