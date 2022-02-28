@@ -41,7 +41,7 @@ public class master extends javax.swing.JFrame {
 		this.vD = new Debug (this);
 		this.JFC = new JFileChooser ();
 		this.info = new Info();
-		this.BT_Check.setVisible(false);
+		this.TK_Tick.setVisible(false);
 		this.vDado = new Dado();
 		this.task = new TaskMeroquest(this);
 		this.LB_Detencion.setVisible(false);
@@ -80,13 +80,13 @@ public class master extends javax.swing.JFrame {
                 BT_Personalizar = new javax.swing.JButton();
                 BT_Iniciar = new javax.swing.JButton();
                 jSeparator2 = new javax.swing.JSeparator();
-                BT_Check = new javax.swing.JButton();
                 BT_Task = new javax.swing.JButton();
                 PB_Task = new javax.swing.JProgressBar();
                 jLabel9 = new javax.swing.JLabel();
                 LB_Task = new javax.swing.JLabel();
                 BT_StopTask = new javax.swing.JButton();
                 LB_Detencion = new javax.swing.JLabel();
+                TK_Tick = new Tick();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 MI_Abrir = new javax.swing.JMenuItem();
@@ -204,9 +204,6 @@ public class master extends javax.swing.JFrame {
                         }
                 });
 
-                BT_Check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/meroquest/gui/iconCheck.png"))); // NOI18N
-                BT_Check.setEnabled(false);
-
                 BT_Task.setText("Probabilidades");
                 BT_Task.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +227,23 @@ public class master extends javax.swing.JFrame {
                 });
 
                 LB_Detencion.setText("Orden de detención reconocida. Se detendrá al final de ésta partida.");
+
+                TK_Tick.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseReleased(java.awt.event.MouseEvent evt) {
+                                TK_TickMouseReleased(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout TK_TickLayout = new javax.swing.GroupLayout(TK_Tick);
+                TK_Tick.setLayout(TK_TickLayout);
+                TK_TickLayout.setHorizontalGroup(
+                        TK_TickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 38, Short.MAX_VALUE)
+                );
+                TK_TickLayout.setVerticalGroup(
+                        TK_TickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                );
 
                 jMenu1.setText("Archivo");
 
@@ -294,7 +308,7 @@ public class master extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(BT_Personalizar)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(BT_Check))
+                                                .addComponent(TK_Tick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jLabel8)
@@ -401,8 +415,8 @@ public class master extends javax.swing.JFrame {
                                         .addComponent(SP_Monstruos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(BT_Personalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(BT_Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(TK_Tick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BT_Personalizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -443,8 +457,7 @@ public class master extends javax.swing.JFrame {
 
 	public void setEntities (EntityHashMap e) {
 		this.entities = new EntityHashMap (e);
-		this.BT_Check.setVisible(true);
-		this.BT_Check.setEnabled(true);
+		this.TK_Tick.setVisible(true);
 	}
 
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
@@ -643,6 +656,15 @@ public class master extends javax.swing.JFrame {
 	this.task.setStop();
         }//GEN-LAST:event_BT_StopTaskActionPerformed
 
+        private void TK_TickMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TK_TickMouseReleased
+                // TODO add your handling code here:
+	if (this.ticks-- == 0) {
+		((Tick)this.TK_Tick).switchDrawing();
+		this.ticks = 10;
+		this.TK_Tick.repaint();
+	}	
+        }//GEN-LAST:event_TK_TickMouseReleased
+
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
 		this.SL_Monstruos.setValue(Math.min(this.SL_Monstruos.getValue(), this.SL_Monstruos.getMaximum()));
@@ -696,13 +718,13 @@ public class master extends javax.swing.JFrame {
 
 	public PostPartida vPp;
 
+	private int ticks = 10;
         // Variables declaration - do not modify//GEN-BEGIN:variables
-        javax.swing.JButton BT_Check;
         public javax.swing.JButton BT_Iniciar;
         javax.swing.JButton BT_Personalizar;
         public javax.swing.JButton BT_StopTask;
         public javax.swing.JButton BT_Task;
-        javax.swing.JLabel LB_Detencion;
+        public javax.swing.JLabel LB_Detencion;
         public javax.swing.JLabel LB_Task;
         javax.swing.JMenuItem MI_Abrir;
         javax.swing.JMenuItem MI_Guardar;
@@ -720,6 +742,7 @@ public class master extends javax.swing.JFrame {
         javax.swing.JSpinner SP_Heroes;
         javax.swing.JSpinner SP_Monstruos;
         javax.swing.JSpinner SP_Turnos;
+        javax.swing.JPanel TK_Tick;
         javax.swing.JLabel jLabel1;
         javax.swing.JLabel jLabel2;
         javax.swing.JLabel jLabel3;
