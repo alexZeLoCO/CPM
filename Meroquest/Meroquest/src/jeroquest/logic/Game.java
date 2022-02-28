@@ -210,6 +210,27 @@ public class Game {
 		return board;
 	}
 
+	public String highestBody() { // Returns the name of the class with highest value for the total body points in
+									// the current state of the game
+		int cHeroes = 0;
+		int cMonsters = 0;
+
+		for (Character c : this.getCharacters()) {
+			if (c instanceof Hero)
+				cHeroes += c.getBody();
+			else if (c instanceof Monster)
+				cMonsters += c.getBody();
+			// System.out.println(p.getClass());
+		}
+		if (cMonsters > cHeroes)
+			return "Monsters";
+		else if (cHeroes > cMonsters)
+			return "Heroes";
+		else
+			return "Draw";
+	}
+
+
 	/**
 	 * Generate a printable version of the object as String (Overridden method)
 	 * 

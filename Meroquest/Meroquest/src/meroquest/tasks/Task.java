@@ -68,7 +68,7 @@ abstract public class Task implements SincroForeBack {
 			this.update();
 			Jeroquest jq = new Jeroquest();
 			jq.newGame(this.heroes, this.monsters, this.rows, this.columns, this.turns, this.struct, 6, 0);	
-			if (jq.toPlay() == 1) {
+			if (jq.toPlay().highestBody().equals("Heroes")) {
 				this.heroesWin++;
 			}
 			System.out.println("\n-----------------------------\n"
@@ -76,9 +76,7 @@ abstract public class Task implements SincroForeBack {
 				           "\n-----------------------------\n");
 		}
 
-		if (!stop()) {
-			finish();
-		}
+		finish();
 	}
 }
 

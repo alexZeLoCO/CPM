@@ -4,20 +4,28 @@
  */
 package meroquest.tasks;
 
+import meroquest.gui.master;
+
 /**
  *
  * @author Rodríguez López, Alejandro // UO281827 
  */
 public class GameTaskMeroquest extends GameTask {
 	
+	private master vM;
+
+	public GameTaskMeroquest (master master) {
+		this.vM = master;
+	}
+
 	@Override
 	public void start () {
 
 	}	
 
 	@Override
-	public void finish () {
-
+	public void finish (jeroquest.logic.Game g) {
+		this.vM.vPp.showDialog(g);
 	}
 
 }

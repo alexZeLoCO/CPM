@@ -11,7 +11,7 @@ package meroquest.tasks;
 public interface Game {
 	
 	public void start ();
-	public void finish ();
+	public void finish (jeroquest.logic.Game g);
 
 	public void run();
 }

@@ -12,14 +12,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
-import jeroquest.logic.Jeroquest;
 import meroquest.data.GameSave;
-import meroquest.data.Pair;
 
 /**
  *
@@ -48,7 +45,8 @@ public class master extends javax.swing.JFrame {
 		this.vDado = new Dado();
 		this.task = new TaskMeroquest(this);
 		this.LB_Detencion.setVisible(false);
-		this.gameTask = new GameTaskMeroquest();
+		this.gameTask = new GameTaskMeroquest(this);
+		this.vPp = new PostPartida();
 	}
 
 	/**
@@ -695,9 +693,12 @@ public class master extends javax.swing.JFrame {
 	
 	GameTaskMeroquest gameTask;
 	Thread gameThread;
+
+	public PostPartida vPp;
+
         // Variables declaration - do not modify//GEN-BEGIN:variables
         javax.swing.JButton BT_Check;
-        javax.swing.JButton BT_Iniciar;
+        public javax.swing.JButton BT_Iniciar;
         javax.swing.JButton BT_Personalizar;
         public javax.swing.JButton BT_StopTask;
         public javax.swing.JButton BT_Task;

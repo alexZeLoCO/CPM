@@ -52,7 +52,7 @@ public class Jeroquest {
 	/**
 	 * Simulate a Jeroquest game
 	 */
-	public int toPlay() {
+	public Game toPlay() {
 		// GUI - Create the window for the current game
 		monitor = new JeroquestWindow(currentGame);
 
@@ -92,7 +92,7 @@ public class Jeroquest {
 		// GUI - Close the window
 		monitor.close();
 		
-		return (highestBody().equals("Heroes")) ? 1 : 0;
+		return this.currentGame;
 	}
 
 	private void pause () {

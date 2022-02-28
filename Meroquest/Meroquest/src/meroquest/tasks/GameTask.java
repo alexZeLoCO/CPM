@@ -32,9 +32,7 @@ abstract public class GameTask implements Game {
 
 		Jeroquest jq = new Jeroquest();
 		jq.newGame(this.heroes, this.monsters, this.rows, this.cols, this.turns, this.struct, this.dice, 500);
-		jq.toPlay();
-
-		finish();
+		finish(jq.toPlay());
 	}
 	
 }
