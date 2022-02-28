@@ -293,7 +293,7 @@ public abstract class Character implements Piece, GraphicElement {
 
 			// window
 			Jeroquest.showGame();
-			MyKeyboard.pressEnter();
+			//MyKeyboard.pressEnter();
 
 			validPositions = validPositions(currentGame);
 		}
@@ -303,7 +303,7 @@ public abstract class Character implements Piece, GraphicElement {
 		System.out.println();
 		// window
 		Jeroquest.showGame();
-		MyKeyboard.pressEnter();
+		//MyKeyboard.pressEnter();
 
 		return this.getMovement() - mov;
 	}
@@ -395,7 +395,7 @@ public abstract class Character implements Piece, GraphicElement {
 	public DynamicVectorXYLocation validPositions(Game currentGame) {
 
 		DynamicVectorXYLocation positions = new DynamicVectorXYLocation();
-
+		try {
 		XYLocation position = this.getPosition().south();
 		if (currentGame.getBoard().freeSquare(position))
 			positions.add(position);
@@ -412,6 +412,10 @@ public abstract class Character implements Piece, GraphicElement {
 		if (currentGame.getBoard().freeSquare(position))
 			positions.add(position);
 
+		} catch (NullPointerException e) {
+			System.err.println(this.toString() + "\nfell off the map");
+			currentGame.getBoard().removePiece(this);
+		}
 		return positions;
 	}
 
@@ -457,10 +461,14 @@ public abstract class Character implements Piece, GraphicElement {
 		// if the character is dead is outside of the board
 		if (pos != null) {
 			// a JLabel is created the icon
+			try {
 			JLabel lab = new MyJLabelCharacter(this);
 
 			// the label is added to the layer 2
 			w.add(lab, Integer.valueOf(2));
+			} catch (ClassCastException e) {
+				
+			}
 		}
 
 	}

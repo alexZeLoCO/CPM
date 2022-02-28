@@ -165,7 +165,11 @@ public class VentanaP4a extends javax.swing.JFrame {
         
         
         // Crear un hilo que lance la tarea
-        HiloBack=new Thread(){public void run(){VentanaP4a.TareaBack.Run();}};        
+        HiloBack=new Thread() {
+		public void run() {
+			VentanaP4a.TareaBack.Run();
+		}
+	};        
         HiloBack.start(); // Lanzar el hilo (ejecutará Run)
         
         // Permitir que desde el nterfaz se pueda hacer Pause y Stop

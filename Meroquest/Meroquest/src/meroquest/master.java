@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 import jeroquest.logic.Jeroquest;
 
@@ -42,6 +41,8 @@ public class master extends javax.swing.JFrame {
 		this.info = new Info();
 		this.BT_Check.setVisible(false);
 		this.vDado = new Dado();
+		this.task = new TaskMeroquest(this);
+		this.LB_Detencion.setVisible(false);
 	}
 
 	/**
@@ -76,6 +77,12 @@ public class master extends javax.swing.JFrame {
                 BT_Iniciar = new javax.swing.JButton();
                 jSeparator2 = new javax.swing.JSeparator();
                 BT_Check = new javax.swing.JButton();
+                BT_Task = new javax.swing.JButton();
+                PB_Task = new javax.swing.JProgressBar();
+                jLabel9 = new javax.swing.JLabel();
+                LB_Task = new javax.swing.JLabel();
+                BT_StopTask = new javax.swing.JButton();
+                LB_Detencion = new javax.swing.JLabel();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 MI_Abrir = new javax.swing.JMenuItem();
@@ -195,6 +202,30 @@ public class master extends javax.swing.JFrame {
                 BT_Check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/meroquest/iconCheck.png"))); // NOI18N
                 BT_Check.setEnabled(false);
 
+                BT_Task.setText("Probabilidades");
+                BT_Task.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                BT_TaskActionPerformed(evt);
+                        }
+                });
+
+                PB_Task.setMaximum(10);
+
+                jLabel9.setText("Iteraciones Restantes:");
+
+                LB_Task.setText("100");
+                LB_Task.setEnabled(false);
+
+                BT_StopTask.setText("Detener");
+                BT_StopTask.setEnabled(false);
+                BT_StopTask.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                BT_StopTaskActionPerformed(evt);
+                        }
+                });
+
+                LB_Detencion.setText("Orden de detención reconocida. Se detendrá al final de ésta partida.");
+
                 jMenu1.setText("Archivo");
 
                 MI_Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -253,35 +284,32 @@ public class master extends javax.swing.JFrame {
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jSeparator2))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(BT_Iniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(52, 52, 52)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(BT_Personalizar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(BT_Check))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(jLabel7))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(BT_Personalizar)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(BT_Check)
-                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                .addComponent(SL_Monstruos, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(SP_Monstruos))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(jLabel8)
-                                                                        .addComponent(jLabel7))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(SL_Monstruos, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(SP_Monstruos))
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(SL_Heroes, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(SP_Heroes))))))
+                                                                .addComponent(SL_Heroes, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(SP_Heroes, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(BT_Iniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +339,23 @@ public class master extends javax.swing.JFrame {
                                                 .addGap(11, 11, 11))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGap(0, 6, Short.MAX_VALUE)
-                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jSeparator2)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(6, 6, 6)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(BT_StopTask, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(PB_Task, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(BT_Task, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(jLabel9)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(LB_Task)
+                                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                        .addComponent(LB_Detencion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addContainerGap())
                 );
                 layout.setVerticalGroup(
@@ -356,9 +400,21 @@ public class master extends javax.swing.JFrame {
                                         .addComponent(BT_Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BT_Task)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PB_Task, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(LB_Task))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BT_StopTask)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LB_Detencion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                                 .addComponent(BT_Iniciar)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
                 );
 
                 pack();
@@ -549,15 +605,41 @@ public class master extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	this.vDado.showDialog();
 	if (this.vDado.isOk()) {
-		// Call JQ
+		System.out.println("Running");
 		Jeroquest jq = new Jeroquest();
 		// let's play a game with 3 Heroes against 4 Monsters
 		// in a board of 7 by 10
 		// in 20 turns
-		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities, this.vDado.getDado());
+		jq.newGame(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities, this.vDado.getDado(), 10);
 		jq.toPlay();
-	}
+	 }
         }//GEN-LAST:event_BT_IniciarActionPerformed
+
+        private void BT_TaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_TaskActionPerformed
+                // TODO add your handling code here:
+	this.task.setCols(this.SL_Ancho.getValue());
+	this.task.setRows(this.SL_Alto.getValue());
+	this.task.setMonsters(this.SL_Monstruos.getValue());
+	this.task.setHeroes(this.SL_Heroes.getValue());
+	this.task.setTurns(this.SL_Turnos.getValue());
+	this.task.setStruct(this.entities);
+
+	hiloBack = new Thread () {
+		public void run () {
+			master.this.task.run();
+		}
+	};
+	this.hiloBack.start();
+
+	this.LB_Task.setEnabled(false);
+	this.BT_StopTask.setEnabled(true);
+        }//GEN-LAST:event_BT_TaskActionPerformed
+
+        private void BT_StopTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_StopTaskActionPerformed
+                // TODO add your handling code here:
+	this.LB_Detencion.setVisible(true);
+	this.task.setStop();
+        }//GEN-LAST:event_BT_StopTaskActionPerformed
 
 	private void updateEntityNumber (int maxEntities) {
 		this.SL_Monstruos.setMaximum(maxEntities);
@@ -604,39 +686,48 @@ public class master extends javax.swing.JFrame {
 	Dado vDado;
 	private EntityHashMap entities;
 	private JFileChooser JFC;
+	TaskMeroquest task;
+	Thread hiloBack;
+	
         // Variables declaration - do not modify//GEN-BEGIN:variables
         javax.swing.JButton BT_Check;
-        private javax.swing.JButton BT_Iniciar;
-        private javax.swing.JButton BT_Personalizar;
-        private javax.swing.JMenuItem MI_Abrir;
-        private javax.swing.JMenuItem MI_Guardar;
-        private javax.swing.JMenuItem MI_Info;
-        private javax.swing.JMenuItem MI_Salir;
-        private javax.swing.JMenuItem MI_VistaPrevia;
-        private javax.swing.JSlider SL_Alto;
-        private javax.swing.JSlider SL_Ancho;
-        private javax.swing.JSlider SL_Heroes;
-        private javax.swing.JSlider SL_Monstruos;
-        private javax.swing.JSlider SL_Turnos;
-        private javax.swing.JSpinner SP_Alto;
-        private javax.swing.JSpinner SP_Ancho;
-        private javax.swing.JSpinner SP_Heroes;
-        private javax.swing.JSpinner SP_Monstruos;
-        private javax.swing.JSpinner SP_Turnos;
-        private javax.swing.JLabel jLabel1;
-        private javax.swing.JLabel jLabel2;
-        private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JLabel jLabel5;
-        private javax.swing.JLabel jLabel6;
-        private javax.swing.JLabel jLabel7;
-        private javax.swing.JLabel jLabel8;
-        private javax.swing.JMenu jMenu1;
-        private javax.swing.JMenu jMenu2;
-        private javax.swing.JMenu jMenu3;
-        private javax.swing.JMenuBar jMenuBar1;
-        private javax.swing.JSeparator jSeparator1;
-        private javax.swing.JSeparator jSeparator2;
-        private javax.swing.JPopupMenu.Separator jSeparator3;
+        javax.swing.JButton BT_Iniciar;
+        javax.swing.JButton BT_Personalizar;
+        javax.swing.JButton BT_StopTask;
+        javax.swing.JButton BT_Task;
+        javax.swing.JLabel LB_Detencion;
+        javax.swing.JLabel LB_Task;
+        javax.swing.JMenuItem MI_Abrir;
+        javax.swing.JMenuItem MI_Guardar;
+        javax.swing.JMenuItem MI_Info;
+        javax.swing.JMenuItem MI_Salir;
+        javax.swing.JMenuItem MI_VistaPrevia;
+        javax.swing.JProgressBar PB_Task;
+        javax.swing.JSlider SL_Alto;
+        javax.swing.JSlider SL_Ancho;
+        javax.swing.JSlider SL_Heroes;
+        javax.swing.JSlider SL_Monstruos;
+        javax.swing.JSlider SL_Turnos;
+        javax.swing.JSpinner SP_Alto;
+        javax.swing.JSpinner SP_Ancho;
+        javax.swing.JSpinner SP_Heroes;
+        javax.swing.JSpinner SP_Monstruos;
+        javax.swing.JSpinner SP_Turnos;
+        javax.swing.JLabel jLabel1;
+        javax.swing.JLabel jLabel2;
+        javax.swing.JLabel jLabel3;
+        javax.swing.JLabel jLabel4;
+        javax.swing.JLabel jLabel5;
+        javax.swing.JLabel jLabel6;
+        javax.swing.JLabel jLabel7;
+        javax.swing.JLabel jLabel8;
+        javax.swing.JLabel jLabel9;
+        javax.swing.JMenu jMenu1;
+        javax.swing.JMenu jMenu2;
+        javax.swing.JMenu jMenu3;
+        javax.swing.JMenuBar jMenuBar1;
+        javax.swing.JSeparator jSeparator1;
+        javax.swing.JSeparator jSeparator2;
+        javax.swing.JPopupMenu.Separator jSeparator3;
         // End of variables declaration//GEN-END:variables
 }

@@ -27,6 +27,10 @@ abstract public class Tarea implements SincroForeBack {
         System.out.println("Start");
      Start();// Indica que empieza
      
+     /*
+      while (iteraciones-- != 0 && !this.stop()) {
+     }
+     */
      for(int i=1;i<=Iters;i++)
      {
         Duerme(); // Simula una tarea no interrumpida

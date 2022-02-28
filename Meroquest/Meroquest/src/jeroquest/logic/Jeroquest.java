@@ -1,5 +1,7 @@
 package jeroquest.logic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jeroquest.boardgame.Board;
 import jeroquest.boardgame.Dice;
 import jeroquest.boardgame.Direction;
@@ -25,6 +27,7 @@ import meroquest.EntityHashMap;
 
 public class Jeroquest {
 
+	private int waitTime;
 	private Game currentGame; // current game
 	private static JeroquestWindow monitor;
 
@@ -48,7 +51,7 @@ public class Jeroquest {
 	/**
 	 * Simulate a Jeroquest game
 	 */
-	public void toPlay() {
+	public int toPlay() {
 		// GUI - Create the window for the current game
 		monitor = new JeroquestWindow(currentGame);
 
@@ -60,7 +63,7 @@ public class Jeroquest {
 
 		// GUI - update the game in the window
 		monitor.showGame();
-		MyKeyboard.pressEnter();
+		pause();
 
 		// resolve the game in successive rounds
 		while (noEndOfGame()) {
@@ -72,7 +75,7 @@ public class Jeroquest {
 
 			// GUI - update the game in the window
 			monitor.showGame();
-			MyKeyboard.pressEnter();
+			pause();
 
 			// increment round
 			nextRound();
@@ -83,11 +86,21 @@ public class Jeroquest {
 		System.out.println("Winners: " + highestBody());
 		showUndamagedWasps();
 
-		MyKeyboard.pressEnter();
+		pause();
 
 		// GUI - Close the window
 		monitor.close();
+		
+		return (highestBody().equals("Heroes")) ? 1 : 0;
 	}
+
+	private void pause () {
+		try {	
+			Thread.sleep(this.waitTime);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(Jeroquest.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}	
 
 	/**
 	 * create a new game from its components
@@ -99,8 +112,9 @@ public class Jeroquest {
 	 * @param totalRounds total number of rounds
 	 * @param struct structure holding the number of entities
 	 */
-	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides) { // Ready for round 1
+	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides, int waitTime) { // Ready for round 1
 		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds, struct, sides);
+		this.waitTime = waitTime;
 
 		// place the characters in the board randomly
 		placeCharacters();

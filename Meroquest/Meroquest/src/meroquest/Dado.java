@@ -6,7 +6,7 @@ package meroquest;
 
 /**
  *
- * @author aleja
+ * @author Rodríguez López, Alejandro // UO281827 
  */
 public class Dado extends javax.swing.JDialog {
 
@@ -122,10 +122,11 @@ public class Dado extends javax.swing.JDialog {
 		return this.dado;
 	}
 
-	public void showDialog () {
+	public boolean showDialog () {
 		this.pOk = false;
-		this.dado =6;
+		this.setVisible(true);
 		this.TF_Dado.setText(String.format("%d", this.getDado()));
+		return this.isOk();
 	}
 
         private void TF_DadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyPressed
