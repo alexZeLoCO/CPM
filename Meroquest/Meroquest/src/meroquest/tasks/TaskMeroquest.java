@@ -29,8 +29,12 @@ public class TaskMeroquest extends Task {
 	public void finish() {
 		this.master.LB_Task.setEnabled(true);
 		this.master.BT_Task.setEnabled(true);
+		this.master.PB_Task.setValue(0);
 		this.master.BT_StopTask.setEnabled(false);
 		this.master.BT_Iniciar.setEnabled(true);
+		this.master.LB_Detencion.setVisible(false);
+		this.master.LB_Task.setText("");
+
 		if (!stop()) {
 			JOptionPane.showMessageDialog(null, "Fin de estudio:Han ganado " + this.getHeroesWin() + " veces. Los héroes ganarán con una probabilidad de: " + ((float)this.getHeroesWin()) / this.getOriginalTarget(), "Informe", JOptionPane.INFORMATION_MESSAGE);	
 		}
