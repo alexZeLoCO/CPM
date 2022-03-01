@@ -18,6 +18,7 @@ public class PostPartida extends javax.swing.JDialog {
 	private PostPartida(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		this.LT_Entidades.setModel(new javax.swing.DefaultListModel<String>());
 	}
 
 	public PostPartida () {
@@ -61,17 +62,20 @@ public class PostPartida extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel1)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabel2)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(LB_Ganadores))
-                                                        .addComponent(jLabel3)
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addGap(6, 6, 6)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(jLabel2)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(LB_Ganadores))
+                                                                        .addComponent(jLabel3))))
+                                                .addGap(0, 118, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addContainerGap())
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +89,7 @@ public class PostPartida extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
 
@@ -94,7 +98,8 @@ public class PostPartida extends javax.swing.JDialog {
 
 	public void showDialog(Game g) {
 		this.LB_Ganadores.setText(g.highestBody());
-		javax.swing.DefaultListModel m = (javax.swing.DefaultListModel)
+		// FIXME: java.lang.ClassCastException: class javax.swing.JList$3 cannot be cast to class javax.swing.DefaultListModel 
+		javax.swing.DefaultListModel<String> m = (javax.swing.DefaultListModel<String>)
 			this.LT_Entidades.getModel();	
 		for (jeroquest.units.Character c : g.getCharacters()) {
 			m.addElement(c.toString());
