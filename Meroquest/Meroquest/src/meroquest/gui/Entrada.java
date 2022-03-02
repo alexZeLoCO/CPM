@@ -38,6 +38,7 @@ public class Entrada extends javax.swing.JFrame {
                 LB_Fondo = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setTitle("Meroquest | Inicio");
 
                 jButton1.setText("Comenzar");
                 jButton1.addActionListener(new java.awt.event.ActionListener() {

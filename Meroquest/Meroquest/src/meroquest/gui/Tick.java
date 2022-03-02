@@ -6,6 +6,7 @@ package meroquest.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -15,11 +16,21 @@ import javax.swing.JPanel;
 public class Tick extends JPanel {
 
 	private boolean tick;
+	public Color color;
 
 	public Tick () {
 		super();
+		this.color = Color.GREEN;
 		this.tick = true;
 		System.out.println("Creando tick");
+	}
+
+	public void setColor (Color c) {
+		this.color = c;
+	}
+
+	public Color getColor () {
+		return this.color;
 	}
 
 	public void switchDrawing () {
@@ -31,8 +42,9 @@ public class Tick extends JPanel {
 	public void paint (Graphics g) {
 		super.paint(g);
 		System.out.println("Pintando tick");
+		g.drawImage((new ImageIcon (ClassLoader.getSystemResource("jeroquest/gui/images/barbarian.gif"))).getImage(), 0, 0, null);
 		if (this.tick) {
-			g.setColor(Color.GREEN);
+			g.setColor(this.color);
 			g.drawLine(0, this.getHeight()/2, this.getWidth()/2, this.getHeight());
 			g.drawLine(this.getWidth()/2, this.getHeight(), this.getWidth(), 0);
 		} else {

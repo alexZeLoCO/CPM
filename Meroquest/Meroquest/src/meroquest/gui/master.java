@@ -4,6 +4,7 @@
  */
 package meroquest.gui;
 
+import java.awt.Color;
 import meroquest.data.EntityHashMap;
 import meroquest.tasks.TaskMeroquest;
 import meroquest.tasks.GameTaskMeroquest;
@@ -14,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 
 import meroquest.data.GameSave;
@@ -95,6 +97,8 @@ public class master extends javax.swing.JFrame {
                 MI_Salir = new javax.swing.JMenuItem();
                 jMenu2 = new javax.swing.JMenu();
                 MI_VistaPrevia = new javax.swing.JMenuItem();
+                jSeparator4 = new javax.swing.JPopupMenu.Separator();
+                MI_Color = new javax.swing.JMenuItem();
                 jMenu3 = new javax.swing.JMenu();
                 MI_Info = new javax.swing.JMenuItem();
 
@@ -282,6 +286,15 @@ public class master extends javax.swing.JFrame {
                         }
                 });
                 jMenu2.add(MI_VistaPrevia);
+                jMenu2.add(jSeparator4);
+
+                MI_Color.setText("Color");
+                MI_Color.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_ColorActionPerformed(evt);
+                        }
+                });
+                jMenu2.add(MI_Color);
 
                 jMenuBar1.add(jMenu2);
 
@@ -688,6 +701,13 @@ public class master extends javax.swing.JFrame {
 	}	
         }//GEN-LAST:event_TK_TickMouseReleased
 
+        private void MI_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_ColorActionPerformed
+                // TODO add your handling code here:
+	System.out.println("Modificando color");
+	((Tick)this.TK_Tick).setColor(JColorChooser.showDialog(null, "Seleccione color", ((Tick)this.TK_Tick).getColor()));
+	((Tick)this.TK_Tick).repaint();
+        }//GEN-LAST:event_MI_ColorActionPerformed
+
 	private void updateEntityNumber (int maxEntities) {
 		System.out.println("Modificando numero de entidades");
 		this.SL_Monstruos.setMaximum(maxEntities);
@@ -743,6 +763,7 @@ public class master extends javax.swing.JFrame {
 
 	public PostPartida vPp;
 
+	private Color color = Color.GREEN;
 	private int ticks = 10;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         public javax.swing.JButton BT_Iniciar;
@@ -752,6 +773,7 @@ public class master extends javax.swing.JFrame {
         public javax.swing.JLabel LB_Detencion;
         public javax.swing.JLabel LB_Task;
         javax.swing.JMenuItem MI_Abrir;
+        javax.swing.JMenuItem MI_Color;
         javax.swing.JMenuItem MI_Guardar;
         javax.swing.JMenuItem MI_Info;
         javax.swing.JMenuItem MI_Salir;
@@ -784,5 +806,6 @@ public class master extends javax.swing.JFrame {
         javax.swing.JSeparator jSeparator1;
         javax.swing.JSeparator jSeparator2;
         javax.swing.JPopupMenu.Separator jSeparator3;
+        javax.swing.JPopupMenu.Separator jSeparator4;
         // End of variables declaration//GEN-END:variables
 }
