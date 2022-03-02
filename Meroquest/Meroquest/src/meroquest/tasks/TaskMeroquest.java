@@ -13,6 +13,13 @@ import meroquest.gui.master;
  */
 public class TaskMeroquest extends Task {
 
+	/*
+	 * 5x5 ==> 96 s
+	 * 1x1 ==> 4 s
+	 * 10x10 ==> 400s
+	 */
+	private long startTime;
+	private long endTime;
 	private boolean isStopped;
 	private master master;
 
@@ -25,10 +32,15 @@ public class TaskMeroquest extends Task {
 	public void start() {
 		System.out.println("Iniciando tarea");
 		this.isStopped = false;
+		this.heroesWin = 0;
+		this.setTarget(10);
+		this.originalTarget = this.target;
+		this.startTime = System.nanoTime();
 	}
 
 	@Override
 	public void finish() {
+		this.endTime = System.nanoTime();
 		System.out.println("Finalizando tarea");
 		this.master.LB_Task.setEnabled(true);
 		this.master.BT_Task.setEnabled(true);
@@ -39,8 +51,8 @@ public class TaskMeroquest extends Task {
 		this.master.LB_Task.setText("");
 
 		if (!stop()) {
-			System.out.println("Mostrando resultado de tarea");
-			JOptionPane.showMessageDialog(null, "Fin de estudio:Han ganado " + this.getHeroesWin() + " veces. Los héroes ganarán con una probabilidad de: " + ((float)this.getHeroesWin()) / this.getOriginalTarget() * 100 + "%", "Informe", JOptionPane.INFORMATION_MESSAGE);	
+			System.out.println("Mostrando resultado de tarea\n\tFin de estudio:Han ganado " + this.getHeroesWin() + " veces. Los héroes ganarán con una probabilidad de: " + ((float)this.getHeroesWin()) / this.getOriginalTarget() * 100 + "%.\nDuración de tarea: " + ((this.endTime - this.startTime)/Math.pow(10, 9)) + " Tiempo medio por juego: " + ((this.endTime - this.startTime)/Math.pow(10, 10)));
+			JOptionPane.showMessageDialog(null, "Fin de estudio:Han ganado " + this.getHeroesWin() + " veces. Los héroes ganarán con una probabilidad de: " + ((float)this.getHeroesWin()) / this.getOriginalTarget() * 100 + "%.\nDuración de tarea: " + ((this.endTime - this.startTime)/Math.pow(10, 9)) + " Tiempo medio por juego: " + ((this.endTime - this.startTime)/Math.pow(10, 10)), "Informe", JOptionPane.INFORMATION_MESSAGE);	
 		}
 	}
 

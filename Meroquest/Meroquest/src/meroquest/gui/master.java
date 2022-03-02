@@ -734,6 +734,7 @@ public class master extends javax.swing.JFrame {
 	private JFileChooser JFC;
 	TaskMeroquest task;
 	Thread hiloBack;
+	Thread[] threads = new Thread[5];
 	
 	GameTaskMeroquest gameTask;
 	Thread gameThread;

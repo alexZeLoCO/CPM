@@ -15,7 +15,7 @@ abstract public class Task implements SincroForeBack {
 	
 	protected int target;
 	protected int originalTarget;
-	private int heroesWin;
+	int heroesWin;
 
 	private int heroes, monsters, rows, columns, turns;
 	private EntityHashMap struct;
@@ -59,10 +59,6 @@ abstract public class Task implements SincroForeBack {
 	public void run () {
 		System.out.println("Ejecutando tarea");
 		start();
-
-		this.heroesWin = 0;
-		this.setTarget(10);
-		this.originalTarget = this.target;
 
 		while (!stop() && this.target-- > 0) {
 			this.update();
