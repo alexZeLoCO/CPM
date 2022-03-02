@@ -58,8 +58,8 @@ public class Dado extends javax.swing.JDialog {
 
                 TF_Dado.setText("6");
                 TF_Dado.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyPressed(java.awt.event.KeyEvent evt) {
-                                TF_DadoKeyPressed(evt);
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                TF_DadoKeyTyped(evt);
                         }
                 });
 
@@ -132,14 +132,6 @@ public class Dado extends javax.swing.JDialog {
 		return this.isOk();
 	}
 
-        private void TF_DadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyPressed
-                // TODO add your handling code here:
-	System.out.println("Revisando entrada");
-	if (evt.getKeyChar() < 0 ||  evt.getKeyChar() > 9) {
-		evt.consume();
-	}
-        }//GEN-LAST:event_TF_DadoKeyPressed
-
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Eleccion cancelada");
@@ -152,6 +144,15 @@ public class Dado extends javax.swing.JDialog {
 	this.pOk = true;
 	this.setVisible(false);
         }//GEN-LAST:event_BT_OkActionPerformed
+
+        private void TF_DadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyTyped
+                  // TODO add your handling code here:
+    	System.out.println("Revisando entrada");
+	if (! Character.isDigit(evt.getKeyChar())) {
+    		System.out.println("Entrada denegada");
+		evt.consume();
+	}
+        }//GEN-LAST:event_TF_DadoKeyTyped
 
 	/**
 	 * @param args the command line arguments

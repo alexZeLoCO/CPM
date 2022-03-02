@@ -110,7 +110,7 @@ public class master extends javax.swing.JFrame {
 
                 jLabel4.setText("Alto:");
 
-                SL_Ancho.setMaximum(10);
+                SL_Ancho.setMaximum(20);
                 SL_Ancho.setMinimum(1);
                 SL_Ancho.setValue(5);
                 SL_Ancho.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -119,7 +119,7 @@ public class master extends javax.swing.JFrame {
                         }
                 });
 
-                SL_Alto.setMaximum(10);
+                SL_Alto.setMaximum(20);
                 SL_Alto.setMinimum(1);
                 SL_Alto.setValue(5);
                 SL_Alto.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -137,6 +137,7 @@ public class master extends javax.swing.JFrame {
                         }
                 });
 
+                SP_Ancho.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
                 SP_Ancho.setToolTipText("");
                 SP_Ancho.setValue(5);
                 SP_Ancho.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -145,6 +146,7 @@ public class master extends javax.swing.JFrame {
                         }
                 });
 
+                SP_Alto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
                 SP_Alto.addChangeListener(new javax.swing.event.ChangeListener() {
                         public void stateChanged(javax.swing.event.ChangeEvent evt) {
                                 SP_AltoStateChanged(evt);
