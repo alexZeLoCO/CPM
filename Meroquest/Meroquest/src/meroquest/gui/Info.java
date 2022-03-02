@@ -16,6 +16,7 @@ public class Info extends javax.swing.JDialog {
 	private Info(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		System.out.println("Creando pantalla de info");
 	}
 
 	public Info () {

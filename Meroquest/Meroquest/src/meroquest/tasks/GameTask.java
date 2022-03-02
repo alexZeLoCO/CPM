@@ -17,6 +17,7 @@ abstract public class GameTask implements Game {
 	private EntityHashMap struct;
 	
 	public void setAll (int heroes, int monsters, int rows, int cols, int turns, int dice, EntityHashMap struct) {
+		System.out.println("Asignando valores de tarea");
 		this.heroes = heroes;
 		this.monsters = monsters;
 		this.rows = rows;
@@ -28,6 +29,7 @@ abstract public class GameTask implements Game {
 
 	@Override
 	public void run() {
+		System.out.println("Ejecutando tarea");
 		start();
 
 		Jeroquest jq = new Jeroquest();

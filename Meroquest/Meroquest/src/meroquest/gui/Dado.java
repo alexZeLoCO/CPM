@@ -16,6 +16,7 @@ public class Dado extends javax.swing.JDialog {
 	public Dado(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		System.out.println("Creando pantalla de dado");
 		this.pOk = false;
 		this.dado = Integer.parseInt(this.TF_Dado.getText());
 	}
@@ -124,6 +125,7 @@ public class Dado extends javax.swing.JDialog {
 	}
 
 	public boolean showDialog () {
+		System.out.println("Mostrando pantalla");
 		this.pOk = false;
 		this.setVisible(true);
 		this.TF_Dado.setText(String.format("%d", this.getDado()));
@@ -132,6 +134,7 @@ public class Dado extends javax.swing.JDialog {
 
         private void TF_DadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyPressed
                 // TODO add your handling code here:
+	System.out.println("Revisando entrada");
 	if (evt.getKeyChar() < 0 ||  evt.getKeyChar() > 9) {
 		evt.consume();
 	}
@@ -139,11 +142,13 @@ public class Dado extends javax.swing.JDialog {
 
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Eleccion cancelada");
 	this.setVisible(false);
         }//GEN-LAST:event_BT_CancelarActionPerformed
 
         private void BT_OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_OkActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Eleccion aceptada");
 	this.pOk = true;
 	this.setVisible(false);
         }//GEN-LAST:event_BT_OkActionPerformed

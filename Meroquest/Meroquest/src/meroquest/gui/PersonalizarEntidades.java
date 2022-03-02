@@ -33,6 +33,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	 */
 	private PersonalizarEntidades() {
 		initComponents();
+		System.out.println("Creando personalizacion de entidades");
 	}
 
 	public PersonalizarEntidades (master master) {
@@ -456,17 +457,20 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Cancelando sistema de entidades");
 	this.setVisible(false);
         }//GEN-LAST:event_BT_CancelarActionPerformed
 
         private void BT_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_AceptarActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Asignando sistema de entidades a estructura");
 	this.vM.setEntities(this.current); 
 	this.setVisible (false);
         }//GEN-LAST:event_BT_AceptarActionPerformed
 
         private void SL_BarbaroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_BarbaroStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Barbaro");
 	if (Integer.parseInt(this.SP_Barbaro.getValue().toString()) != this.SL_Barbaro.getValue()) {
 		this.SP_Barbaro.setValue(this.SL_Barbaro.getValue());
 	}
@@ -482,6 +486,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_BarbaroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_BarbaroStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Barbaro");
 	if (Integer.parseInt(this.SP_Barbaro.getValue().toString()) != this.SL_Barbaro.getValue()) {
 		this.SL_Barbaro.setValue(Integer.parseInt(this.SP_Barbaro.getValue().toString()));
 	}
@@ -489,11 +494,13 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void BT_DebugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_DebugActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Mostrando vista previa");
 	this.vM.vD.setVisible(true);
         }//GEN-LAST:event_BT_DebugActionPerformed
 
         private void SL_EnanoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_EnanoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Enano");
 	if (Integer.parseInt(this.SP_Enano.getValue().toString()) != this.SL_Enano.getValue()) {
 		this.SP_Enano.setValue(this.SL_Enano.getValue());
 	}
@@ -509,6 +516,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_EnanoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_EnanoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Enano");
 	if (Integer.parseInt(this.SP_Enano.getValue().toString()) != this.SL_Enano.getValue()) {
 		this.SL_Enano.setValue(Integer.parseInt(this.SP_Enano.getValue().toString()));
 	}	
@@ -516,6 +524,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_BarbaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_BarbaroActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Barbaro");
 	this.SL_Barbaro.setEnabled(this.CB_Barbaro.isSelected());
 	this.SP_Barbaro.setEnabled(this.CB_Barbaro.isSelected());
 	if (!this.CB_Barbaro.isSelected()) {
@@ -525,6 +534,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_EnanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_EnanoActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Enano");
 	this.SL_Enano.setEnabled(this.CB_Enano.isSelected());
 	this.SP_Enano.setEnabled(this.CB_Enano.isSelected());
 	if (!this.CB_Enano.isSelected()) {
@@ -534,6 +544,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_GoblinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_GoblinActionPerformed
                 // TODO add your handling code here: 
+	System.out.println("Checkbox: Habilitando/Deshabilitando Goblin");
 	this.SL_Goblin.setEnabled(this.CB_Goblin.isSelected());
 	this.SP_Goblin.setEnabled(this.CB_Goblin.isSelected());
 	if (!this.CB_Goblin.isSelected()) {
@@ -543,6 +554,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_GoblinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_GoblinStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Goblin");
 	if (Integer.parseInt(this.SP_Goblin.getValue().toString()) != this.SL_Goblin.getValue()) {
 		this.SP_Goblin.setValue(this.SL_Goblin.getValue());
 	}
@@ -558,6 +570,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_GoblinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_GoblinStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Goblin");
 	if (Integer.parseInt(this.SP_Goblin.getValue().toString()) != this.SL_Goblin.getValue()) {
 		this.SL_Goblin.setValue(Integer.parseInt(this.SP_Goblin.getValue().toString()));
 	}	
@@ -565,6 +578,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_MomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_MomiaActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Momia");
 	this.SL_Momia.setEnabled(this.CB_Momia.isSelected());
 	this.SP_Momia.setEnabled(this.CB_Momia.isSelected());
 	if (!this.CB_Momia.isSelected()) {
@@ -575,6 +589,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_EnjambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_EnjambreActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Enjambre");
 	this.SL_Enjambre.setEnabled(this.CB_Enjambre.isSelected());
 	this.SP_Enjambre.setEnabled(this.CB_Enjambre.isSelected());
 	if (!this.CB_Enjambre.isSelected()) {
@@ -584,6 +599,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_VampiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_VampiroActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Vampiro");
 	this.SL_Vampiro.setEnabled(this.CB_Vampiro.isSelected());
 	this.SP_Vampiro.setEnabled(this.CB_Vampiro.isSelected());
 	if (!this.CB_Vampiro.isSelected()) {
@@ -593,6 +609,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_VirusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_VirusActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Virus");
 	this.SL_Virus.setEnabled(this.CB_Virus.isSelected());
 	this.SP_Virus.setEnabled(this.CB_Virus.isSelected());
 	if (!this.CB_Virus.isSelected()) {
@@ -602,6 +619,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void CB_GuardianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_GuardianActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Checkbox: Habilitando/Deshabilitando Guardian");
 	this.SL_Guardian.setEnabled(this.CB_Guardian.isSelected());
 	this.SP_Guardian.setEnabled(this.CB_Guardian.isSelected());
 	if (!this.CB_Guardian.isSelected()) {
@@ -611,6 +629,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_MomiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MomiaStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Momia");
 	if (Integer.parseInt(this.SP_Momia.getValue().toString()) != this.SL_Momia.getValue()) {
 		this.SP_Momia.setValue(this.SL_Momia.getValue());
 	}
@@ -626,6 +645,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_EnjambreStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_EnjambreStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Enjambre");
 	if (Integer.parseInt(this.SP_Enjambre.getValue().toString()) != this.SL_Enjambre.getValue()) {
 		this.SP_Enjambre.setValue(this.SL_Enjambre.getValue());
 	}
@@ -641,6 +661,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_VampiroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_VampiroStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Vampiro");
 	if (Integer.parseInt(this.SP_Vampiro.getValue().toString()) != this.SL_Vampiro.getValue()) {
 		this.SP_Vampiro.setValue(this.SL_Vampiro.getValue());
 	}
@@ -656,6 +677,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_VirusStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_VirusStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Virus");
 	if (Integer.parseInt(this.SP_Virus.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SP_Virus.setValue(this.SL_Virus.getValue());
 	}
@@ -671,6 +693,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SL_GuardianStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_GuardianStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando Guardian");
 	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Guardian.getValue()) {
 		this.SP_Guardian.setValue(this.SL_Guardian.getValue());
 	}
@@ -689,6 +712,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_MomiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_MomiaStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Momia");
 	if (Integer.parseInt(this.SP_Momia.getValue().toString()) != this.SL_Momia.getValue()) {
 		this.SL_Momia.setValue(Integer.parseInt(this.SP_Momia.getValue().toString()));
 	}	
@@ -696,6 +720,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_EnjambreStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_EnjambreStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Enjambre");
 	if (Integer.parseInt(this.SP_Enjambre.getValue().toString()) != this.SL_Enjambre.getValue()) {
 		this.SL_Enjambre.setValue(Integer.parseInt(this.SP_Enjambre.getValue().toString()));
 	}	
@@ -703,6 +728,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_VampiroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_VampiroStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Vampiro");
 	if (Integer.parseInt(this.SP_Vampiro.getValue().toString()) != this.SL_Vampiro.getValue()) {
 		this.SL_Vampiro.setValue(Integer.parseInt(this.SP_Vampiro.getValue().toString()));
 	}	
@@ -710,6 +736,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_VirusStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_VirusStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Virus");
 	if (Integer.parseInt(this.SP_Virus.getValue().toString()) != this.SL_Virus.getValue()) {
 		this.SL_Virus.setValue(Integer.parseInt(this.SP_Virus.getValue().toString()));
 	}	
@@ -717,6 +744,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
         private void SP_GuardianStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_GuardianStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando Guardian");
 	if (Integer.parseInt(this.SP_Guardian.getValue().toString()) != this.SL_Guardian.getValue()) {
 		this.SL_Guardian.setValue(Integer.parseInt(this.SP_Guardian.getValue().toString()));
 	}	
@@ -725,6 +753,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
 	@Deprecated
 	private void actualizarLimites (int restantes) {
+		System.out.println("Actualizando maximos de entidades");
 		if (SL_Barbaro.getMaximum() != this.SL_Barbaro.getValue() + restantes) {
 			this.SL_Barbaro.setMaximum(this.SL_Barbaro.getValue() + restantes);
 		}

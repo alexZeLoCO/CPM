@@ -15,10 +15,12 @@ public class Debug extends javax.swing.JFrame {
 	 */
 	public Debug() {
 		initComponents();
+		System.out.println("Creando vista previa");
 	}
 
 	public Debug (master master) {
 		this();
+		System.out.println("Creando vista previa con referencia a principal");
 		this.vM = master;
 		this.update();
 	}
@@ -94,6 +96,7 @@ public class Debug extends javax.swing.JFrame {
 	 * If the structure if being changed, it will show the current modifications.
 	 */
 	private void update () {
+		System.out.println("Actualizando valores de vista previa");
 		if (this.vM.vPe != null && this.vM.vPe.isVisible()) {
 			this.TA_Current.setText(this.vM.vPe.getCurrent().toString());
 		} else {

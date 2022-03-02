@@ -57,7 +57,7 @@ abstract public class Task implements SincroForeBack {
 	}
 
 	public void run () {
-		System.out.println("Start");
+		System.out.println("Ejecutando tarea");
 		start();
 
 		this.heroesWin = 0;

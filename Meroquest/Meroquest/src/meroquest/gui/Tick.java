@@ -19,15 +19,18 @@ public class Tick extends JPanel {
 	public Tick () {
 		super();
 		this.tick = true;
+		System.out.println("Creando tick");
 	}
 
 	public void switchDrawing () {
+		System.out.println("Alternando dibujo de tick");
 		this.tick = !this.tick;
 	}
 
 	@Override
 	public void paint (Graphics g) {
 		super.paint(g);
+		System.out.println("Pintando tick");
 		if (this.tick) {
 			g.setColor(Color.GREEN);
 			g.drawLine(0, this.getHeight()/2, this.getWidth()/2, this.getHeight());

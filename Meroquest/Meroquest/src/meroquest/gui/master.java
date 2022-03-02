@@ -29,7 +29,7 @@ public class master extends javax.swing.JFrame {
 	 */
 	public master() {
 		initComponents();
-
+		System.out.println("Creando ventana master");
 		this.maxEntities = this.SL_Alto.getValue() * this.SL_Ancho.getValue();
 		this.updateEntityNumber(this.maxEntities);
 		this.SP_Ancho.setValue(this.SL_Ancho.getValue());
@@ -43,7 +43,7 @@ public class master extends javax.swing.JFrame {
 		this.info = new Info();
 		this.TK_Tick.setVisible(false);
 		this.vDado = new Dado();
-		this.task = new TaskMeroquest(this);
+		this.task = new TaskMeroquest(this);	
 		this.LB_Detencion.setVisible(false);
 		this.gameTask = new GameTaskMeroquest(this);
 		this.vPp = new PostPartida();
@@ -456,6 +456,7 @@ public class master extends javax.swing.JFrame {
 	}
 
 	public void setEntities (EntityHashMap e) {
+		System.out.println("Asignando entidades");
 		this.entities = new EntityHashMap (e);
 		this.TK_Tick.setVisible(true);
 	}
@@ -463,11 +464,13 @@ public class master extends javax.swing.JFrame {
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
 	this.vPe = new PersonalizarEntidades (this);
+	System.out.println("Abriendo personalizacion");
 	this.vPe.setVisible(true);
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
 
         private void SL_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MonstruosStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando cantidad de monstruos");
 	if (Integer.parseInt(this.SP_Monstruos.getValue().toString()) != this.SL_Monstruos.getValue()) {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 	}
@@ -476,6 +479,7 @@ public class master extends javax.swing.JFrame {
 
         private void SP_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_MonstruosStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando cantidad de monstruos");
 	if (Integer.parseInt(this.SP_Monstruos.getValue().toString()) < 0) { 
 		this.SP_Monstruos.setValue(0);
 	}
@@ -489,6 +493,7 @@ public class master extends javax.swing.JFrame {
 
         private void SL_HeroesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_HeroesStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando cantidad de heroes");
 	if (Integer.parseInt(this.SP_Heroes.getValue().toString()) != this.SL_Heroes.getValue()) {
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 	}
@@ -497,6 +502,7 @@ public class master extends javax.swing.JFrame {
 
         private void SP_HeroesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_HeroesStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando cantidad de Heroes");
 	if (Integer.parseInt(this.SP_Heroes.getValue().toString()) < 0) { 
 		this.SP_Heroes.setValue(0);
 	}
@@ -510,6 +516,7 @@ public class master extends javax.swing.JFrame {
 
         private void SL_TurnosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_TurnosStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando cantidad de turnos");
 	if (Integer.parseInt(this.SP_Turnos.getValue().toString()) != this.SL_Turnos.getValue()) {
 		this.SP_Turnos.setValue(this.SL_Turnos.getValue());
 	}
@@ -517,6 +524,7 @@ public class master extends javax.swing.JFrame {
 
         private void SP_TurnosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_TurnosStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando cantidad de turnos");
 	if (Integer.parseInt(this.SP_Turnos.getValue().toString()) < 0) { 
 		this.SP_Turnos.setValue(0);
 	}
@@ -531,6 +539,7 @@ public class master extends javax.swing.JFrame {
 	// Size Options
         private void SL_AltoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_AltoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando cantidad de filas");
 	if (Integer.parseInt(this.SP_Alto.getValue().toString()) != this.SL_Alto.getValue()) {
 		this.SP_Alto.setValue(this.SL_Alto.getValue());
 	}
@@ -540,6 +549,7 @@ public class master extends javax.swing.JFrame {
 
         private void SP_AltoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_AltoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando cantidad de filas");
 	if (Integer.parseInt(this.SP_Alto.getValue().toString()) < 0) { 
 		this.SP_Alto.setValue(0);
 	}
@@ -553,6 +563,7 @@ public class master extends javax.swing.JFrame {
 
         private void SL_AnchoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_AnchoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Slider: Modificando cantidad de columnas");
 	if (Integer.parseInt(this.SP_Ancho.getValue().toString()) != this.SL_Ancho.getValue()) {
 		this.SP_Ancho.setValue(this.SL_Ancho.getValue());
 	}
@@ -562,6 +573,7 @@ public class master extends javax.swing.JFrame {
 
         private void SP_AnchoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_AnchoStateChanged
                 // TODO add your handling code here:
+	System.out.println("Spinner: Modificando cantidad de columnas");
 	if (Integer.parseInt(this.SP_Ancho.getValue().toString()) < 0) { 
 		this.SP_Ancho.setValue(0);
 	}
@@ -575,11 +587,13 @@ public class master extends javax.swing.JFrame {
 
         private void MI_VistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_VistaPreviaActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Mostrando Vista previa");
 	this.vD.setVisible(true);
         }//GEN-LAST:event_MI_VistaPreviaActionPerformed
 
         private void MI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GuardarActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Guardando opciones");
 	if (this.JFC.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
 			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(new GameSave (this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities));
@@ -591,6 +605,7 @@ public class master extends javax.swing.JFrame {
 
         private void MI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AbrirActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Abriendo opciones");
 	if (this.JFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		try {
 			GameSave gs = new GameSave ((GameSave) new ObjectInputStream (new FileInputStream(this.JFC.getSelectedFile().getAbsolutePath())).readObject());
@@ -610,11 +625,13 @@ public class master extends javax.swing.JFrame {
 
         private void MI_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_InfoActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Mostrando información");
 	this.info.setVisible(true);	
         }//GEN-LAST:event_MI_InfoActionPerformed
 
         private void BT_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_IniciarActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Iniciando Juego");
 	this.vDado.showDialog();
 	if (this.vDado.isOk()) {
 		this.gameTask.setAll(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.vDado.getDado(), this.entities);
@@ -630,6 +647,7 @@ public class master extends javax.swing.JFrame {
 
         private void BT_TaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_TaskActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Iniciando tarea");
 	this.task.setCols(this.SL_Ancho.getValue());
 	this.task.setRows(this.SL_Alto.getValue());
 	this.task.setMonsters(this.SL_Monstruos.getValue());
@@ -652,13 +670,16 @@ public class master extends javax.swing.JFrame {
 
         private void BT_StopTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_StopTaskActionPerformed
                 // TODO add your handling code here:
+	System.out.println("Deteniendo tarea");
 	this.LB_Detencion.setVisible(true);
 	this.task.setStop();
         }//GEN-LAST:event_BT_StopTaskActionPerformed
 
         private void TK_TickMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TK_TickMouseReleased
                 // TODO add your handling code here:
+	System.out.println("Tick reconocido");
 	if (this.ticks-- == 0) {
+		System.out.println("Modificando tick");
 		((Tick)this.TK_Tick).switchDrawing();
 		this.ticks = 10;
 		this.TK_Tick.repaint();
@@ -666,6 +687,7 @@ public class master extends javax.swing.JFrame {
         }//GEN-LAST:event_TK_TickMouseReleased
 
 	private void updateEntityNumber (int maxEntities) {
+		System.out.println("Modificando numero de entidades");
 		this.SL_Monstruos.setMaximum(maxEntities);
 		this.SL_Monstruos.setValue(Math.min(this.SL_Monstruos.getValue(), this.SL_Monstruos.getMaximum()));
 		this.SL_Heroes.setMaximum(this.maxEntities - this.SL_Monstruos.getValue());

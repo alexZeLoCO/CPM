@@ -22,6 +22,7 @@ public class GameSave implements Serializable {
 	}
 
 	public GameSave (int heroes, int monsters, int rows, int cols, int turns, EntityHashMap struct) {
+		System.out.println("Creando imagen de juego");
 		this.entities = new EntityHashMap(struct);
 		this.size = new Pair <Integer, Integer> (rows, cols);
 		this.heroesMonsters = new Pair <Integer, Integer> (heroes, monsters);

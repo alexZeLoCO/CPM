@@ -19,6 +19,7 @@ public class PostPartida extends javax.swing.JDialog {
 		super(parent, modal);
 		initComponents();
 		this.LT_Entidades.setModel(new javax.swing.DefaultListModel<String>());
+		System.out.println("Creando pantalla de informe postpartida");
 	}
 
 	public PostPartida () {
@@ -97,8 +98,8 @@ public class PostPartida extends javax.swing.JDialog {
         }// </editor-fold>//GEN-END:initComponents
 
 	public void showDialog(Game g) {
+		System.out.println("Mostrando informe postpartida");
 		this.LB_Ganadores.setText(g.highestBody());
-		// FIXME: java.lang.ClassCastException: class javax.swing.JList$3 cannot be cast to class javax.swing.DefaultListModel 
 		javax.swing.DefaultListModel<String> m = (javax.swing.DefaultListModel<String>)
 			this.LT_Entidades.getModel();	
 		for (jeroquest.units.Character c : g.getCharacters()) {

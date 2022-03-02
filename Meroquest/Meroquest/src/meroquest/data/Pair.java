@@ -16,6 +16,7 @@ public class Pair<A, B> implements Serializable {
 	private B segundo;
 	
 	public Pair (A a, B b) {
+		System.out.println("Creando par en funcion de dos valores");
 		this.primero = a;
 		this.segundo = b;
 	}
@@ -34,6 +35,11 @@ public class Pair<A, B> implements Serializable {
 
 	public B getSegundo() {
 		return this.segundo;
+	}
+
+	@Override
+	public String toString () {
+		return String.format("(%s  ~> %s)", this.getPrimero(), this.getSegundo());
 	}
 
 }
