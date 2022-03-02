@@ -42,7 +42,7 @@ public class Guardian extends Character {
 	 **********************************************/
 
 	// Icon of a Guardian
-	private static Icon icon = new ImageIcon(ClassLoader.getSystemResource("jeroquest/gui/images/guardian.PNG"));
+	private static Icon icon = new ImageIcon(ClassLoader.getSystemResource("jeroquest/gui/images/guardian.png"));
 
 	@Override
 	public int defend(int impacts) {

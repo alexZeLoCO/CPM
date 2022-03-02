@@ -59,7 +59,7 @@ public class Virus extends Character implements Suspect{
 	 **********************************************/
 
 	// Icon of a mummy
-	private static Icon icon = new ImageIcon(ClassLoader.getSystemResource("jeroquest/gui/images/virus.PNG"));
+	private static Icon icon = new ImageIcon(ClassLoader.getSystemResource("jeroquest/gui/images/virus.png"));
 
 	@Override
 	public int defend(int impacts) {
