@@ -33,17 +33,17 @@ public class Entrada extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
-                jButton1 = new javax.swing.JButton();
+                BT_Iniciar = new javax.swing.JButton();
                 jLabel1 = new javax.swing.JLabel();
                 LB_Fondo = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Meroquest | Inicio");
 
-                jButton1.setText("Comenzar");
-                jButton1.addActionListener(new java.awt.event.ActionListener() {
+                BT_Iniciar.setText("Comenzar");
+                BT_Iniciar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jButton1ActionPerformed(evt);
+                                BT_IniciarActionPerformed(evt);
                         }
                 });
 
@@ -60,7 +60,7 @@ public class Entrada extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(LB_Fondo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BT_Iniciar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGap(90, 90, 90)
                                                 .addComponent(jLabel1)
@@ -75,7 +75,7 @@ public class Entrada extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LB_Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
+                                .addComponent(BT_Iniciar)
                                 .addContainerGap())
                 );
 
@@ -87,11 +87,11 @@ public class Entrada extends javax.swing.JFrame {
 	 * 
 	 * @param evt 
 	 */
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        private void BT_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_IniciarActionPerformed
                 // TODO add your handling code here:
 	this.setVisible(false);
 	this.vM.setVisible(true);
-        }//GEN-LAST:event_jButton1ActionPerformed
+        }//GEN-LAST:event_BT_IniciarActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -131,8 +131,8 @@ public class Entrada extends javax.swing.JFrame {
 	master vM;
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JButton BT_Iniciar;
         private javax.swing.JLabel LB_Fondo;
-        private javax.swing.JButton jButton1;
         private javax.swing.JLabel jLabel1;
         // End of variables declaration//GEN-END:variables
 }
