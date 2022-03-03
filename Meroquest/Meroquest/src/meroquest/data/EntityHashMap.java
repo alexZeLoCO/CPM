@@ -19,12 +19,20 @@ public class EntityHashMap implements Serializable {
 	private final HashMap<Integer, Pair<String, Integer>> data;
 	private int entities;
 
+	/**
+	 * Crea una nueva tabla Hash de Entidades
+	 * @param size Tamaño de la tabla.
+	 */
 	public EntityHashMap (int size) {
 		System.out.println("HashMap de entidades creado en funcion de entero");
 		this.entities = 0;
 		this.data = new HashMap<Integer, Pair<String, Integer>> (size);
 	}
 
+	/**
+	 * Crea una nueva tabla Hash de Entidades cuyas entradas serán los HashCode de las Strings.
+	 * @param elems HashCode de los elementos.
+	 */
 	public EntityHashMap (String[] elems) {
 		this(elems.length);
 		System.out.println("HashMap de entidades creado en funcion de cadenas de entidades");
@@ -33,6 +41,10 @@ public class EntityHashMap implements Serializable {
 		}
 	}
 
+	/**
+	 * Crea una nueva tabla Hash de Entidades igual a una concreta.
+	 * @param ref  Hash de referencia.
+	 */
 	public EntityHashMap (EntityHashMap ref) {
 		this(ref.size());
 		System.out.println("HashMap de entidades creado en funcion de HashMap de entidades copia");
@@ -41,14 +53,27 @@ public class EntityHashMap implements Serializable {
 		}
 	}
 
+	/**
+	 * Retorna el tamaño de la tabla Hash de Entidades.
+	 */
 	public int size(){
 		return this.data.size();
 	}
 
+	/**
+	 * Retorna el número de entidades de la tabla Hash.
+	 */
 	public int nEntities () {
 		return this.entities;
 	}
 
+	/**
+	 * Añade el par de nombre y valor. Si existe ya el par, se actualiza.
+	 * 
+	 * @param nombre Nombre de la entidad.
+	 * @param value Valor asociado (número de entidades)
+	 * @return null si no existía elemento. El valor anterior si ya existía.
+	 */
 	public Integer put (String nombre, Integer value) {
 		Integer out = null;
 		if (this.data.containsKey(nombre.hashCode())) {
@@ -61,14 +86,31 @@ public class EntityHashMap implements Serializable {
 		return out;
 	}
 
+	/**
+	 * Retorna el par correspondiente a un dado valor Hash.
+	 * @param key HashCode
+	 * 
+	 * @return Par nombre/valor correspondiente al HashCode.
+	 */
 	public Pair get (Integer key) {
 		return this.data.get(key);
 	}
 
+	/**
+	 * Retorna el par correspondiente a un nombre dado.
+	 * @param nombre nombre correspondiente al par.
+	 * 
+	 * @return Par nombre/valor correspondiente al nombre.
+	 */
 	public Pair get (String nombre) {
 		return this.get(nombre.hashCode());
 	}
 
+	/**
+	 * Retorna la estructura Hash en forma de set.
+	 * 
+	 * @return Set de entradas de la tabla Hash.
+	 */
 	public Set <Map.Entry<Integer, Pair<String, Integer>>> entrySet () {
 		System.out.println("Retornando entry set de HashMap");
 		return this.data.entrySet();

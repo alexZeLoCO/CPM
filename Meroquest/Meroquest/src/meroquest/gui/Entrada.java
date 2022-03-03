@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author aleja
+ * @author Rodríguez López, Alejandro // UO281827 
  */
 public class Entrada extends javax.swing.JFrame {
 
@@ -82,6 +82,11 @@ public class Entrada extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Se ha pulsado el botón de inicio.
+	 * 
+	 * @param evt 
+	 */
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 // TODO add your handling code here:
 	this.setVisible(false);

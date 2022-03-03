@@ -4,7 +4,6 @@
  */
 package meroquest.gui;
 
-import java.awt.Color;
 import meroquest.data.EntityHashMap;
 import meroquest.tasks.TaskMeroquest;
 import meroquest.tasks.GameTaskMeroquest;
@@ -454,28 +453,58 @@ public class master extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Retorna el máximo número de entidades.
+	 * 
+	 * @return Máximo número de entidades.
+	 */
 	public int getMaxEntities () {
 		return this.maxEntities;
 	}
 
+	/**
+	 * Retorna el máximo número de monstruos.
+	 * 
+	 * @return Máximo número de monstruos.
+	 */
 	public int getMaxMonstruos () {
 		return this.SL_Monstruos.getValue(); 
 	}
 
+	/**
+	 * Retorna el máximo número de héroes.
+	 * 
+	 * @return Máximo número de héroes.
+	 */
 	public int getMaxHeroes () {
 		return this.SL_Heroes.getValue();
 	}
 
+	/**
+	 * Retorna la tabla Hash de Entidades actual.
+	 * 
+	 * @return EntityHashMap actual.
+	 */
 	public EntityHashMap getEntities () {
 		return this.entities;
 	}
 
+	/**
+	 * Asigna la tabla Hash de Entidades actual a una dada.
+	 * 
+	 * @param e Tabla Hash de Entidades.
+	 */
 	public void setEntities (EntityHashMap e) {
 		System.out.println("Asignando entidades");
 		this.entities = new EntityHashMap (e);
 		this.TK_Tick.setVisible(true);
 	}
 
+	/**
+	 * Se ha pulsado el botón de personalización de entidades.
+	 * 
+	 * @param evt 
+	 */
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
 	this.vPe = new PersonalizarEntidades (this);
@@ -483,6 +512,11 @@ public class master extends javax.swing.JFrame {
 	this.vPe.setVisible(true);
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
 
+	/**
+	 * Se ha modificado el Slider de Monstruos.
+	 * 
+	 * @param evt 
+	 */
         private void SL_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_MonstruosStateChanged
                 // TODO add your handling code here:
 	System.out.println("Slider: Modificando cantidad de monstruos");
@@ -492,6 +526,11 @@ public class master extends javax.swing.JFrame {
 	this.updateEntityNumber(this.maxEntities);
         }//GEN-LAST:event_SL_MonstruosStateChanged
 
+	/**
+	 * Se ha modificado el Spinner de Monstruos.
+	 * 
+	 * @param evt 
+	 */
         private void SP_MonstruosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_MonstruosStateChanged
                 // TODO add your handling code here:
 	System.out.println("Spinner: Modificando cantidad de monstruos");
@@ -506,6 +545,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_MonstruosStateChanged
 
+	/**
+	 * Se ha modificado el Slider de Héroes.
+	 * 
+	 * @param evt 
+	 */
         private void SL_HeroesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_HeroesStateChanged
                 // TODO add your handling code here:
 	System.out.println("Slider: Modificando cantidad de heroes");
@@ -515,6 +559,11 @@ public class master extends javax.swing.JFrame {
 	this.updateEntityNumber(this.maxEntities);
         }//GEN-LAST:event_SL_HeroesStateChanged
 
+	/**
+	 * Se ha modificado el Spinner de Héroes.
+	 * 
+	 * @param evt 
+	 */
         private void SP_HeroesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_HeroesStateChanged
                 // TODO add your handling code here:
 	System.out.println("Spinner: Modificando cantidad de Heroes");
@@ -529,6 +578,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_HeroesStateChanged
 
+	/**
+	 * Se ha modificado el Slider de Turnos.
+	 * 
+	 * @param evt 
+	 */
         private void SL_TurnosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_TurnosStateChanged
                 // TODO add your handling code here:
 	System.out.println("Slider: Modificando cantidad de turnos");
@@ -537,6 +591,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SL_TurnosStateChanged
 
+	/**
+	 * Se ha modificado el Spinner de Turnos.
+	 * 
+	 * @param evt 
+	 */
         private void SP_TurnosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_TurnosStateChanged
                 // TODO add your handling code here:
 	System.out.println("Spinner: Modificando cantidad de turnos");
@@ -551,7 +610,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_TurnosStateChanged
 
-	// Size Options
+	/**
+	 * Se ha modificado el Slider del número de filas (alto).
+	 * 
+	 * @param evt 
+	 */
         private void SL_AltoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_AltoStateChanged
                 // TODO add your handling code here:
 	System.out.println("Slider: Modificando cantidad de filas");
@@ -562,6 +625,11 @@ public class master extends javax.swing.JFrame {
 	this.updateEntityNumber(this.maxEntities);
         }//GEN-LAST:event_SL_AltoStateChanged
 
+	/**
+	 * Se ha modificado el Spinner de filas (Alto).
+	 * 
+	 * @param evt 
+	 */
         private void SP_AltoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_AltoStateChanged
                 // TODO add your handling code here:
 	System.out.println("Spinner: Modificando cantidad de filas");
@@ -576,6 +644,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_AltoStateChanged
 
+	/**
+	 * Se ha modificado el Slider de columnas (Ancho)
+	 * 
+	 * @param evt 
+	 */
         private void SL_AnchoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SL_AnchoStateChanged
                 // TODO add your handling code here:
 	System.out.println("Slider: Modificando cantidad de columnas");
@@ -586,6 +659,11 @@ public class master extends javax.swing.JFrame {
 	this.updateEntityNumber(this.maxEntities);
         }//GEN-LAST:event_SL_AnchoStateChanged
 
+	/**
+	 * Se ha modificado el Spinner de columnas (Ancho).
+	 * 
+	 * @param evt 
+	 */
         private void SP_AnchoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SP_AnchoStateChanged
                 // TODO add your handling code here:
 	System.out.println("Spinner: Modificando cantidad de columnas");
@@ -600,12 +678,22 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_SP_AnchoStateChanged
 
+	/**
+	 * Se ha pulsado el botón de vista previa.
+	 * 
+	 * @param evt 
+	 */
         private void MI_VistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_VistaPreviaActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Mostrando Vista previa");
 	this.vD.setVisible(true);
         }//GEN-LAST:event_MI_VistaPreviaActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de guardar imagen de partida.
+	 * 
+	 * @param evt 
+	 */
         private void MI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GuardarActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Guardando opciones");
@@ -618,6 +706,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_MI_GuardarActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de abrir imagen de partida.
+	 * 
+	 * @param evt 
+	 */
         private void MI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AbrirActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Abriendo opciones");
@@ -638,12 +731,22 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_MI_AbrirActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de información
+	 * 
+	 * @param evt 
+	 */
         private void MI_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_InfoActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Mostrando información");
 	this.info.setVisible(true);	
         }//GEN-LAST:event_MI_InfoActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de Iniciar partida.
+	 * 
+	 * @param evt 
+	 */
         private void BT_IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_IniciarActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Iniciando Juego");
@@ -660,6 +763,11 @@ public class master extends javax.swing.JFrame {
 	}
         }//GEN-LAST:event_BT_IniciarActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de calcular probabilidades (tarea)
+	 * 
+	 * @param evt 
+	 */
         private void BT_TaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_TaskActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Iniciando tarea");
@@ -670,19 +778,26 @@ public class master extends javax.swing.JFrame {
 	this.task.setTurns(this.SL_Turnos.getValue());
 	this.task.setStruct(this.entities);
 
-	hiloBack = new Thread () {
+	this.hiloBack = new Thread () {
+		@Override
 		public void run () {
 			master.this.task.run();
 		}
 	};
-	this.hiloBack.start();
 
+	this.hiloBack.start();
+	
 	this.BT_Iniciar.setEnabled(false);
 	this.BT_Task.setEnabled(false);
 	this.LB_Task.setEnabled(true);
 	this.BT_StopTask.setEnabled(true);
         }//GEN-LAST:event_BT_TaskActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de detener cálculo de probabilidades (tarea)
+	 * 
+	 * @param evt 
+	 */
         private void BT_StopTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_StopTaskActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Deteniendo tarea");
@@ -690,6 +805,11 @@ public class master extends javax.swing.JFrame {
 	this.task.setStop();
         }//GEN-LAST:event_BT_StopTaskActionPerformed
 
+	/**
+	 * Se ha pulsado el Tick.
+	 * 
+	 * @param evt 
+	 */
         private void TK_TickMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TK_TickMouseReleased
                 // TODO add your handling code here:
 	System.out.println("Tick reconocido");
@@ -701,6 +821,11 @@ public class master extends javax.swing.JFrame {
 	}	
         }//GEN-LAST:event_TK_TickMouseReleased
 
+	/**
+	 * Se ha pulsado el botón de cambio de color de Tick.
+	 * 
+	 * @param evt 
+	 */
         private void MI_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_ColorActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Modificando color");
@@ -708,6 +833,11 @@ public class master extends javax.swing.JFrame {
 	((Tick)this.TK_Tick).repaint();
         }//GEN-LAST:event_MI_ColorActionPerformed
 
+	/**
+	 * Actualiza el número de entidades.
+	 * 
+	 * @param maxEntities Número máximo de entidades.
+	 */
 	private void updateEntityNumber (int maxEntities) {
 		System.out.println("Modificando numero de entidades");
 		this.SL_Monstruos.setMaximum(maxEntities);
@@ -753,17 +883,16 @@ public class master extends javax.swing.JFrame {
 	Info info;
 	Dado vDado;
 	private EntityHashMap entities;
-	private JFileChooser JFC;
+	private final JFileChooser JFC;
+	
 	TaskMeroquest task;
 	Thread hiloBack;
-	Thread[] threads = new Thread[5];
 	
 	GameTaskMeroquest gameTask;
 	Thread gameThread;
 
 	public PostPartida vPp;
 
-	private Color color = Color.GREEN;
 	private int ticks = 10;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         public javax.swing.JButton BT_Iniciar;

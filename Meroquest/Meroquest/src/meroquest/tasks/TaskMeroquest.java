@@ -13,11 +13,6 @@ import meroquest.gui.master;
  */
 public class TaskMeroquest extends Task {
 
-	/*
-	 * 5x5 ==> 96 s
-	 * 1x1 ==> 4 s
-	 * 10x10 ==> 400s
-	 */
 	private long startTime;
 	private long endTime;
 	private boolean isStopped;
@@ -56,6 +51,9 @@ public class TaskMeroquest extends Task {
 		}
 	}
 
+	/**
+	 * Ordena la detención de la tarea.
+	 */
 	public void setStop () {
 		System.out.println("Enviando sennal de parada");
 		this.isStopped = true;

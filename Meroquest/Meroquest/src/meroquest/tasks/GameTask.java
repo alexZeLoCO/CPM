@@ -16,6 +16,16 @@ abstract public class GameTask implements Game {
 	private int heroes, monsters, rows, cols, turns, dice;
 	private EntityHashMap struct;
 	
+	/**
+	 * Asigna todos los atributos.
+	 * @param heroes Número de héroes
+	 * @param monsters Número de monstruos
+	 * @param rows Número de filas
+	 * @param cols Número de columnas
+	 * @param turns Número de turnos
+	 * @param dice Caras del dado
+	 * @param struct Estructura de entidades
+	 */
 	public void setAll (int heroes, int monsters, int rows, int cols, int turns, int dice, EntityHashMap struct) {
 		System.out.println("Asignando valores de tarea");
 		this.heroes = heroes;

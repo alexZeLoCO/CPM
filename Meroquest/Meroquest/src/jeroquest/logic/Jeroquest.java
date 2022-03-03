@@ -51,6 +51,7 @@ public class Jeroquest {
 	// TODO: Replace return value with more complex structure to keep statistics.
 	/**
 	 * Simulate a Jeroquest game
+	 * @return Final state of the game.
 	 */
 	public Game toPlay() {
 		// GUI - Create the window for the current game
@@ -95,6 +96,10 @@ public class Jeroquest {
 		return this.currentGame;
 	}
 
+	/**
+	 * Stops this thread for a given amount of time.
+	 * Used so the player can see updates on the game.
+	 */
 	private void pause () {
 		try {	
 			Thread.sleep(this.waitTime);

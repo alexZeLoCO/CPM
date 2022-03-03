@@ -10,8 +10,21 @@ package meroquest.tasks;
  */
 public interface Game {
 	
+	/**
+	 * Procedimiento de iniciación.
+	 * Se ejecuta al inicio de run().
+	 */
 	public void start ();
+
+	/**
+	 * Procedimiento de finalización.
+	 * Se ejecuta al final de run().
+	 * @param g Estado final de partida. 
+	 */
 	public void finish (jeroquest.logic.Game g);
 
+	/**
+	 * Tare a ejecutar.
+	 */
 	public void run();
 }

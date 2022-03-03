@@ -116,14 +116,29 @@ public class Dado extends javax.swing.JDialog {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Revisa si se ha salido utilizando el botón Ok.
+	 * 
+	 * @return true si se han confirmado los cambios. False en caso contrario.
+	 */
 	public boolean isOk () {
 		return this.pOk;
 	}
 
+	/**
+	 * Retorna el número de caras asignadas al dado.
+	 * 
+	 * @return Número de caras.
+	 */
 	public int getDado () {
 		return this.dado;
 	}
 
+	/**
+	 * Muestra por pantalla la ventana.
+	 * 
+	 * @return True si se ha salido con el Ok.
+	 */
 	public boolean showDialog () {
 		System.out.println("Mostrando pantalla");
 		this.pOk = false;
@@ -132,12 +147,22 @@ public class Dado extends javax.swing.JDialog {
 		return this.isOk();
 	}
 
+	/**
+	 * Se ha pulsado el botón de cancelar.
+	 * 
+	 * @param evt 
+	 */
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Eleccion cancelada");
 	this.setVisible(false);
         }//GEN-LAST:event_BT_CancelarActionPerformed
 
+	/**
+	 * Se ha pulsado el bónto Ok.
+	 * 
+	 * @param evt 
+	 */
         private void BT_OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_OkActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Eleccion aceptada");
@@ -145,6 +170,12 @@ public class Dado extends javax.swing.JDialog {
 	this.setVisible(false);
         }//GEN-LAST:event_BT_OkActionPerformed
 
+	/**
+	 * Se ha escrito un caracter en el campo de texto.
+	 * Se revisará si es un dígito. Si no lo es, se eliminará
+	 * 
+	 * @param evt 
+	 */
         private void TF_DadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyTyped
                   // TODO add your handling code here:
     	System.out.println("Revisando entrada");

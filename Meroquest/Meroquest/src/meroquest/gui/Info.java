@@ -19,6 +19,9 @@ public class Info extends javax.swing.JDialog {
 		System.out.println("Creando pantalla de info");
 	}
 
+	/**
+	 * Crea una nueva ventana de información.
+	 */
 	public Info () {
 		this(null, true);
 	}

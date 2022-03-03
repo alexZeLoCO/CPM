@@ -14,6 +14,11 @@ public class GameTaskMeroquest extends GameTask {
 	
 	private master vM;
 
+	/**
+	 * Crea una nueva tarea. Ejecución de juego.
+	 * 
+	 * @param master Referencia a la principal.
+	 */
 	public GameTaskMeroquest (master master) {
 		System.out.println("Creando tarea (GameTaskMeroquest) con referencia a principal");
 		this.vM = master;

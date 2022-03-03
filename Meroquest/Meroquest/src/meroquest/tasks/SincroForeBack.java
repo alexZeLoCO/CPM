@@ -10,12 +10,32 @@ package meroquest.tasks;
  */
 public interface SincroForeBack {
 	
+	/**
+	 * Tarea a ejecutar.
+	 */
 	void run();
 
+	/**
+	 * Procedimieto de iniciación.
+	 * Se ejecuta al inicio de run().
+	 */
 	void start();
+
+	/**
+	 * Procedimiento de finalización.
+	 * Se ejecuta al final de run().
+	 */
 	void finish();
 
+	/**
+	 * Actualiza la interfaz con el estado de la tarea.
+	 */
 	void update();
 
+	/**
+	 * Revisa si la tarea ha sido detenida.
+	 * 
+	 * @return true si se ha ordenado la detención. false en caso contario.
+	 */
 	boolean stop();
 }

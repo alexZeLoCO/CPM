@@ -22,6 +22,9 @@ public class PostPartida extends javax.swing.JDialog {
 		System.out.println("Creando pantalla de informe postpartida");
 	}
 
+	/**
+	 * Crea nueva pantalla de postpartida.
+	 */
 	public PostPartida () {
 		this(null, true);
 	}

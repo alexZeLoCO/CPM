@@ -18,6 +18,9 @@ public class Tick extends JPanel {
 	private boolean tick;
 	public Color color;
 
+	/**
+	 * Crea nuevo Tick.
+	 */
 	public Tick () {
 		super();
 		this.color = Color.GREEN;
@@ -25,14 +28,27 @@ public class Tick extends JPanel {
 		System.out.println("Creando tick");
 	}
 
+	/**
+	 * Asigna el color del Tick.
+	 * 
+	 * @param c Color.
+	 */
 	public void setColor (Color c) {
 		this.color = c;
 	}
 
+	/**
+	 * Retorna el color con el que se dibujará el siguiente Tick.
+	 * 
+	 * @return Color del siguiente Tick.
+	 */
 	public Color getColor () {
 		return this.color;
 	}
 
+	/**
+	 * Cambia el Tick por una Cruz.
+	 */
 	public void switchDrawing () {
 		System.out.println("Alternando dibujo de tick");
 		this.tick = !this.tick;

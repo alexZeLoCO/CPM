@@ -18,6 +18,11 @@ public class Debug extends javax.swing.JFrame {
 		System.out.println("Creando vista previa");
 	}
 
+	/**
+	 * Crea una nueva ventana de Vista Previa con referencia a master.
+	 * 
+	 * @param master Referencia a la ventana principal.
+	 */
 	public Debug (master master) {
 		this();
 		System.out.println("Creando vista previa con referencia a principal");
@@ -92,8 +97,8 @@ public class Debug extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
 	/**
-	 * Updates the structure view.
-	 * If the structure if being changed, it will show the current modifications.
+	 * Actualiza la estructura.
+	 * Si se están realizando cambios, se mostrarán los actuales.
 	 */
 	private void update () {
 		System.out.println("Actualizando valores de vista previa");
@@ -104,6 +109,11 @@ public class Debug extends javax.swing.JFrame {
 		}
 	}
 	
+	/**
+	 * Se ha pulsado el botón de actualizar.
+	 * 
+	 * @param evt 
+	 */
         private void BT_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_ActualizarActionPerformed
                 // TODO add your handling code here:
 		this.update();
