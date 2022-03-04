@@ -30,6 +30,10 @@ public class TaskMeroquest extends Task {
 		this.heroesWin = 0;
 		this.setTarget(10);
 		this.originalTarget = this.target;
+		this.master.LB_Task.setEnabled(true);
+		this.master.BT_Task.setEnabled(false);
+		this.master.BT_StopTask.setEnabled(true);
+		this.master.BT_Iniciar.setEnabled(false);
 		this.startTime = System.nanoTime();
 	}
 
@@ -37,7 +41,7 @@ public class TaskMeroquest extends Task {
 	public void finish() {
 		this.endTime = System.nanoTime();
 		System.out.println("Finalizando tarea");
-		this.master.LB_Task.setEnabled(true);
+		this.master.LB_Task.setEnabled(false);
 		this.master.BT_Task.setEnabled(true);
 		this.master.PB_Task.setValue(0);
 		this.master.BT_StopTask.setEnabled(false);

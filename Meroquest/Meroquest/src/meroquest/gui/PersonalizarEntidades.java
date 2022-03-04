@@ -4,6 +4,7 @@
  */
 package meroquest.gui;
 
+import javax.swing.JOptionPane;
 import meroquest.data.EntityHashMap;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -473,7 +474,11 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
         private void BT_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CancelarActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Cancelando sistema de entidades");
-	this.setVisible(false);
+	if (JOptionPane.showConfirmDialog(null, "Está a punto de elminar la configuración actual. Confirme.", "Aviso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		this.vM.TK_Tick.setVisible(false);
+		this.setVisible(false);
+	}
+	System.out.println("Cancelación abortada");
         }//GEN-LAST:event_BT_CancelarActionPerformed
 
 	/**
@@ -485,6 +490,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 // TODO add your handling code here:
 	System.out.println("Asignando sistema de entidades a estructura");
 	this.vM.setEntities(this.current); 
+	this.vM.TK_Tick.setVisible(true);
 	this.setVisible (false);
         }//GEN-LAST:event_BT_AceptarActionPerformed
 
@@ -506,6 +512,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.heroesMarcados= this.heroesMarcados+ (this.SL_Barbaro.getValue() - (Integer) this.previous.get(entities[BARBARO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[BARBARO], (Integer) this.current.get(entities[BARBARO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_BarbaroStateChanged
 
@@ -551,6 +559,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.heroesMarcados= this.heroesMarcados+ (this.SL_Enano.getValue() - (Integer) this.previous.get(entities[ENANO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[ENANO], (Integer) this.current.get(entities[ENANO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_EnanoStateChanged
 
@@ -630,6 +640,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Goblin.getValue() - (Integer) this.previous.get(entities[GOBLIN]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[GOBLIN], (Integer) this.current.get(entities[GOBLIN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_GoblinStateChanged
 
@@ -740,6 +752,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Momia.getValue() - (Integer) this.previous.get(entities[MOMIA]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[MOMIA], (Integer) this.current.get(entities[MOMIA]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_MomiaStateChanged
 	
@@ -761,6 +775,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Enjambre.getValue() - (Integer) this.previous.get(entities[ENJAMBRE]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[ENJAMBRE], (Integer) this.current.get(entities[ENJAMBRE]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_EnjambreStateChanged
 	
@@ -782,6 +798,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.monstruosMarcados = this.monstruosMarcados+ (this.SL_Vampiro.getValue() - (Integer) this.previous.get(entities[VAMPIRO]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[VAMPIRO], (Integer) this.current.get(entities[VAMPIRO]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_VampiroStateChanged
 	
@@ -803,6 +821,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.monstruosMarcados= this.monstruosMarcados+ (this.SL_Virus.getValue() - (Integer) this.previous.get(entities[VIRUS]).getSegundo());	// Actualizar entidades marcadas
 		this.previous.put(entities[VIRUS], (Integer) this.current.get(entities[VIRUS]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_VirusStateChanged
 	
@@ -827,6 +847,8 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 		this.previous.put(entities[GUARDIAN], (Integer) this.current.get(entities[GUARDIAN]).getSegundo());	// Actualizar previo para siguiente cambio
 		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
 		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
+
+		this.vM.vD.update();
 	}
         }//GEN-LAST:event_SL_GuardianStateChanged
 	

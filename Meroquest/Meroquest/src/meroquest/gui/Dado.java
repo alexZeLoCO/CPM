@@ -171,7 +171,7 @@ public class Dado extends javax.swing.JDialog {
         }//GEN-LAST:event_BT_OkActionPerformed
 
 	/**
-	 * Se ha escrito un caracter en el campo de texto.
+	 * Se ha escrito un carácter en el campo de texto.
 	 * Se revisará si es un dígito. Si no lo es, se eliminará
 	 * 
 	 * @param evt 

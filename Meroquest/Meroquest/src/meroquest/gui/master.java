@@ -59,6 +59,8 @@ public class master extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
+                jScrollPane1 = new javax.swing.JScrollPane();
+                jTextPane1 = new javax.swing.JTextPane();
                 jLabel1 = new javax.swing.JLabel();
                 jLabel2 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
@@ -100,6 +102,8 @@ public class master extends javax.swing.JFrame {
                 MI_Color = new javax.swing.JMenuItem();
                 jMenu3 = new javax.swing.JMenu();
                 MI_Info = new javax.swing.JMenuItem();
+
+                jScrollPane1.setViewportView(jTextPane1);
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Meroquest");
@@ -497,7 +501,6 @@ public class master extends javax.swing.JFrame {
 	public void setEntities (EntityHashMap e) {
 		System.out.println("Asignando entidades");
 		this.entities = new EntityHashMap (e);
-		this.TK_Tick.setVisible(true);
 	}
 
 	/**
@@ -723,6 +726,7 @@ public class master extends javax.swing.JFrame {
 			this.SL_Alto.setValue(gs.getRows());
 			this.SL_Ancho.setValue(gs.getCols());
 			this.SL_Turnos.setValue(gs.getTurns());
+			this.TK_Tick.setVisible(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
@@ -786,11 +790,6 @@ public class master extends javax.swing.JFrame {
 	};
 
 	this.hiloBack.start();
-	
-	this.BT_Iniciar.setEnabled(false);
-	this.BT_Task.setEnabled(false);
-	this.LB_Task.setEnabled(true);
-	this.BT_StopTask.setEnabled(true);
         }//GEN-LAST:event_BT_TaskActionPerformed
 
 	/**
@@ -932,9 +931,11 @@ public class master extends javax.swing.JFrame {
         javax.swing.JMenu jMenu2;
         javax.swing.JMenu jMenu3;
         javax.swing.JMenuBar jMenuBar1;
+        javax.swing.JScrollPane jScrollPane1;
         javax.swing.JSeparator jSeparator1;
         javax.swing.JSeparator jSeparator2;
         javax.swing.JPopupMenu.Separator jSeparator3;
         javax.swing.JPopupMenu.Separator jSeparator4;
+        javax.swing.JTextPane jTextPane1;
         // End of variables declaration//GEN-END:variables
 }

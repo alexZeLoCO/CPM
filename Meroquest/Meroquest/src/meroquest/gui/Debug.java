@@ -100,7 +100,7 @@ public class Debug extends javax.swing.JFrame {
 	 * Actualiza la estructura.
 	 * Si se están realizando cambios, se mostrarán los actuales.
 	 */
-	private void update () {
+	public void update () {
 		System.out.println("Actualizando valores de vista previa");
 		if (this.vM.vPe != null && this.vM.vPe.isVisible()) {
 			this.TA_Current.setText(this.vM.vPe.getCurrent().toString());

@@ -48,7 +48,7 @@ public class Info extends javax.swing.JDialog {
                 jTextArea1.setEditable(false);
                 jTextArea1.setColumns(20);
                 jTextArea1.setRows(5);
-                jTextArea1.setText("\"Meroquest\" es una interfaz diseñada para facilitar el acceso y la\nconfiguración de \"Jeroquest\". \n\nSólamente la interfaz de este menú ha sido diseñada por el alumno\n(Rodríguez López, Alejandro // UO281827) ya que la programación \nprincipal del juego original Jeroquest, ha sido realizada completamente\npor los profesores de Metodología de Programación. \n\nEntre los personajes disponibles, una parte son originales del proyecto\nde los profesores, mientras que otra son parte de exámenes de años\nanteriores realizados por el alumno como prácitca para el estudio\nde la asignatura.");
+                jTextArea1.setText("\"Meroquest\" es una interfaz diseñada para facilitar el acceso y la\nconfiguración de \"Jeroquest\". \n\nSólamente la interfaz de este menú ha sido diseñada por el alumno\n(Rodríguez López, Alejandro // UO281827) ya que la programación \nprincipal del juego original Jeroquest, ha sido realizada completamente\npor los profesores de Metodología de Programación. \n\nEntre los personajes disponibles, una parte son originales del proyecto\nde los profesores, mientras que otra son parte de exámenes de años\nanteriores realizados por el alumno como prácitca para el estudio\nde la asignatura.\n\nEn lo que respecta a Jeroquest. Existen aún errores en el código que han\nsido rápidamente parcheados para que se pueda jugar de forma\ncontinuada. No obstante, se seguirá trabajando en arreglar dichos errores.");
                 jScrollPane1.setViewportView(jTextArea1);
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,8 +70,8 @@ public class Info extends javax.swing.JDialog {
                                 .addContainerGap()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                .addContainerGap())
                 );
 
                 pack();

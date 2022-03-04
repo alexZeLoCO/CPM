@@ -40,11 +40,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="226" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="299" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,7 +70,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="&quot;Meroquest&quot; es una interfaz dise&#xf1;ada para facilitar el acceso y la&#xa;configuraci&#xf3;n de &quot;Jeroquest&quot;. &#xa;&#xa;S&#xf3;lamente la interfaz de este men&#xfa; ha sido dise&#xf1;ada por el alumno&#xa;(Rodr&#xed;guez L&#xf3;pez, Alejandro // UO281827) ya que la programaci&#xf3;n &#xa;principal del juego original Jeroquest, ha sido realizada completamente&#xa;por los profesores de Metodolog&#xed;a de Programaci&#xf3;n. &#xa;&#xa;Entre los personajes disponibles, una parte son originales del proyecto&#xa;de los profesores, mientras que otra son parte de ex&#xe1;menes de a&#xf1;os&#xa;anteriores realizados por el alumno como pr&#xe1;citca para el estudio&#xa;de la asignatura."/>
+            <Property name="text" type="java.lang.String" value="&quot;Meroquest&quot; es una interfaz dise&#xf1;ada para facilitar el acceso y la&#xa;configuraci&#xf3;n de &quot;Jeroquest&quot;. &#xa;&#xa;S&#xf3;lamente la interfaz de este men&#xfa; ha sido dise&#xf1;ada por el alumno&#xa;(Rodr&#xed;guez L&#xf3;pez, Alejandro // UO281827) ya que la programaci&#xf3;n &#xa;principal del juego original Jeroquest, ha sido realizada completamente&#xa;por los profesores de Metodolog&#xed;a de Programaci&#xf3;n. &#xa;&#xa;Entre los personajes disponibles, una parte son originales del proyecto&#xa;de los profesores, mientras que otra son parte de ex&#xe1;menes de a&#xf1;os&#xa;anteriores realizados por el alumno como pr&#xe1;citca para el estudio&#xa;de la asignatura.&#xa;&#xa;En lo que respecta a Jeroquest. Existen a&#xfa;n errores en el c&#xf3;digo que han&#xa;sido r&#xe1;pidamente parcheados para que se pueda jugar de forma&#xa;continuada. No obstante, se seguir&#xe1; trabajando en arreglar dichos errores."/>
           </Properties>
         </Component>
       </SubComponents>
