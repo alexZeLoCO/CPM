@@ -527,6 +527,7 @@ public class master extends javax.swing.JFrame {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 	}
 	this.updateEntityNumber(this.maxEntities);
+	this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
         }//GEN-LAST:event_SL_MonstruosStateChanged
 
 	/**
@@ -560,6 +561,7 @@ public class master extends javax.swing.JFrame {
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 	}
 	this.updateEntityNumber(this.maxEntities);
+	this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
         }//GEN-LAST:event_SL_HeroesStateChanged
 
 	/**

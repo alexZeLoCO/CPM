@@ -53,43 +53,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
 		this.vM = master;	// Referencia a principal
 
-		this.monstruosTotales = this.vM.getMaxMonstruos();	// Monstruos totales
-		this.heroesTotales = this.vM.getMaxHeroes(); 	// Heroes totales
-
-		// Estado inicial de estructura, sliders y spinners.
-		for (int i = 0; i < 8 ; i++) {
-			this.previous.put(entities[i], 0);
-			this.current.put(entities[i], 0);
-			this.entitiesSliders[i].setMaximum(this.monstruosTotales);				
-			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
-		}
-	
-		// Maximos de sliders y spinners para heroes
-		this.entitiesSpinners[ENANO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[ENANO].getModel().getValue())), 0, this.heroesTotales, 1));
-		this.entitiesSpinners[BARBARO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[BARBARO].getModel().getValue())), 0, this.heroesTotales, 1));
-		this.SL_Barbaro.setMaximum(this.heroesTotales);
-		this.SL_Enano.setMaximum(this.heroesTotales);
-		
-		// Valores por defecto de heroes y monstruos
-		this.SL_Barbaro.setValue(this.heroesTotales);
-		this.SL_Momia.setValue(this.monstruosTotales);
-		this.SP_Barbaro.setValue(this.heroesTotales);
-		this.SP_Momia.setValue(this.monstruosTotales);
-
-		// Contadores de entidades marcadas
-		this.heroesMarcados = this.SL_Barbaro.getValue();
-		this.monstruosMarcados = this.SL_Momia.getValue();
-
-		// Actualización de estructuras
-		// NOTA: JSlider.setValue(Integer) no acciona un stateChanged.
-		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
-		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
-		this.previous.put(entities[MOMIA], this.SL_Momia.getValue());		
-		this.current.put(entities[MOMIA], this.SL_Momia.getValue());
-
-		// Actualizacion de etiquetas
-		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
-		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+		this.setLimites(this.vM.SL_Heroes.getValue(), this.vM.SL_Monstruos.getValue());
 	}
 
 	/**
@@ -917,6 +881,51 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	}	
         }//GEN-LAST:event_SP_GuardianStateChanged
 
+	/**
+	 * Asigna los límites a todos los sliders, spinners y etiquetas de la pantalla.
+	 * 
+	 * @param heroes Número máximo de héroes.
+	 * @param monstruos Número máximo de monstruos.
+	 */
+	public void setLimites (int heroes, int monstruos) {
+		this.monstruosTotales = monstruos;	// Monstruos totales
+		this.heroesTotales = heroes;		 // Heroes totales
+
+		// Estado inicial de estructura, sliders y spinners.
+		for (int i = 0; i < 8 ; i++) {
+			this.previous.put(entities[i], 0);
+			this.current.put(entities[i], 0);
+			this.entitiesSliders[i].setMaximum(this.monstruosTotales);				
+			this.entitiesSpinners[i].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[i].getModel().getValue())), 0, this.monstruosTotales, 1));
+		}
+	
+		// Maximos de sliders y spinners para heroes
+		this.entitiesSpinners[ENANO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[ENANO].getModel().getValue())), 0, this.heroesTotales, 1));
+		this.entitiesSpinners[BARBARO].setModel(new SpinnerNumberModel (Integer.parseInt(String.format("%d", this.entitiesSpinners[BARBARO].getModel().getValue())), 0, this.heroesTotales, 1));
+		this.SL_Barbaro.setMaximum(this.heroesTotales);
+		this.SL_Enano.setMaximum(this.heroesTotales);
+		
+		// Valores por defecto de heroes y monstruos
+		this.SL_Barbaro.setValue(this.heroesTotales);
+		this.SL_Momia.setValue(this.monstruosTotales);
+		this.SP_Barbaro.setValue(this.heroesTotales);
+		this.SP_Momia.setValue(this.monstruosTotales);
+
+		// Contadores de entidades marcadas
+		this.heroesMarcados = this.SL_Barbaro.getValue();
+		this.monstruosMarcados = this.SL_Momia.getValue();
+
+		// Actualización de estructuras
+		// NOTA: JSlider.setValue(Integer) no acciona un stateChanged.
+		this.previous.put(entities[BARBARO], this.SL_Barbaro.getValue());		
+		this.current.put(entities[BARBARO], this.SL_Barbaro.getValue());
+		this.previous.put(entities[MOMIA], this.SL_Momia.getValue());		
+		this.current.put(entities[MOMIA], this.SL_Momia.getValue());
+
+		// Actualizacion de etiquetas
+		this.LB_HRestantes.setText(String.format("%d", this.heroesTotales - this.heroesMarcados));
+		this.LB_MRestantes.setText(String.format("%d", this.monstruosTotales - this.monstruosMarcados));
+	}
 
 	/**
 	 * Actualiza los límites de todos los Sliders.
