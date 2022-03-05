@@ -100,6 +100,11 @@ public class PostPartida extends javax.swing.JDialog {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Muestra la ventana de postpartida.
+	 * 
+	 * @param g Estado final del juego recién finalizado.
+	 */
 	public void showDialog(Game g) {
 		System.out.println("Mostrando informe postpartida");
 		this.LB_Ganadores.setText(g.highestBody());

@@ -5,7 +5,7 @@
 package meroquest.tasks;
 
 import javax.swing.JOptionPane;
-import meroquest.gui.master;
+import meroquest.gui.Master;
 
 /**
  *
@@ -16,9 +16,9 @@ public class TaskMeroquest extends Task {
 	private long startTime;
 	private long endTime;
 	private boolean isStopped;
-	private master master;
+	private Master master;
 
-	public TaskMeroquest (master master) {
+	public TaskMeroquest (Master master) {
 		System.out.println("Creando tarea (TaskMeroquest) con referencia a principal");
 		this.master = master;
 	}

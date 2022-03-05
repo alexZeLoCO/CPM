@@ -23,12 +23,12 @@ import meroquest.data.GameSave;
  *
  * @author Rodriguez Lopez, Alejandro // UO281827
  */
-public class master extends javax.swing.JFrame {
+public class Master extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form master
 	 */
-	public master() {
+	public Master() {
 		initComponents();
 		System.out.println("Creando ventana master");
 		this.maxEntities = this.SL_Alto.getValue() * this.SL_Ancho.getValue();
@@ -39,7 +39,7 @@ public class master extends javax.swing.JFrame {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 		this.entities = new EntityHashMap (8);
-		this.vD = new Debug (this);
+		this.vD = new VistaPrevia (this);
 		this.JFC = new JFileChooser ();
 		this.info = new Info();
 		this.TK_Tick.setVisible(false);
@@ -706,7 +706,7 @@ public class master extends javax.swing.JFrame {
 		try {
 			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(new GameSave (this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities));
 		} catch (IOException ex) {
-			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
         }//GEN-LAST:event_MI_GuardarActionPerformed
@@ -732,7 +732,7 @@ public class master extends javax.swing.JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
         }//GEN-LAST:event_MI_AbrirActionPerformed
@@ -762,7 +762,7 @@ public class master extends javax.swing.JFrame {
 		this.gameThread = new Thread () {
 			@Override
 			public void run () {
-				master.this.gameTask.run();
+				Master.this.gameTask.run();
 			}
 		};
 		this.gameThread.start();
@@ -787,7 +787,7 @@ public class master extends javax.swing.JFrame {
 	this.hiloBack = new Thread () {
 		@Override
 		public void run () {
-			master.this.task.run();
+			Master.this.task.run();
 		}
 	};
 
@@ -864,8 +864,9 @@ public class master extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(Master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		//</editor-fold>
 		//</editor-fold>
 		
 		//</editor-fold>
@@ -873,14 +874,14 @@ public class master extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new master().setVisible(true);
+				new Master().setVisible(true);
 			}
 		});
 	}
 
 	private int maxEntities;
 	PersonalizarEntidades vPe;
-	Debug vD;
+	VistaPrevia vD;
 	Info info;
 	Dado vDado;
 	private EntityHashMap entities;

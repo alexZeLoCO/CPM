@@ -8,22 +8,22 @@ package meroquest.gui;
  *
  * @author Rodriguez Lopez, Alejandro // UO281827 
  */
-public class Debug extends javax.swing.JFrame {
+public class VistaPrevia extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form Debug
 	 */
-	public Debug() {
+	public VistaPrevia() {
 		initComponents();
 		System.out.println("Creando vista previa");
 	}
 
 	/**
-	 * Crea una nueva ventana de Vista Previa con referencia a master.
+	 * Crea una nueva ventana de Vista Previa con referencia a Master.
 	 * 
 	 * @param master Referencia a la ventana principal.
 	 */
-	public Debug (master master) {
+	public VistaPrevia (Master master) {
 		this();
 		System.out.println("Creando vista previa con referencia a principal");
 		this.vM = master;
@@ -144,26 +144,27 @@ public class Debug extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Debug.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(VistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Debug.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(VistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Debug.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(VistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Debug.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(VistaPrevia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		//</editor-fold>
 		//</editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new Debug().setVisible(true);
+				new VistaPrevia().setVisible(true);
 			}
 		});
 	}
 
-	master vM;
+	Master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Actualizar;
         private javax.swing.JTextArea TA_Current;

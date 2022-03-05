@@ -4,7 +4,7 @@
  */
 package meroquest.tasks;
 
-import meroquest.gui.master;
+import meroquest.gui.Master;
 
 /**
  *
@@ -12,14 +12,14 @@ import meroquest.gui.master;
  */
 public class GameTaskMeroquest extends GameTask {
 	
-	private master vM;
+	private Master vM;
 
 	/**
 	 * Crea una nueva tarea. Ejecución de juego.
 	 * 
 	 * @param master Referencia a la principal.
 	 */
-	public GameTaskMeroquest (master master) {
+	public GameTaskMeroquest (Master master) {
 		System.out.println("Creando tarea (GameTaskMeroquest) con referencia a principal");
 		this.vM = master;
 	}
