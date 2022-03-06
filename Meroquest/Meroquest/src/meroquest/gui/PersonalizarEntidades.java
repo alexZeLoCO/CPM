@@ -38,11 +38,11 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Crea una nueva ventana de personalización de entidades con referencia a Master.
+	 * Crea una nueva ventana de personalización de entidades con referencia a master.
 	 * 
 	 * @param master Referencia a ventana principal.
 	 */
-	public PersonalizarEntidades (Master master) {
+	public PersonalizarEntidades (master master) {
 		this();
 		this.entitiesSliders = new JSlider[]{SL_Barbaro, SL_Enano, SL_Enjambre, SL_Goblin, SL_Guardian, SL_Momia, SL_Vampiro, SL_Virus};
 		this.entitiesSpinners= new JSpinner[]{SP_Barbaro, SP_Enano, SP_Enjambre, SP_Goblin, SP_Guardian, SP_Momia, SP_Vampiro, SP_Virus};
@@ -1006,7 +1006,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	private int heroesTotales;
 	private int heroesMarcados;
 
-	Master vM;
+	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Aceptar;
         private javax.swing.JButton BT_Cancelar;

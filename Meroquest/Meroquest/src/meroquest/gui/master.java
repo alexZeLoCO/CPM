@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JColorChooser;
@@ -23,12 +24,12 @@ import meroquest.data.GameSave;
  *
  * @author Rodriguez Lopez, Alejandro // UO281827
  */
-public class Master extends javax.swing.JFrame {
+public class master extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form master
 	 */
-	public Master() {
+	public master() {
 		initComponents();
 		System.out.println("Creando ventana master");
 		this.maxEntities = this.SL_Alto.getValue() * this.SL_Ancho.getValue();
@@ -48,6 +49,7 @@ public class Master extends javax.swing.JFrame {
 		this.LB_Detencion.setVisible(false);
 		this.gameTask = new GameTaskMeroquest(this);
 		this.vPp = new PostPartida();
+		this.vPe = new PersonalizarEntidades (this);
 	}
 
 	/**
@@ -102,6 +104,8 @@ public class Master extends javax.swing.JFrame {
                 MI_Color = new javax.swing.JMenuItem();
                 jMenu3 = new javax.swing.JMenu();
                 MI_Info = new javax.swing.JMenuItem();
+                jMenu4 = new javax.swing.JMenu();
+                MI_GitHub = new javax.swing.JMenuItem();
 
                 jScrollPane1.setViewportView(jTextPane1);
 
@@ -312,6 +316,18 @@ public class Master extends javax.swing.JFrame {
                 });
                 jMenu3.add(MI_Info);
 
+                jMenu4.setText("Código");
+
+                MI_GitHub.setText("GitHub");
+                MI_GitHub.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_GitHubActionPerformed(evt);
+                        }
+                });
+                jMenu4.add(MI_GitHub);
+
+                jMenu3.add(jMenu4);
+
                 jMenuBar1.add(jMenu3);
 
                 setJMenuBar(jMenuBar1);
@@ -510,7 +526,6 @@ public class Master extends javax.swing.JFrame {
 	 */
         private void BT_PersonalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_PersonalizarActionPerformed
                 // TODO add your handling code here:
-	this.vPe = new PersonalizarEntidades (this);
 	System.out.println("Abriendo personalizacion");
 	this.vPe.setVisible(true);
         }//GEN-LAST:event_BT_PersonalizarActionPerformed
@@ -527,7 +542,9 @@ public class Master extends javax.swing.JFrame {
 		this.SP_Monstruos.setValue(this.SL_Monstruos.getValue());
 	}
 	this.updateEntityNumber(this.maxEntities);
-	this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
+	if (this.vPe != null) {
+		this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
+	}
         }//GEN-LAST:event_SL_MonstruosStateChanged
 
 	/**
@@ -561,7 +578,9 @@ public class Master extends javax.swing.JFrame {
 		this.SP_Heroes.setValue(this.SL_Heroes.getValue());
 	}
 	this.updateEntityNumber(this.maxEntities);
-	this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
+	if (this.vPe != null) {
+		this.vPe.setLimites(this.SL_Heroes.getValue(), this.SL_Monstruos.getValue());
+	}
         }//GEN-LAST:event_SL_HeroesStateChanged
 
 	/**
@@ -706,7 +725,7 @@ public class Master extends javax.swing.JFrame {
 		try {
 			new ObjectOutputStream(new FileOutputStream(this.JFC.getSelectedFile().getAbsolutePath())).writeObject(new GameSave (this.SL_Heroes.getValue(), this.SL_Monstruos.getValue(), this.SL_Alto.getValue(), this.SL_Ancho.getValue(), this.SL_Turnos.getValue(), this.entities));
 		} catch (IOException ex) {
-			Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
         }//GEN-LAST:event_MI_GuardarActionPerformed
@@ -732,7 +751,7 @@ public class Master extends javax.swing.JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
         }//GEN-LAST:event_MI_AbrirActionPerformed
@@ -762,7 +781,7 @@ public class Master extends javax.swing.JFrame {
 		this.gameThread = new Thread () {
 			@Override
 			public void run () {
-				Master.this.gameTask.run();
+				master.this.gameTask.run();
 			}
 		};
 		this.gameThread.start();
@@ -787,7 +806,7 @@ public class Master extends javax.swing.JFrame {
 	this.hiloBack = new Thread () {
 		@Override
 		public void run () {
-			Master.this.task.run();
+			master.this.task.run();
 		}
 	};
 
@@ -834,6 +853,15 @@ public class Master extends javax.swing.JFrame {
 	((Tick)this.TK_Tick).repaint();
         }//GEN-LAST:event_MI_ColorActionPerformed
 
+        private void MI_GitHubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GitHubActionPerformed
+		try {
+			// TODO add your handling code here:
+			java.awt.Desktop.getDesktop().browse(new java.net.URI("https://github.com/alexZeLoCO/CPM/tree/main/Meroquest/Meroquest"));
+		} catch (URISyntaxException | IOException ex) {
+			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
+		}
+        }//GEN-LAST:event_MI_GitHubActionPerformed
+
 	/**
 	 * Actualiza el número de entidades.
 	 * 
@@ -864,8 +892,10 @@ public class Master extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(master.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		//</editor-fold>
+		//</editor-fold>
 		//</editor-fold>
 		//</editor-fold>
 		
@@ -874,7 +904,7 @@ public class Master extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new Master().setVisible(true);
+				new master().setVisible(true);
 			}
 		});
 	}
@@ -905,6 +935,7 @@ public class Master extends javax.swing.JFrame {
         public javax.swing.JLabel LB_Task;
         javax.swing.JMenuItem MI_Abrir;
         javax.swing.JMenuItem MI_Color;
+        javax.swing.JMenuItem MI_GitHub;
         javax.swing.JMenuItem MI_Guardar;
         javax.swing.JMenuItem MI_Info;
         javax.swing.JMenuItem MI_Salir;
@@ -933,6 +964,7 @@ public class Master extends javax.swing.JFrame {
         javax.swing.JMenu jMenu1;
         javax.swing.JMenu jMenu2;
         javax.swing.JMenu jMenu3;
+        javax.swing.JMenu jMenu4;
         javax.swing.JMenuBar jMenuBar1;
         javax.swing.JScrollPane jScrollPane1;
         javax.swing.JSeparator jSeparator1;

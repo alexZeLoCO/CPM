@@ -19,11 +19,11 @@ public class VistaPrevia extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Crea una nueva ventana de Vista Previa con referencia a Master.
+	 * Crea una nueva ventana de Vista Previa con referencia a master.
 	 * 
 	 * @param master Referencia a la ventana principal.
 	 */
-	public VistaPrevia (Master master) {
+	public VistaPrevia (master master) {
 		this();
 		System.out.println("Creando vista previa con referencia a principal");
 		this.vM = master;
@@ -164,7 +164,7 @@ public class VistaPrevia extends javax.swing.JFrame {
 		});
 	}
 
-	Master vM;
+	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Actualizar;
         private javax.swing.JTextArea TA_Current;

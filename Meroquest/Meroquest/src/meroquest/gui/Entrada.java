@@ -21,7 +21,7 @@ public class Entrada extends javax.swing.JFrame {
 		this.setResizable(false);
 	ImageIcon ii = new ImageIcon (new ImageIcon (ClassLoader.getSystemResource("jeroquest/gui/images/barbarian.gif")).getImage().getScaledInstance(this.LB_Fondo.getWidth(), this.LB_Fondo.getHeight(), Image.SCALE_SMOOTH));
 	this.LB_Fondo.setIcon(ii);
-	this.vM = new Master();
+	this.vM = new master();
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Entrada extends javax.swing.JFrame {
 		});
 	}
 
-	Master vM;
+	master vM;
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Iniciar;
