@@ -870,6 +870,11 @@ public class master extends javax.swing.JFrame {
 	((Tick)this.TK_Tick).repaint();
         }//GEN-LAST:event_MI_ColorActionPerformed
 
+	/**
+	 * Se ha pulsado el botón de GitHub
+	 * 
+	 * @param evt 
+	 */
         private void MI_GitHubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_GitHubActionPerformed
 		try {
 			// TODO add your handling code here:
