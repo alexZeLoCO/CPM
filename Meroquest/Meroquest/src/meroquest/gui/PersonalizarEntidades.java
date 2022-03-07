@@ -104,7 +104,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 jSeparator1 = new javax.swing.JSeparator();
                 jLabel3 = new javax.swing.JLabel();
                 LB_MRestantes = new javax.swing.JLabel();
-                BT_Debug = new javax.swing.JButton();
+                BT_VistaPrevia = new javax.swing.JButton();
                 jLabel9 = new javax.swing.JLabel();
                 LB_HRestantes = new javax.swing.JLabel();
 
@@ -356,10 +356,10 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
                 LB_MRestantes.setText("100");
 
-                BT_Debug.setText("Debug");
-                BT_Debug.addActionListener(new java.awt.event.ActionListener() {
+                BT_VistaPrevia.setText("Vista Previa");
+                BT_VistaPrevia.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                BT_DebugActionPerformed(evt);
+                                BT_VistaPreviaActionPerformed(evt);
                         }
                 });
 
@@ -388,7 +388,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(LB_HRestantes)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(BT_Debug, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(BT_VistaPrevia, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(BT_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -406,7 +406,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                         .addComponent(LB_MRestantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(BT_Debug)
+                                                .addComponent(BT_VistaPrevia)
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                         .addComponent(LB_HRestantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -499,11 +499,11 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	 * 
 	 * @param evt 
 	 */
-        private void BT_DebugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_DebugActionPerformed
+        private void BT_VistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_VistaPreviaActionPerformed
                 // TODO add your handling code here:
 	System.out.println("Mostrando vista previa");
 	this.vM.vD.setVisible(true);
-        }//GEN-LAST:event_BT_DebugActionPerformed
+        }//GEN-LAST:event_BT_VistaPreviaActionPerformed
 
 	/**
 	 * Se ha modificado el Slider del Enano.
@@ -1010,7 +1010,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Aceptar;
         private javax.swing.JButton BT_Cancelar;
-        private javax.swing.JButton BT_Debug;
+        private javax.swing.JButton BT_VistaPrevia;
         private javax.swing.JCheckBox CB_Barbaro;
         private javax.swing.JCheckBox CB_Enano;
         private javax.swing.JCheckBox CB_Enjambre;
