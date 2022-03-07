@@ -280,6 +280,11 @@ public class master extends javax.swing.JFrame {
                 jMenu1.add(jSeparator3);
 
                 MI_Salir.setText("Salir");
+                MI_Salir.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                MI_SalirActionPerformed(evt);
+                        }
+                });
                 jMenu1.add(MI_Salir);
 
                 jMenuBar1.add(jMenu1);
@@ -873,6 +878,17 @@ public class master extends javax.swing.JFrame {
 			Logger.getLogger(master.class.getName()).log(Level.SEVERE, null, ex);
 		}
         }//GEN-LAST:event_MI_GitHubActionPerformed
+
+	/**
+	 * Se ha pulsado el botón de salir
+	 * 
+	 * @param evt 
+	 */
+        private void MI_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_SalirActionPerformed
+                // TODO add your handling code here:
+		System.out.println("Saliendo");
+		System.exit(0);
+        }//GEN-LAST:event_MI_SalirActionPerformed
 
 	/**
 	 * Actualiza el número de entidades.
