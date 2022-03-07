@@ -110,6 +110,7 @@ public class PostPartida extends javax.swing.JDialog {
 		this.LB_Ganadores.setText(g.highestBody());
 		javax.swing.DefaultListModel<String> m = (javax.swing.DefaultListModel<String>)
 			this.LT_Entidades.getModel();	
+		m.clear();
 		for (jeroquest.units.Character c : g.getCharacters()) {
 			m.addElement(c.toString());
 		}
