@@ -476,8 +476,12 @@ public class master extends javax.swing.JFrame {
 	/**
 	 * Retorna el máximo número de entidades.
 	 * 
+	 * @deprecated
+	 * El resto de clases han sido independizadas de este método.
+	 * 
 	 * @return Máximo número de entidades.
 	 */
+	@Deprecated
 	public int getMaxEntities () {
 		return this.maxEntities;
 	}
@@ -485,8 +489,12 @@ public class master extends javax.swing.JFrame {
 	/**
 	 * Retorna el máximo número de monstruos.
 	 * 
+	 * @deprecated
+	 * El resto de clases han sido independizadas de este método.
+	 * 
 	 * @return Máximo número de monstruos.
 	 */
+	@Deprecated
 	public int getMaxMonstruos () {
 		return this.SL_Monstruos.getValue(); 
 	}
@@ -494,8 +502,12 @@ public class master extends javax.swing.JFrame {
 	/**
 	 * Retorna el máximo número de héroes.
 	 * 
+	 * @deprecated 
+	 * El resto de clases han sido independizadas de este método.
+	 * 
 	 * @return Máximo número de héroes.
 	 */
+	@Deprecated
 	public int getMaxHeroes () {
 		return this.SL_Heroes.getValue();
 	}

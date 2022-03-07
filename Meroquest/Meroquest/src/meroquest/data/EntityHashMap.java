@@ -14,6 +14,7 @@ import java.util.Set;
  *
  * @author Rodriguez Lopez, Alejandro // UO281827 
  */
+@SuppressWarnings ("unchecked")
 public class EntityHashMap implements Serializable {
 
 	private final HashMap<Integer, Pair<String, Integer>> data;
