@@ -107,7 +107,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                 BT_VistaPrevia = new javax.swing.JButton();
                 jLabel9 = new javax.swing.JLabel();
                 LB_HRestantes = new javax.swing.JLabel();
-                LB_Salta = new javax.swing.JLabel();
 
                 jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
                 jLabel1.setText("Personalizar Entidades");
@@ -368,13 +367,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 
                 LB_HRestantes.setText("100");
 
-                LB_Salta.setText("Salta");
-                LB_Salta.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                LB_SaltaMouseReleased(evt);
-                        }
-                });
-
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -399,8 +391,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                                 .addComponent(BT_VistaPrevia, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(BT_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(174, 174, 174)
-                                                .addComponent(LB_Salta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(BT_Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
@@ -424,8 +414,7 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(BT_Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(BT_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(LB_Salta))
+                                        .addComponent(BT_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
                 );
 
@@ -892,13 +881,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
 	}	
         }//GEN-LAST:event_SP_GuardianStateChanged
 
-        private void LB_SaltaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LB_SaltaMouseReleased
-                // TODO add your handling code here:
-	this.vM.vD.setVisible(true);
-	this.setVisible(false);
-	this.vM.LB_Etiqueta.setText("Vista Previa");
-        }//GEN-LAST:event_LB_SaltaMouseReleased
-
 	/**
 	 * Asigna los límites a todos los sliders, spinners y etiquetas de la pantalla.
 	 * 
@@ -1039,7 +1021,6 @@ public class PersonalizarEntidades extends javax.swing.JFrame {
         private javax.swing.JCheckBox CB_Virus;
         private javax.swing.JLabel LB_HRestantes;
         private javax.swing.JLabel LB_MRestantes;
-        javax.swing.JLabel LB_Salta;
         private javax.swing.JSlider SL_Barbaro;
         private javax.swing.JSlider SL_Enano;
         private javax.swing.JSlider SL_Enjambre;

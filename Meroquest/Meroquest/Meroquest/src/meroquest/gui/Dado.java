@@ -4,8 +4,6 @@
  */
 package meroquest.gui;
 
-import java.awt.Color;
-
 /**
  *
  * @author Rodríguez López, Alejandro // UO281827 
@@ -21,9 +19,6 @@ public class Dado extends javax.swing.JDialog {
 		System.out.println("Creando pantalla de dado");
 		this.pOk = false;
 		this.dado = Integer.parseInt(this.TF_Dado.getText());
-		this.LT_Bin.setModel(new javax.swing.DefaultListModel<String>());
-		this.LB_Bin.setBackground(Color.CYAN);
-		this.LB_Bin.repaint();
 	}
 
 	public Dado () {
@@ -45,10 +40,6 @@ public class Dado extends javax.swing.JDialog {
                 TF_Dado = new javax.swing.JTextField();
                 jLabel3 = new javax.swing.JLabel();
                 BT_Ok = new javax.swing.JButton();
-                jLabel4 = new javax.swing.JLabel();
-                LB_Bin = new javax.swing.JLabel();
-                jScrollPane1 = new javax.swing.JScrollPane();
-                LT_Bin = new javax.swing.JList<>();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
                 setTitle("Meroquest | Dado");
@@ -82,18 +73,6 @@ public class Dado extends javax.swing.JDialog {
                         }
                 });
 
-                jLabel4.setText("Dado:");
-
-                LB_Bin.setBackground(new java.awt.Color(0, 255, 204));
-                LB_Bin.setText("1");
-                LB_Bin.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                LB_BinMouseReleased(evt);
-                        }
-                });
-
-                jScrollPane1.setViewportView(LT_Bin);
-
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -108,43 +87,27 @@ public class Dado extends javax.swing.JDialog {
                                         .addComponent(jLabel1)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(6, 6, 6)
-                                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(LB_Bin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabel2)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(TF_Dado, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jLabel3)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                .addContainerGap())
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(TF_Dado, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel3)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel2)
-                                                        .addComponent(TF_Dado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel3))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(LB_Bin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(BT_Cancelar)
-                                                        .addComponent(BT_Ok))))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(TF_Dado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(BT_Cancelar)
+                                        .addComponent(BT_Ok))
                                 .addContainerGap())
                 );
 
@@ -205,23 +168,13 @@ public class Dado extends javax.swing.JDialog {
 	this.setVisible(false);
         }//GEN-LAST:event_BT_OkActionPerformed
 
-        private void LB_BinMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LB_BinMouseReleased
-                // TODO add your handling code here:
-	javax.swing.DefaultListModel<String> m = (javax.swing.DefaultListModel<String>)
-			this.LT_Bin.getModel();
-	m.addElement(this.TF_Dado.getText() + " (" + this.LB_Bin.getText() + ")\n");
-        }//GEN-LAST:event_LB_BinMouseReleased
-
         private void TF_DadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_DadoKeyTyped
-	if (Integer.parseInt("" + evt.getKeyChar()) != 0 && Integer.parseInt("" + evt.getKeyChar()) !=1) {
-    		System.out.println("Entrada denegada");
+	if (Character.isDigit(evt.getKeyChar())) {
+		System.out.println("Eliminando entrada");
 		evt.consume();
-	} else { 
-		if (!this.TF_Dado.getText().isBlank()) {
-			System.out.println("No. " + Integer.parseInt(this.TF_Dado.getText(), 2));
-			this.LB_Bin.setText(String.format("%d", Integer.parseInt(this.TF_Dado.getText(), 2)));
-		}
-	}            
+	} else {
+		this.dado = Integer.parseInt(this.TF_Dado.getText());
+	}
         }//GEN-LAST:event_TF_DadoKeyTyped
 
 	/**
@@ -272,13 +225,9 @@ public class Dado extends javax.swing.JDialog {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Cancelar;
         private javax.swing.JButton BT_Ok;
-        private javax.swing.JLabel LB_Bin;
-        private javax.swing.JList<String> LT_Bin;
         private javax.swing.JTextField TF_Dado;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JScrollPane jScrollPane1;
         // End of variables declaration//GEN-END:variables
 }

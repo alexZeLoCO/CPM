@@ -41,8 +41,6 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="BT_Cancelar" min="-2" pref="204" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                      <Component id="LB_Salta" min="-2" pref="48" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="BT_Aceptar" min="-2" pref="204" max="-2" attributes="0"/>
                   </Group>
@@ -73,7 +71,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BT_Aceptar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="BT_Cancelar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="LB_Salta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -389,17 +386,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="100"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="LB_Salta">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salta"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LB_SaltaMouseReleased"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

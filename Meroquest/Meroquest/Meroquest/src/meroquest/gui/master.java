@@ -93,7 +93,6 @@ public class master extends javax.swing.JFrame {
                 BT_StopTask = new javax.swing.JButton();
                 LB_Detencion = new javax.swing.JLabel();
                 TK_Tick = new Tick();
-                LB_Etiqueta = new javax.swing.JLabel();
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 MI_Abrir = new javax.swing.JMenuItem();
@@ -260,8 +259,6 @@ public class master extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                 );
 
-                LB_Etiqueta.setText("Personalizar Entidades");
-
                 jMenu1.setText("Archivo");
 
                 MI_Abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -376,11 +373,8 @@ public class master extends javax.swing.JFrame {
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel2)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                                        .addComponent(jLabel1)
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(LB_Etiqueta))
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -428,9 +422,7 @@ public class master extends javax.swing.JFrame {
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(LB_Etiqueta))
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -975,7 +967,6 @@ public class master extends javax.swing.JFrame {
         public javax.swing.JButton BT_StopTask;
         public javax.swing.JButton BT_Task;
         public javax.swing.JLabel LB_Detencion;
-        javax.swing.JLabel LB_Etiqueta;
         public javax.swing.JLabel LB_Task;
         javax.swing.JMenuItem MI_Abrir;
         javax.swing.JMenuItem MI_Color;

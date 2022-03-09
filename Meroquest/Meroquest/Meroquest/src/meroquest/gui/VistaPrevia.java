@@ -44,7 +44,6 @@ public class VistaPrevia extends javax.swing.JFrame {
                 jLabel1 = new javax.swing.JLabel();
                 BT_Actualizar = new javax.swing.JButton();
                 jSeparator1 = new javax.swing.JSeparator();
-                LB_Salta = new javax.swing.JLabel();
 
                 setTitle("Meroquest | Vista Previa");
 
@@ -64,13 +63,6 @@ public class VistaPrevia extends javax.swing.JFrame {
 
                 jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-                LB_Salta.setText("Salta");
-                LB_Salta.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                LB_SaltaMouseReleased(evt);
-                        }
-                });
-
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -81,9 +73,7 @@ public class VistaPrevia extends javax.swing.JFrame {
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
-                                                .addGap(37, 37, 37)
-                                                .addComponent(LB_Salta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(84, 84, 84)
                                                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(BT_Actualizar)))
@@ -94,12 +84,10 @@ public class VistaPrevia extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel1)
-                                                        .addComponent(BT_Actualizar)))
-                                        .addComponent(LB_Salta, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(BT_Actualizar)))
                                 .addGap(11, 11, 11)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -130,12 +118,6 @@ public class VistaPrevia extends javax.swing.JFrame {
                 // TODO add your handling code here:
 		this.update();
         }//GEN-LAST:event_BT_ActualizarActionPerformed
-
-        private void LB_SaltaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LB_SaltaMouseReleased
-        	this.vM.vPe.setVisible(true);
-	this.setVisible(false);
-	this.vM.LB_Etiqueta.setText("Personalizar Entidades");
-        }//GEN-LAST:event_LB_SaltaMouseReleased
 
 	@Override
 	public void setVisible(boolean b) {
@@ -185,7 +167,6 @@ public class VistaPrevia extends javax.swing.JFrame {
 	master vM;
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton BT_Actualizar;
-        public javax.swing.JLabel LB_Salta;
         private javax.swing.JTextArea TA_Current;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JScrollPane jScrollPane2;
