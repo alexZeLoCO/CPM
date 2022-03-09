@@ -1,19 +1,16 @@
 package jeroquest.units;
 
-import jeroquest.boardgame.Dice;
 import jeroquest.logic.Game;
-import jeroquest.utils.DynamicVectorCharacters;
 
 import javax.swing.*;
 
-public class Virus extends Character implements Suspect{
+public class Virus extends Character implements Suspect {
 
 	// initial values for the attributes
 	protected static final int MOVEMENT = 1;
 	protected static final int ATTACK = 1;
 	protected static final int DEFENCE = 0;
 	protected static final int BODY = 7;
-	private final boolean infected = true;
 	private boolean violent = false;
 
 	/**
@@ -33,11 +30,11 @@ public class Virus extends Character implements Suspect{
 
 	@Override
 	public boolean isEnemy(Character c) {
-		return !((Carrier)c).isInfected();
+		return !((Carrier) c).isInfected();
 	}
 
-	public void degradacion () {
-		this.setBody(this.getBody()-1);
+	public void degradacion() {
+		this.setBody(this.getBody() - 1);
 	}
 
 	/************************************************

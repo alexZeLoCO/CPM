@@ -1,6 +1,5 @@
 package jeroquest.units;
 
-import jeroquest.boardgame.Dice;
 import jeroquest.logic.Game;
 import jeroquest.utils.DynamicVectorXYLocation;
 
@@ -36,36 +35,39 @@ public class Vampire extends Monster implements Leader {
 	}
 
 	public void setReserva(int reserva) {
-		this.reserva=reserva;
+		this.reserva = reserva;
 	}
 
-	public int getReserva () {
+	public int getReserva() {
 		return this.reserva;
 	}
 
 	@Override
 	public boolean isEnemy(Character c) {
-		return (c instanceof Hero  || (!(c instanceof Vampire) && c.getBody()<c.getBodyInitial()));
-		//Heroes U otros personajes (monstruos) que hayan perdido vida Y no sean vampiros
+		return (c instanceof Hero || (!(c instanceof Vampire) && c.getBody() < c.getBodyInitial()));
+		// Heroes U otros personajes (monstruos) que hayan perdido vida Y no sean
+		// vampiros
 	}
 
 	@Override
 	public DynamicVectorXYLocation validPositions(Game currentGame) {
 
-		int i=0;
-		while (i<currentGame.getCharacters().length && currentGame.getCharacters()[i].isAlive() &&
-				!this.isEnemy(currentGame.getCharacters()[i]) && currentGame.getCharacters()[i].validPositions(currentGame)!=null) {
+		int i = 0;
+		while (i < currentGame.getCharacters().length && currentGame.getCharacters()[i].isAlive() &&
+				!this.isEnemy(currentGame.getCharacters()[i])
+				&& currentGame.getCharacters()[i].validPositions(currentGame) != null) {
 			i++;
 		}
 
 		/*
-		for (int i=0; i<currentGame.getCharacters().length && !this.isEnemy(currentGame.getCharacters()[i]); i++) {
-		}
-		*/
+		 * for (int i=0; i<currentGame.getCharacters().length &&
+		 * !this.isEnemy(currentGame.getCharacters()[i]); i++) {
+		 * }
+		 */
 
 		DynamicVectorXYLocation positions = null;
-		if (i<currentGame.getCharacters().length) {
-			 positions = currentGame.getCharacters()[i].validPositions(currentGame);
+		if (i < currentGame.getCharacters().length) {
+			positions = currentGame.getCharacters()[i].validPositions(currentGame);
 		}
 
 		return positions;
@@ -76,7 +78,7 @@ public class Vampire extends Monster implements Leader {
 		int body = c.getBody();
 
 		if (aliveLeader(currentGame)) {
-			c.defend(this.attack()+1);
+			c.defend(this.attack() + 1);
 			if (!c.isAlive()) {
 				currentGame.getBoard().removePiece(c);
 			}
@@ -85,18 +87,19 @@ public class Vampire extends Monster implements Leader {
 		}
 
 		if (c.getBody() < body && c instanceof Sabroso) {
-			this.setReserva(this.getReserva()+((Sabroso)c).sangrado());
+			this.setReserva(this.getReserva() + ((Sabroso) c).sangrado());
 		}
 	}
 
 	/**
 	 * Finds wehter Vampires leader is alive or not
+	 * 
 	 * @param currentGame - Current game
 	 * @return boolean true iff vampires leader is alive
 	 */
-	public boolean aliveLeader (Game currentGame) {
+	public boolean aliveLeader(Game currentGame) {
 		for (Character c : currentGame.getCharacters()) {
-			if (c instanceof Vampire && c.isAlive() && ((Vampire)c).isLeader()) {
+			if (c instanceof Vampire && c.isAlive() && ((Vampire) c).isLeader()) {
 				return true;
 			}
 		}
@@ -107,12 +110,12 @@ public class Vampire extends Monster implements Leader {
 	public int defend(int impacts) {
 		int wounds = 0;
 
-		if (this.getReserva() >= impacts) {			//La reserva cubre por completo el daño
-			this.setReserva(this.getReserva()-impacts);		//Reserva - daño
-			impacts=0;			//Daño restante 0
-		} else {			//La reserva NO cubre por completo el daño
-			impacts=impacts-this.getReserva();			//Impactos restantes
-			this.setReserva(0);			//Reserva gastada por completo
+		if (this.getReserva() >= impacts) { // La reserva cubre por completo el daño
+			this.setReserva(this.getReserva() - impacts); // Reserva - daño
+			impacts = 0; // Daño restante 0
+		} else { // La reserva NO cubre por completo el daño
+			impacts = impacts - this.getReserva(); // Impactos restantes
+			this.setReserva(0); // Reserva gastada por completo
 		}
 
 		// if any unblocked impact, decrement body points
@@ -123,7 +126,8 @@ public class Vampire extends Monster implements Leader {
 			System.out.printf("The monster " + this.getName() + " cannot block %d impacts%s", impacts,
 					(isAlive() ? "\n" : " and dies\n"));
 		} else {
-			System.out.printf("The monster %s blocks the attack using blood. Blood remaining: %d\n", this.getName(), this.getReserva());
+			System.out.printf("The monster %s blocks the attack using blood. Blood remaining: %d\n", this.getName(),
+					this.getReserva());
 		}
 
 		return wounds;

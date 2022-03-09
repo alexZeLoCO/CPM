@@ -18,7 +18,6 @@ import jeroquest.boardgame.Piece;
 import jeroquest.boardgame.XYLocation;
 import jeroquest.gui.GraphicElement;
 import jeroquest.gui.MyJLabelCharacter;
-import jeroquest.gui.MyKeyboard;
 import jeroquest.gui.MyPanelBoard;
 import jeroquest.logic.Game;
 import jeroquest.logic.Jeroquest;
@@ -42,7 +41,6 @@ public abstract class Character implements Piece, GraphicElement {
 
 	protected Dice dice;
 
-
 	/**
 	 * Create a character from its name and its initial values for the attributes,
 	 * initially its position is null (outside of the board)
@@ -55,7 +53,7 @@ public abstract class Character implements Piece, GraphicElement {
 	 */
 	public Character(String name, int movement, int attack, int defence, int body, int sides) {
 
-		this.dice = new Dice (sides);
+		this.dice = new Dice(sides);
 		this.name = name;
 
 		// setting the initial values
@@ -213,7 +211,7 @@ public abstract class Character implements Piece, GraphicElement {
 			if (this.dice.use() + this.dice.use() > this.dice.getSides() / 2)
 				impacts++;
 		if (impacts >= 1) {
-			((Suspect)this).setViolent(true);
+			((Suspect) this).setViolent(true);
 		}
 		return impacts;
 	}
@@ -293,7 +291,7 @@ public abstract class Character implements Piece, GraphicElement {
 
 			// window
 			Jeroquest.showGame();
-			//MyKeyboard.pressEnter();
+			// MyKeyboard.pressEnter();
 
 			validPositions = validPositions(currentGame);
 		}
@@ -303,7 +301,7 @@ public abstract class Character implements Piece, GraphicElement {
 		System.out.println();
 		// window
 		Jeroquest.showGame();
-		//MyKeyboard.pressEnter();
+		// MyKeyboard.pressEnter();
 
 		return this.getMovement() - mov;
 	}
@@ -322,13 +320,13 @@ public abstract class Character implements Piece, GraphicElement {
 		// Move randomly through the board
 		actionMovement(currentGame);
 
-		if (((this instanceof Hero || this instanceof Monster) && ((Carrier)this).isInfected()) || this instanceof Virus) {
-			this.setBody(this.getBody()-1);
+		if (((this instanceof Hero || this instanceof Monster) && ((Carrier) this).isInfected())
+				|| this instanceof Virus) {
+			this.setBody(this.getBody() - 1);
 			if (!this.isAlive()) {
 				currentGame.getBoard().removePiece(this);
 			}
 		}
-
 
 	}
 
@@ -396,21 +394,21 @@ public abstract class Character implements Piece, GraphicElement {
 
 		DynamicVectorXYLocation positions = new DynamicVectorXYLocation();
 		try {
-		XYLocation position = this.getPosition().south();
-		if (currentGame.getBoard().freeSquare(position))
-			positions.add(position);
+			XYLocation position = this.getPosition().south();
+			if (currentGame.getBoard().freeSquare(position))
+				positions.add(position);
 
-		position = this.getPosition().west();
-		if (currentGame.getBoard().freeSquare(position))
-			positions.add(position);
+			position = this.getPosition().west();
+			if (currentGame.getBoard().freeSquare(position))
+				positions.add(position);
 
-		position = this.getPosition().east();
-		if (currentGame.getBoard().freeSquare(position))
-			positions.add(position);
+			position = this.getPosition().east();
+			if (currentGame.getBoard().freeSquare(position))
+				positions.add(position);
 
-		position = this.getPosition().north();
-		if (currentGame.getBoard().freeSquare(position))
-			positions.add(position);
+			position = this.getPosition().north();
+			if (currentGame.getBoard().freeSquare(position))
+				positions.add(position);
 
 		} catch (NullPointerException e) {
 			System.err.println(this.toString() + "\nfell off the map");
@@ -426,8 +424,9 @@ public abstract class Character implements Piece, GraphicElement {
 	 */
 	@Override
 	public String toString() {
-		if ((this instanceof Monster || this instanceof  Hero) && ((Carrier)this).isInfected()) {
-			return String.format("%s (moves:%d attack:%d defence:%d body:%d/%d) AND IS INFECTED", getName(), getMovement(), getAttack(),
+		if ((this instanceof Monster || this instanceof Hero) && ((Carrier) this).isInfected()) {
+			return String.format("%s (moves:%d attack:%d defence:%d body:%d/%d) AND IS INFECTED", getName(),
+					getMovement(), getAttack(),
 					getDefence(), getBody(), getBodyInitial());
 		} else {
 			return String.format("%s (moves:%d attack:%d defence:%d body:%d/%d)", getName(), getMovement(), getAttack(),
@@ -462,12 +461,12 @@ public abstract class Character implements Piece, GraphicElement {
 		if (pos != null) {
 			// a JLabel is created the icon
 			try {
-			JLabel lab = new MyJLabelCharacter(this);
+				JLabel lab = new MyJLabelCharacter(this);
 
-			// the label is added to the layer 2
-			w.add(lab, Integer.valueOf(2));
+				// the label is added to the layer 2
+				w.add(lab, Integer.valueOf(2));
 			} catch (ClassCastException e) {
-				
+
 			}
 		}
 

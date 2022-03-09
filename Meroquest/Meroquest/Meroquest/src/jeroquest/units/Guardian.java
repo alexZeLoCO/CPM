@@ -1,6 +1,5 @@
 package jeroquest.units;
 
-import jeroquest.boardgame.Dice;
 import jeroquest.logic.Game;
 import jeroquest.utils.DynamicVectorCharacters;
 
@@ -51,7 +50,7 @@ public class Guardian extends Character {
 
 	@Override
 	public boolean isEnemy(Character c) {
-		return (!(c instanceof Guardian || c instanceof Virus) && ((Suspect)c).isViolent());
+		return (!(c instanceof Guardian || c instanceof Virus) && ((Suspect) c).isViolent());
 	}
 
 	@Override
@@ -61,16 +60,16 @@ public class Guardian extends Character {
 
 		if (targets.length() > 0) {
 			for (Character target : targets.vectorNormal()) {
-				if (target instanceof Hero) {			//Heroe
-					if (((Hero)target).getWeapon() == null) {			//Sin arma
-						((Hero)target).setWeapon(new Weapon ("Handcuffs", 0));		//==> Esposas
-					} else {			//con arma
-						((Hero)target).setWeapon (null);			//==> Quita arma
+				if (target instanceof Hero) { // Heroe
+					if (((Hero) target).getWeapon() == null) { // Sin arma
+						((Hero) target).setWeapon(new Weapon("Handcuffs", 0)); // ==> Esposas
+					} else { // con arma
+						((Hero) target).setWeapon(null); // ==> Quita arma
 					}
-				} else {			//Monstruo
-					((Monster)target).setNoPlayTurns(2);		//==> 2 turnos sin jugar
+				} else { // Monstruo
+					((Monster) target).setNoPlayTurns(2); // ==> 2 turnos sin jugar
 				}
-				((Suspect)target).setViolent(false);
+				((Suspect) target).setViolent(false);
 			}
 			return true;
 		}

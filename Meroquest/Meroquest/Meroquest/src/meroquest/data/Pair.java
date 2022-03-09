@@ -8,22 +8,22 @@ import java.io.Serializable;
 
 /**
  *
- * @author Rodríguez López, Alejandro // UO281827 
- * @param <A> Key	(Nombre de entidad) 
+ * @author Rodríguez López, Alejandro // UO281827
+ * @param <A> Key (Nombre de entidad)
  * @param <B> Value (Número de entidades)
  */
 public class Pair<A, B> implements Serializable {
 
 	private A primero;
 	private B segundo;
-	
+
 	/**
 	 * Crea un nuevo par dado un nombre y un valor.
 	 * 
 	 * @param a Nombre de la entidad.
 	 * @param b Número de entidades.
 	 */
-	public Pair (A a, B b) {
+	public Pair(A a, B b) {
 		System.out.println("Creando par en funcion de dos valores");
 		this.primero = a;
 		this.segundo = b;
@@ -34,7 +34,7 @@ public class Pair<A, B> implements Serializable {
 	 * 
 	 * @param a Nombre.
 	 */
-	public void setPrimero (A a) {
+	public void setPrimero(A a) {
 		this.primero = a;
 	}
 
@@ -43,7 +43,7 @@ public class Pair<A, B> implements Serializable {
 	 * 
 	 * @param b Valor asociado.
 	 */
-	public void setSegundo (B b) {
+	public void setSegundo(B b) {
 		this.segundo = b;
 	}
 
@@ -52,7 +52,7 @@ public class Pair<A, B> implements Serializable {
 	 * 
 	 * @return Primer elemento del par. (Nombre)
 	 */
-	public A getPrimero() {
+	public A getFirst() {
 		return this.primero;
 	}
 
@@ -61,13 +61,13 @@ public class Pair<A, B> implements Serializable {
 	 * 
 	 * @return Segundo elemento del par. (Valor asociado)
 	 */
-	public B getSegundo() {
+	public B getSecond() {
 		return this.segundo;
 	}
 
 	@Override
-	public String toString () {
-		return String.format("(%s  ~> %s)", this.getPrimero(), this.getSegundo());
+	public String toString() {
+		return String.format("(%s  ~> %s)", this.getFirst(), this.getSecond());
 	}
 
 }

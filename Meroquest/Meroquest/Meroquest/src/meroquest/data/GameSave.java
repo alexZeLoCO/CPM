@@ -8,37 +8,37 @@ import java.io.Serializable;
 
 /**
  *
- * @author Rodríguez López, Alejandro // UO281827 
+ * @author Rodríguez López, Alejandro // UO281827
  */
 public class GameSave implements Serializable {
-	
+
 	private EntityHashMap entities;
 	private Pair<Integer, Integer> size;
-	private Pair <Integer, Integer> heroesMonsters;
+	private Pair<Integer, Integer> heroesMonsters;
 	private int turns;
 
 	/**
 	 * Crea una nueva imagen de partida.
 	 */
-	public GameSave () {
-		this(0,0,0,0,0,null);
+	public GameSave() {
+		this(0, 0, 0, 0, 0, null);
 	}
 
 	/**
 	 * Crea una nueva imagen de partida a partir de unos valores dados.
 	 * 
-	 * @param heroes Número de heroes
+	 * @param heroes   Número de heroes
 	 * @param monsters Número de monstruos
-	 * @param rows Número de filas
-	 * @param cols Número de columnas
-	 * @param turns Número de turnos
-	 * @param struct Estructura de entidades
+	 * @param rows     Número de filas
+	 * @param cols     Número de columnas
+	 * @param turns    Número de turnos
+	 * @param struct   Estructura de entidades
 	 */
-	public GameSave (int heroes, int monsters, int rows, int cols, int turns, EntityHashMap struct) {
+	public GameSave(int heroes, int monsters, int rows, int cols, int turns, EntityHashMap struct) {
 		System.out.println("Creando imagen de juego");
 		this.entities = new EntityHashMap(struct);
-		this.size = new Pair <Integer, Integer> (rows, cols);
-		this.heroesMonsters = new Pair <Integer, Integer> (heroes, monsters);
+		this.size = new Pair<Integer, Integer>(rows, cols);
+		this.heroesMonsters = new Pair<Integer, Integer>(heroes, monsters);
 		this.turns = turns;
 	}
 
@@ -48,7 +48,8 @@ public class GameSave implements Serializable {
 	 * @param gameSave Imagen de partida de referencia.
 	 */
 	public GameSave(GameSave gameSave) {
-		this(gameSave.getHeroes(), gameSave.getMonsters(), gameSave.getRows(), gameSave.getCols(), gameSave.getTurns(), gameSave.getEntities());
+		this(gameSave.getHeroes(), gameSave.getMonsters(), gameSave.getRows(), gameSave.getCols(), gameSave.getTurns(),
+				gameSave.getEntities());
 	}
 
 	/**
@@ -56,8 +57,8 @@ public class GameSave implements Serializable {
 	 * 
 	 * @return Número de heroes en la imagen de partida.
 	 */
-	public int getHeroes () {
-		return this.heroesMonsters.getPrimero();
+	public int getHeroes() {
+		return this.heroesMonsters.getFirst();
 	}
 
 	/**
@@ -65,8 +66,8 @@ public class GameSave implements Serializable {
 	 * 
 	 * @return Número de monstruos en la imagen de partida.
 	 */
-	public int getMonsters () {
-		return this.heroesMonsters.getSegundo();
+	public int getMonsters() {
+		return this.heroesMonsters.getSecond();
 	}
 
 	/**
@@ -74,8 +75,8 @@ public class GameSave implements Serializable {
 	 * 
 	 * @return Número de filas en la imagen de partida.
 	 */
-	public int getRows () {
-		return this.size.getPrimero();
+	public int getRows() {
+		return this.size.getFirst();
 	}
 
 	/**
@@ -83,8 +84,8 @@ public class GameSave implements Serializable {
 	 * 
 	 * @return Número de columnas en la imagen de partida.
 	 */
-	public int getCols () {
-		return this.size.getSegundo();
+	public int getCols() {
+		return this.size.getSecond();
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class GameSave implements Serializable {
 	 * 
 	 * @return Número de turnos en la imagen de partida.
 	 */
-	public int getTurns () {
+	public int getTurns() {
 		return this.turns;
 	}
 

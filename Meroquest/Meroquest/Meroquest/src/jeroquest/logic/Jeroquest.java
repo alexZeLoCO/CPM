@@ -7,7 +7,6 @@ import jeroquest.boardgame.Dice;
 import jeroquest.boardgame.Direction;
 import jeroquest.boardgame.XYLocation;
 import jeroquest.gui.JeroquestWindow;
-import jeroquest.gui.MyKeyboard;
 import jeroquest.units.*;
 import jeroquest.units.Character;
 import meroquest.data.EntityHashMap;
@@ -31,11 +30,11 @@ public class Jeroquest {
 	private Game currentGame; // current game
 	private static JeroquestWindow monitor;
 
-	public void showUndamagedWasps () {
-		for (Character c : currentGame.getCharacters()) {			//All characters
+	public void showUndamagedWasps() {
+		for (Character c : currentGame.getCharacters()) { // All characters
 			if (c instanceof Swarm) {
-				for (Wasp w : ((Swarm)c).getWasps()) {				//All wasps in swarm
-					if (w.getBody()==w.getBodyInitial()) {
+				for (Wasp w : ((Swarm) c).getWasps()) { // All wasps in swarm
+					if (w.getBody() == w.getBodyInitial()) {
 						System.out.println(w);
 					}
 				}
@@ -51,6 +50,7 @@ public class Jeroquest {
 	// TODO: Replace return value with more complex structure to keep statistics.
 	/**
 	 * Simulate a Jeroquest game
+	 * 
 	 * @return Final state of the game.
 	 */
 	public Game toPlay() {
@@ -92,7 +92,7 @@ public class Jeroquest {
 
 		// GUI - Close the window
 		monitor.close();
-		
+
 		return this.currentGame;
 	}
 
@@ -100,13 +100,13 @@ public class Jeroquest {
 	 * Stops this thread for a given amount of time.
 	 * Used so the player can see updates on the game.
 	 */
-	private void pause () {
-		try {	
+	private void pause() {
+		try {
 			Thread.sleep(this.waitTime);
 		} catch (InterruptedException ex) {
 			Logger.getLogger(Jeroquest.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}	
+	}
 
 	/**
 	 * create a new game from its components
@@ -116,9 +116,10 @@ public class Jeroquest {
 	 * @param rows        height of the board
 	 * @param columns     width of the board
 	 * @param totalRounds total number of rounds
-	 * @param struct structure holding the number of entities
+	 * @param struct      structure holding the number of entities
 	 */
-	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides, int waitTime) { // Ready for round 1
+	public void newGame(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct,
+			int sides, int waitTime) { // Ready for round 1
 		currentGame = new Game(numHeroes, numMonsters, rows, columns, totalRounds, struct, sides);
 		this.waitTime = waitTime;
 
@@ -158,11 +159,14 @@ public class Jeroquest {
 		}
 
 		Character memory;
-		for (int i=0;i<currentGame.getCharacters().length-1;i++) {
-			if (!(currentGame.getCharacters()[i] instanceof Guardian || currentGame.getCharacters()[i] instanceof Virus) &&
+		for (int i = 0; i < currentGame.getCharacters().length - 1; i++) {
+			if (!(currentGame.getCharacters()[i] instanceof Guardian || currentGame.getCharacters()[i] instanceof Virus)
+					&&
 					((Suspect) currentGame.getCharacters()[i]).isViolent() &&
-				!(currentGame.getCharacters()[i+1] instanceof Guardian || currentGame.getCharacters()[i] instanceof Virus) &&
-					((Suspect) currentGame.getCharacters()[i+1]).isViolent()) {
+					!(currentGame.getCharacters()[i + 1] instanceof Guardian
+							|| currentGame.getCharacters()[i] instanceof Virus)
+					&&
+					((Suspect) currentGame.getCharacters()[i + 1]).isViolent()) {
 
 				memory = currentGame.getCharacters()[i];
 				currentGame.getCharacters()[i] = currentGame.getCharacters()[i + 1];
@@ -264,15 +268,15 @@ public class Jeroquest {
 	public static Direction ranodmDirection() {
 		int dir = Dice.roll(4);
 		switch (dir) {
-		case 1:
-			return Direction.North;
-		case 2:
-			return Direction.South;
-		case 3:
-			return Direction.East;
-		case 4:
-		default:
-			return Direction.West;
+			case 1:
+				return Direction.North;
+			case 2:
+				return Direction.South;
+			case 3:
+				return Direction.East;
+			case 4:
+			default:
+				return Direction.West;
 		}
 	}
 

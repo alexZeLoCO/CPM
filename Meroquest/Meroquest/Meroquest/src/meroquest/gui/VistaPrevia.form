@@ -30,7 +30,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                      <Component id="jSeparator1" pref="31" max="32767" attributes="0"/>
+                      <Component id="jSeparator1" pref="74" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BT_Actualizar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -78,12 +78,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Depuraci&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Preview"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BT_Actualizar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actualizar"/>
+        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BT_ActualizarActionPerformed"/>

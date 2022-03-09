@@ -1,4 +1,5 @@
 package jeroquest.logic;
+
 import java.util.Map;
 import jeroquest.boardgame.Board;
 import jeroquest.boardgame.Dice;
@@ -50,102 +51,118 @@ public class Game {
 	 * @param rows        height of the board to create
 	 * @param columns     width of the board to create
 	 * @param totalRounds total number of rounds to play
-	 * @param struct structure containing the number of entities
+	 * @param struct      structure containing the number of entities
 	 */
-	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct, int sides) {
+	public Game(int numHeroes, int numMonsters, int rows, int columns, int totalRounds, EntityHashMap struct,
+			int sides) {
 		// total number of rounds
 		setTotalRounds(totalRounds);
 
 		// Create a board with the given dimensions
 		board = new Board(rows, columns);
-		//Number of characters
+		// Number of characters
 		int barbarian = 0;
 		int dwarf = 0;
 		int mummy = 0;
 		int goblin = 0;
-		int swarm =0;
+		int swarm = 0;
 		int vampire = 0;
 		int guardian = 0;
 		int virus = 0;
 
 		for (Map.Entry<Integer, Pair<String, Integer>> e : struct.entrySet()) {
-			switch ((String) e.getValue().getPrimero()) {
-				case("Bárbaro"):	barbarian = (Integer) e.getValue().getSegundo(); break;
-				case("Enano"):	dwarf = (Integer) e.getValue().getSegundo(); break;
-				case("Momia"):	mummy = (Integer) e.getValue().getSegundo(); break;
-				case("Goblin"):	goblin = (Integer) e.getValue().getSegundo(); break;
-				case("Enjambre"):	swarm = (Integer) e.getValue().getSegundo(); break;
-				case("Vampiro"):	vampire = (Integer) e.getValue().getSegundo(); break;
-				case("Guardián"):	guardian = (Integer) e.getValue().getSegundo(); break;
-				case("Virus"):	virus = (Integer) e.getValue().getSegundo(); break;
+			switch ((String) e.getValue().getFirst()) {
+				case ("Bárbaro"):
+					barbarian = (Integer) e.getValue().getSecond();
+					break;
+				case ("Enano"):
+					dwarf = (Integer) e.getValue().getSecond();
+					break;
+				case ("Momia"):
+					mummy = (Integer) e.getValue().getSecond();
+					break;
+				case ("Goblin"):
+					goblin = (Integer) e.getValue().getSecond();
+					break;
+				case ("Enjambre"):
+					swarm = (Integer) e.getValue().getSecond();
+					break;
+				case ("Vampiro"):
+					vampire = (Integer) e.getValue().getSecond();
+					break;
+				case ("Guardián"):
+					guardian = (Integer) e.getValue().getSecond();
+					break;
+				case ("Virus"):
+					virus = (Integer) e.getValue().getSecond();
+					break;
 			}
 		}
 
-		numHeroes-=guardian;
+		numHeroes -= guardian;
 
 		// create the characters
 		characters = new Character[numHeroes + numMonsters];
 
 		// setting heroes
-		for (int i = 0 ; i < barbarian ; i++){
-			characters[i] = new Barbarian ("Barbarian" + i, "<NoPlayer>", sides);
+		for (int i = 0; i < barbarian; i++) {
+			characters[i] = new Barbarian("Barbarian" + i, "<NoPlayer>", sides);
 		}
-		for (int i = 0; i < dwarf ; i++) {
-			characters[i + barbarian] = new Dwarf ("Dwarf" + i, "<NoPlayer>", sides);
+		for (int i = 0; i < dwarf; i++) {
+			characters[i + barbarian] = new Dwarf("Dwarf" + i, "<NoPlayer>", sides);
 		}
 
 		// setting monsters
-		for (int i = 0; i < mummy ; i++) {
-			characters[i + numHeroes] = new Mummy ("Mummy" + i, sides);
+		for (int i = 0; i < mummy; i++) {
+			characters[i + numHeroes] = new Mummy("Mummy" + i, sides);
 		}
-		for (int i = 0; i < goblin ; i++) {
-			characters[i + numHeroes + mummy] = new Goblin ("Goblin" + i, sides);
+		for (int i = 0; i < goblin; i++) {
+			characters[i + numHeroes + mummy] = new Goblin("Goblin" + i, sides);
 		}
-		for (int i = 0; i < swarm ;i++) {
-			characters[i + numHeroes + mummy + goblin]= new Swarm ("Swarm" + i, sides);
+		for (int i = 0; i < swarm; i++) {
+			characters[i + numHeroes + mummy + goblin] = new Swarm("Swarm" + i, sides);
 		}
-		for (int i = 0; i < vampire ; i++) {
-			characters[i + numHeroes + mummy + goblin + swarm] = new Vampire ("Vampire" + i, sides);
+		for (int i = 0; i < vampire; i++) {
+			characters[i + numHeroes + mummy + goblin + swarm] = new Vampire("Vampire" + i, sides);
 		}
-		for (int i = 0; i < virus ; i++) {
-			characters[i + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + i, sides);
+		for (int i = 0; i < virus; i++) {
+			characters[i + numHeroes + mummy + goblin + swarm + vampire] = new Virus("Virus" + i, sides);
 		}
 
 		// setting guardians
 		for (int i = 0; i < guardian; i++) {
-			characters[i + numHeroes + numMonsters - guardian] =new Guardian("Guardian" + i, sides);
+			characters[i + numHeroes + numMonsters - guardian] = new Guardian("Guardian" + i, sides);
 		}
-		
+
 		// Rest of heroes
-		for (int x = 0; x < numHeroes - barbarian - dwarf - guardian;x++)
+		for (int x = 0; x < numHeroes - barbarian - dwarf - guardian; x++)
 			if (Dice.roll() % 2 == 0)// if even create a barbarian
 				characters[x + dwarf + barbarian] = new Barbarian("Barbarian" + x, "<NoPlayer>", sides);
 			else // if odd create a Dwarf
 				characters[x + dwarf + barbarian] = new Dwarf("Dwarf" + x, "<NoPlayer>", sides);
-			
+
 		// Rest of monsters
-		for (int y = 0; y < numMonsters - mummy - goblin - swarm - vampire - virus - guardian ;y++) {
+		for (int y = 0; y < numMonsters - mummy - goblin - swarm - vampire - virus - guardian; y++) {
 			switch (Dice.roll(5)) {
 				case (1):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Mummy("Mummy" + y, sides);
+					characters[y + numHeroes + mummy + goblin + swarm + vampire] = new Mummy("Mummy" + y, sides);
 					break;
 				case (2):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire]  = new Goblin("Goblin" + y, sides);
+					characters[y + numHeroes + mummy + goblin + swarm + vampire] = new Goblin("Goblin" + y, sides);
 					break;
 				case (3):
-					characters  [y + numHeroes + mummy + goblin + swarm + vampire] = new Swarm("Swarm" + y, sides);
+					characters[y + numHeroes + mummy + goblin + swarm + vampire] = new Swarm("Swarm" + y, sides);
 					break;
 				case (4):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Vampire("Vampire" + y, sides);
+					characters[y + numHeroes + mummy + goblin + swarm + vampire] = new Vampire("Vampire" + y, sides);
 					break;
 				case (5):
-					characters [y + numHeroes + mummy + goblin + swarm + vampire] = new Virus ("Virus" + y, sides);
+					characters[y + numHeroes + mummy + goblin + swarm + vampire] = new Virus("Virus" + y, sides);
 			}
 		}
-		
 
 		boolean leader = false;
-		for (int i=0;i<characters.length && !leader ; i++) {
+		for (int i = 0; i < characters.length && !leader; i++) {
 			if (characters[i] instanceof Vampire) {
 				((Vampire) characters[i]).setLeader(true);
 				leader = !leader;
@@ -153,27 +170,28 @@ public class Game {
 		}
 
 		this.secureIntegrity();
-		
+
 		// first round
 		currentRound = 1;
 	}
 
-	private void secureIntegrity () {
+	private void secureIntegrity() {
 		int nulls = 0;
-		for (int i = 0 ; i < this.characters.length ; i++) {
+		for (int i = 0; i < this.characters.length; i++) {
 			if (this.characters[i] == null) {
-				for (int j = i; j < this.characters.length-1 ; j++) {
-					this.characters[j] = characters[j+1];
+				for (int j = i; j < this.characters.length - 1; j++) {
+					this.characters[j] = characters[j + 1];
 				}
 				nulls++;
-			}	
+			}
 		}
-		Character [] neu = new Character [this.characters.length-nulls];
-		for (int i = 0; i < neu.length ; i++) {
-			neu[i]=this.characters[i];
+		Character[] neu = new Character[this.characters.length - nulls];
+		for (int i = 0; i < neu.length; i++) {
+			neu[i] = this.characters[i];
 		}
 		this.characters = neu;
 	}
+
 	/**
 	 * Get the current round in the game
 	 * 
@@ -229,7 +247,6 @@ public class Game {
 		else
 			return "Draw";
 	}
-
 
 	/**
 	 * Generate a printable version of the object as String (Overridden method)

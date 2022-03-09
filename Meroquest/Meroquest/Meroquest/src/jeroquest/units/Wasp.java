@@ -1,7 +1,5 @@
 package jeroquest.units;
 
-import javax.swing.*;
-
 public class Wasp extends Monster {
 
 	// initial values for the attributes
@@ -19,8 +17,8 @@ public class Wasp extends Monster {
 		super(name, MOVEMENT, ATTACK, DEFENCE, BODY, sides);
 	}
 
-	public Wasp (String name, int ATTAK, int DEFENCE, int sides){
-		super (name, MOVEMENT, ATTAK, DEFENCE, BODY, sides);
+	public Wasp(String name, int ATTAK, int DEFENCE, int sides) {
+		super(name, MOVEMENT, ATTAK, DEFENCE, BODY, sides);
 	}
 
 	// He protec he attak ^^
