@@ -6,10 +6,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : 21 mar 2022, 18:42:34
     Author     : UO281827 // Rodriguez Lopez, Alejandro 
 */
-table.Directory {font-family:Arial; border:1px BLACK solid}
-table.Directory>caption {font-size:120%}
-table.Directory td {border:1px GRAY solid}
+.Directory {font-family: fantasy}
+table.Directory {border:1px black solid;border-collapse: separate}
+table.Directory>caption {font-size:120%; font-weight: bold}
+table.Directory td {border:1px gray solid}
+table.Directory tr:first-of-type {font-weight: bold}
+table.Directory tr:not(:first-child):hover {background-color:rgb(255, 200,200)}
+table.Directory a:hover {font-weight: bold}
 /*
-border = border size (pixels)
-padding = space between elements
+table.Directory tr:hover {background-color:rgb(255, 200, 200)}	
+table.Directory tr:first-of-type:hover {background-color:inherit}	
 */
