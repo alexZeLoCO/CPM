@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="en-us">
+	<head>
+		<title>CSS_2</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			.Red {color:RED}
+			.Green {color:GREEN}
+			.Blue {color:BLUE}
+			.Pixel {font-size:150%}
+			ul.Pixel {font-family:monospace} /* font-size inherited from .Pixel */
+			p>span.Pixel {font-style:italic}
+			/* p>span --> Span / Span desc. directo de p */
+			/* Examen: h1+h2 / h1 hermanos adyacente de h2	SELECTORES
+   			<h1> ... </h1>
+   			<h2> ... </h2>
+			*/
+		</style>
+	</head>
+	<body>
+		<p>
+			The pixel colors are: <span class="Red Pixel">red</span>,
+			<span class="Green Pixel">green</span> and
+			<span class="Blue Pixel">blue</span> 
+			<span title="en">(<span class="Red Pixel">red</span>, <span class="Green Pixel">green</span> and <span class="Blue Pixel">blue</span>)</span>
+		</p>
+		<ul class="Pixel">
+			<li class="Red">Red</li>
+			<li class="Green">Green</li>
+			<li class="Blue">Blue</li>
+		</ul>
+	</body>
+</html>

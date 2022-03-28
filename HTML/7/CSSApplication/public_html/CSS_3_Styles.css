@@ -1,0 +1,15 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 21 mar 2022, 18:42:34
+    Author     : UO281827 // Rodriguez Lopez, Alejandro 
+*/
+table.Directory {font-family:Arial; border:1px BLACK solid}
+table.Directory>caption {font-size:120%}
+table.Directory td {border:1px GRAY solid}
+/*
+border = border size (pixels)
+padding = space between elements
+*/
