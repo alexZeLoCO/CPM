@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en-us">
+	<head>
+		<title>HTML Form</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<form name="dataForm" action="mailto:UO281827@uniovi.es" method="post">
+			<fieldset> <legend>Personal</legend>
+				<p>
+					Name: <input name="name" type="text">
+					Surnames: <input name="sur" type="text">
+				</p>
+				<p>
+					Birth date: <input name="bd" type="date">
+				</p>
+				<p>
+					<!-- FIXME -->
+					ID: <input name="id" type="text" text.pattern="regex [0-9]{8}[A-Z]">&nbsp;&nbsp;(i.e: 12345678A)
+				</p>
+				<p>
+					<input name="gender" type="radio"> Male
+					<br>
+					<input name="gender" type="radio"> Female
+				</p>
+				<p>
+					Comments<br>
+					<textarea name="comments"></textarea>
+				</p>
+			</fieldset>
+			<fieldset><legend>Preferences</legend>
+				<table>
+					<tr>
+						<td>Choose number:</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>Choose color</td>
+					</tr>
+					<tr>
+						<td>
+							<select>
+								<optgroup label="Few">
+								<option value="One">One</option>
+								<option value="Two">Two</option>
+								<option value="Three">Three</option>
+								</optgroup>
+								<optgroup label="Many">
+								<option value="One-Hundred">One-Hundred</option>
+								<option value="Two-Hundred">Two-Hundred</option>
+								<option value="Three-Hundred">Three-Hundred</option>
+								</optgroup>
+							</select>
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							<select>
+								<optgroup label="Basic">
+								<option value="Red">Red</option>
+								<option value="Green">Green</option>
+								<option value="Blue">Blue</option>
+								</optgroup>
+								<optgroup label="Monochrome">
+								<option value="White">White</option>
+								<option value="Gray">Gray</option>
+								<option value="Black">Black</option>
+								</optgroup>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<br>
+			<input name="submit" type="submit">
+		</form>
+	</body>
+</html>
