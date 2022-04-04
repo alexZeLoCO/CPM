@@ -8,25 +8,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 		<title>HTML Form</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="fubar.js"></script>
 	</head>
 	<body>
-		<form name="dataForm" action="mailto:UO281827@uniovi.es" method="post">
+		<script>
+			alert('Hola mundo');
+		</script>
+		<form name="dataForm" action="mailto:UO281827@uniovi.es?subject=Resultados%20de%20Formulario" method="post" enctype="text/plain"> <!-- novalidate anula los patrones de todos los campos -->
 			<fieldset> <legend>Personal</legend>
 				<p>
 					Name: <input name="name" type="text">
 					Surnames: <input name="sur" type="text">
 				</p>
 				<p>
-					Birth date: <input name="bd" type="date">
+					Birth date: <input onchange="isAdult(this.valueAsDate)" name="bd" type="date">
+				</p>
+				<p id="idPara">
+					ID: <input id="idInput" oninput="changedId()" name="id" type="text" pattern="[0-9]{8}[A-Z]" required title="ID must be like: 00000000A">&nbsp;&nbsp;(i.e: 12345678A)
 				</p>
 				<p>
-					<!-- FIXME -->
-					ID: <input name="id" type="text" text.pattern="regex [0-9]{8}[A-Z]">&nbsp;&nbsp;(i.e: 12345678A)
-				</p>
-				<p>
-					<input name="gender" type="radio"> Male
+					<span id="male" onclick="tagGender('typeMale')"><input id="typeMale" name="gender" type="radio"> Male</span>
 					<br>
-					<input name="gender" type="radio"> Female
+					<span id="female" onclick="tagGender('typeFemale')"><input id="typeFemale" name="gender" type="radio"> Female</span>
 				</p>
 				<p>
 					Comments<br>
@@ -42,22 +45,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 					</tr>
 					<tr>
 						<td>
-							<select>
+							<select id="selectNum" onchange="JavaScript:writeNumber(this.id, 'paraNum')">
 								<optgroup label="Few">
-								<option value="One">One</option>
-								<option value="Two">Two</option>
-								<option value="Three">Three</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
 								</optgroup>
 								<optgroup label="Many">
-								<option value="One-Hundred">One-Hundred</option>
-								<option value="Two-Hundred">Two-Hundred</option>
-								<option value="Three-Hundred">Three-Hundred</option>
+								<option value="100">One-Hundred</option>
+								<option value="200">Two-Hundred</option>
+								<option value="300">Three-Hundred</option>
 								</optgroup>
 							</select>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td>
-							<select>
+							<select id="colorSelect" onchange="JavaScript:writeColor(this.id, 'paraCol')">
 								<optgroup label="Basic">
 								<option value="Red">Red</option>
 								<option value="Green">Green</option>
@@ -71,10 +74,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 							</select>
 						</td>
 					</tr>
+					<tr>
+						<td><p id="paraNum">Number:</p></td>
+						<td><p id="paraCol">Color:</p></td>
+					</tr>
 				</table>
 			</fieldset>
 			<br>
 			<input name="submit" type="submit">
 		</form>
+		<footer>
+			<br>
+			<script>
+				fechaDeHoy();
+			</script>
+		</footer>
 	</body>
 </html>
