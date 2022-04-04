@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<form name="dataForm" action="mailto:UO281827@uniovi.es?subject=Resultados%20de%20Formulario" method="post" enctype="text/plain"> <!-- novalidate anula los patrones de todos los campos -->
+		<form name="dataForm" action="mailto:UO281827@uniovi.es" method="post">
 			<fieldset> <legend>Personal</legend>
 				<p>
 					Name: <input name="name" type="text">
@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 				</p>
 				<p>
 					<!-- FIXME -->
-					ID: <input name="id" type="text" pattern="[0-9]{8}[A-Z]" required title="Introducir DNI del tipo: 00000000A">&nbsp;&nbsp;(i.e: 12345678A)
+					ID: <input name="id" type="text" text.pattern="regex [0-9]{8}[A-Z]">&nbsp;&nbsp;(i.e: 12345678A)
 				</p>
 				<p>
 					<input name="gender" type="radio"> Male
