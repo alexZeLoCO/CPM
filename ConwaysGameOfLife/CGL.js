@@ -1,4 +1,5 @@
 class Factory {
+    // Oscillators 
     static newBlinker () {
         return [[0, 0, 0, 0, 0],
                 [0, 0, 1, 0, 0],
@@ -25,6 +26,7 @@ class Factory {
                 [0, 0, 0, 0, 0, 0]];
     }
 
+    // Spaceships
     static newGlider () {
         return [[0, 0, 0, 0, 0],
                 [0, 0, 1, 0, 0],
@@ -33,12 +35,31 @@ class Factory {
                 [0, 0, 0, 0, 0]];
     }
 
+    // Methuselahs
+    // FIXME: None of these seem to work. I may need a matrix bigger than my screen for them to become stable.
     static newPentomino () {
         return [[0, 0, 0, 0, 0],
                 [0, 0, 1, 0, 0],
                 [0, 0, 1, 1, 0],
                 [0, 1, 1, 0, 0],
                 [0, 0, 0, 0, 0]];
+    }
+
+    static newWikipedia () {
+        return [[0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0],
+                [0, 0, 1, 1, 0],
+                [0, 0, 1, 0, 0],
+                [0, 0, 0, 0, 0]];
+    }
+
+    static newDiehard () {
+        return [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+
     }
 }
 
@@ -98,6 +119,12 @@ class CGL {
             case ("Pentomino"):
                 this.merge(Factory.newPentomino());
                 break;
+            case ("Wikipedia"):
+                this.merge(Factory.newWikipedia());
+                break;
+            case ("Diehard"):
+                this.merge(Factory.newDiehard());
+                break;
         }
         for (let i = 0 ; i < this.board.length ; i++) {
             this.aux_board[i] = [];
@@ -153,7 +180,7 @@ class CGL {
         if (this.board[row][col] === 0 && n === 3) {
             return 1;   // Any dead cell with 3 neighbors becomes a live cell
         }
-            return this.board[row][col];
+        return this.board[row][col];
     }
 
     update () {
@@ -213,7 +240,7 @@ class CGL {
     async start(iters) {
         let i = 1;
         do {
-            this.separator(i++);
+            this.separator(i);
             this.showBoard();
             this.updatePrevious();
             this.update();
@@ -234,4 +261,4 @@ class CGL {
     }
 }
 
-CGL = new CGL("Pentomino", 1200, 100, false);
+CGL = new CGL("Diehard", 1200, 100, false);
