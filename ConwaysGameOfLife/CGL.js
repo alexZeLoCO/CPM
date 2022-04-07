@@ -59,7 +59,20 @@ class Factory {
                 [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 1, 0, 0, 0, 1, 1, 1, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    }
 
+    static newDiamond() {
+        return [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     }
 }
 
@@ -116,6 +129,9 @@ class CGL {
             case ("Glider"):
                 this.merge(Factory.newGlider());
                 break;
+            case ("Diamond"):
+                this.merge(Factory.newDiamond());
+                break;
             case ("Pentomino"):
                 this.merge(Factory.newPentomino());
                 break;
@@ -125,6 +141,7 @@ class CGL {
             case ("Diehard"):
                 this.merge(Factory.newDiehard());
                 break;
+            
         }
         for (let i = 0 ; i < this.board.length ; i++) {
             this.aux_board[i] = [];
@@ -210,7 +227,7 @@ class CGL {
         for (let i = 0 ; i < this.board[0].length-Logic.numbers(idx)/2-off; i++) {
                 process.stdout.write("#");
         }
-        process.stdout.write((idx+1) + "");
+        process.stdout.write(idx + "");
         for (let i = 0 ; i < this.board[0].length-(Logic.numbers(idx)-Logic.numbers(idx)/2)-1; i++) {
                 process.stdout.write("#");
         }
@@ -240,11 +257,11 @@ class CGL {
     async start(iters) {
         let i = 1;
         do {
-            this.separator(i);
+            this.separator(i++);
             this.showBoard();
             this.updatePrevious();
             this.update();
-            await Logic.sleep(50);
+            await Logic.sleep(100);
         } while (iters--!=0 && this.differentBoards());
 /*
         for (let i = 0 ; i < this.iters ; i++) {
@@ -261,4 +278,4 @@ class CGL {
     }
 }
 
-CGL = new CGL("Diehard", 1200, 100, false);
+CGL = new CGL("Diamond", 1200, 50, false);
