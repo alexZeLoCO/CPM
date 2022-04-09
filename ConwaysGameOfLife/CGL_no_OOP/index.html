@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head title="Alex' Game of Life">
+        <meta charse="UTF-8">
+        <meta name="viewport" content="width=device-width" initial-scale=1>
+        <meta title="Alex' Game of Life">
+        <script src="CGL_no_OOP.js"></script>
+        <script>
+            function begin (name, iters) {
+                let board = newTemplate(name);
+                let aux_board = newTemplate(name);
+                for (let i = 0 ; i < iters ; i++) {
+                    showBoard(board);
+                    Logic.sleep(1000);
+                    separator(i+1, board[0].length);
+                    sync(board, update(board, aux_board));
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p onclick="begin('Blinker', 5)">Start</p>
+        <p id="output"></p>
+    </body>
+</html>
