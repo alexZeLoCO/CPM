@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alex' Game of life</title> <!--ReqH1-->
+        <meta charse="UTF-8"> <!--ReqH2-->
+        <meta name="viewport" content="width=device-width" initial-scale=1>
+        <meta name="author" content="Rodríguez López, Alejandro"> <!--ReqH3-->
+        <meta name="description" content="Home-made Conway's Game of Life algorithm"> <!--ReqH3-->
+        <meta name="keywords" content="HTML, CSS, JavaScript, Conway's Game of Life, Mathematics, Automata"> <!--ReqH3-->
+        <meta name="place" content="Asturias, Spain">
+        <style>
+            .right_image {padding-right:100px}
+            .gol_matrix {font-size:20px; font-family:monospace; border:1px black solid; border-collapse: collapse}
+	        .gol_matrix td {border:1px black solid; width:1em; height: 1em;}
+
+        </style>
+    </head>
+    <body style="margin-left:60px">
+        <header> <!--ReqH4-->
+            <h1>Conway's Game of Life</h1>
+            <p>Made by Alejandro Rodríguez López,&nbsp;&nbsp;&nbsp;&nbsp;'Alex'</p>
+        </header> <!--ReqH4-->
+        <br>
+        <section title="General information"> <!--ReqH19-->
+        <table style="width:100%">
+            <tr>
+                <td>
+        <div title="What is Conway's Game of Life?"> <!--ReqH20-->
+            <p> <!--ReqH6-->
+                <h2>What is Conway's Game of Life?</h2>
+                Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid, depending on a number of conditions.<br>
+                It is described as a zero-player game, as the 'player' only controls the starting state of the grid.<br>
+                Any given cell in the grid can have one of two states: Alive (represented by a 1) or dead (represented by a 0).<br>
+                Before staring, the user must mark which cells are alive, once started, these cells will survive, die and come back to life depending on the number of alive neighbors it has.<br>
+                This automata does not seem to have much capabilities, however it is <dfn><strong>Turing complete</strong></dfn><!--ReqH9 ReqH7-->, so it is capable of simulating a Turing Machine, and any code from any programming language given the right inputs.
+            </p>
+            Visit <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia - Conway's Game of Life</a> to see more.
+        </div>
+        </td>
+        <td>
+            <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right"> <!--ReqH16-->
+        </td>
+        </tr>
+        </table>
+        <table style="width:100%">
+            <tr>
+                <td>
+        <div title="Who created this automaton?"> <!--ReqH20-->
+            <p> <!--ReqH6-->
+                <h2>Who created this automaton?</h2>
+                Conway's Game of Life was invented by the mathematician John Horton Conway (26 December 1937, Liverpool, England - 11 April 2020, New Jersey, United States).<br>
+                Some of John Horton Conway's areas of research are:
+                <ul>
+                    <li>Number Theory</li>
+                    <li>Combinatorial Game Theory</li>
+                    <li>Algorithmics</li>
+                    <li>Geometry</li>
+                </ul>
+            </p>
+            Visit <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">Wikipedia - John Horton Conway</a> to see more.
+        </div>
+        </td>
+        <td>
+            <img class="right_image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/John_H_Conway_2005_%28cropped%29.jpg/250px-John_H_Conway_2005_%28cropped%29.jpg" align="right">
+        </td>
+    </tr>
+        </table>
+	<br>
+	<table width=100% style="border:2px black solid">
+		<tr>
+			<td>
+				<a href="simulator.html">Home-made Simulator</a>	<!--ReqH15-->
+			</td>
+            <td>
+                <a href="src_code.html">Source code</a> <!--ReqH15-->
+            </td>
+			<td>
+				<a href="https://www.github.com/alexZeLoCO/CPM/tree/master/ConwaysGameOfLife/CGL_no_OOP/">Gihub Repository</a>
+			</td>
+		</tr>
+	</table>
+        <section title="Templates & Designs">
+            <div title="Templates & Designs">
+                <h2>Templates and Designs</h2>
+                There are plenty of patters that are easily produced during the execution of any simulation. In a similar manner, many starting designs have been studied and named.<br>
+                These can be organized into types depending on their 'movement'. 
+                <ol> <!--ReqH22-->
+                    <li>
+			    Still lifes (or stable). These do not move. <a href="https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)#Examples">More examples</a> <!--ReqH11-->
+                        <ul>
+				<li><a href="https://conwaylife.com/w/images/4/48/Block.png">Block</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/3/3c/Beehive.png">Bee-hive</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/b/ba/Loaf.png">Loaf</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/1/1e/Boat.png">Boat</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/b/bf/Tub.png">Tub</a></li>	<!--ReqH12-->
+                        </ul>
+                    </li>
+                    <li>
+                        Oscillators. These switch between a finite number of positions ending in the starting position and repeating the process until interrupted. They have a peridod which is the number of cycles it takes for them to complete the pattern. <a href="https://en.wikipedia.org/wiki/Oscillator_(cellular_automaton)#Examples">More examples</a> <!--ReqH11-->
+                        <ul>
+				<li><a href="https://conwaylife.com/w/images/b/b9/Blinker.gif">Blinker</a> - Period 2</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/c/cd/Toad.gif">Toad</a> - Period 2</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/4/4b/Beacon.gif">Beacon</a> - Period 2</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/e/ef/Pulsar.gif">Pulsar</a> - Period 3</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/3/31/Pentadecathlon.gif">Penta-decathlon</a> - Period 15</li>	<!--ReqH12-->
+                        </ul>
+                    </li>
+                    <li>
+                        Spaceships. These move, across the matrix until they are either interrupted by other piece or out of bounds. <a href="https://conwaylife.com/wiki/Spaceship">More examples</a> <!--ReqH11-->
+                        <ul>
+				<li><a href="https://conwaylife.com/w/images/8/81/Glider.gif">Glider</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/2/21/Lwss.gif">Light-weight spaceship</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/b/b7/Mwss.gif">Middle-weight spaceship</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/d/dd/Hwss.gif">Heavy-weight spaceship</a></li>	<!--ReqH12-->
+                        </ul>
+                    </li>
+                </ol>
+                Even though this is one of the most important organization, there are others that are also frequently used to refer to certain behaviours:
+                <ol>
+                    <li>
+                        Methuselahs. These have an apparent erratic behaviour and do not follow any kind of loop or direction. However, it is most likely that after a given number of iterations, they will become stable.
+                        <ul>
+				<li><a href="https://conwaylife.com/w/images/6/6e/Rpentomino.png">R-pentomino</a> - 1103 iterations before becoming stable</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/7/7e/Diehard.png">Diehard</a> - 130 iterations before becoming stable</li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/c/cd/Acorn.png">Acorn</a> - 5206 iterations before becoming stable</li>	<!--ReqH12-->
+                        </ul>
+                    </li>
+                    <li>
+                        Guns. These create spaceships that are shot across the matrix
+                        <ul>
+				<li><a href="https://conwaylife.com/w/images/b/b6/Gosperglidergun.gif">Gosper Glider Gun</a></li>	<!--ReqH12-->
+				<li><a href="https://conwaylife.com/w/images/c/cf/Simkinglidergun.gif">Simkin Glider Gun</a></li>	<!--ReqH12-->
+                        </ul>
+                    </li>
+                </ol>
+        Did I miss any important template that should be added? <a href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>    <!--ReqH14-->
+		A demonstration of Conway's Game of Life and some of these templates:<br>
+		<video width="640" height="300" autoplay loop>
+  			<source src="../img/cgol_demo.mp4" type="video/mp4">
+			The video is not loading correctly. Source: https://www.youtube.com/watch?v=aSFL7PXj15M<br>
+            Or try the internal link:<a href="../img/cgol_demo.mp4"> Conway's Game of Life Demo</a>
+		</video> 
+		<br>
+		<a href="https://www.youtube.com/watch?v=aSFL7PXj15M">Source</a><br>
+        Link to Demo (internal file): <a href="../img/cgol_demo.mp4">here</a> <!--ReqH13-->
+            </div>
+        </section>  
+        <section title="Technicalities"> <!--ReqH19-->
+        <div title="What are the rules?"> <!--ReqH20-->
+            <h2>What are the rules?</h2>
+            There are 4 simple rules. These are applied on every cycle to determine the state of the next iteration.
+            <ol> <!--ReqH21-->
+                <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+                <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+            </ol>
+            These rules can be simplified which will ease the implementation.
+            <ol> <!--ReqH21-->
+                <li>Any live cell with two or three live neighbours survives.</li>
+                <li>Any dead cell with three live neighbours becomes a live cell.</li>
+                <li>All other live cells die in the next generation. Similarly, all other dead cells stay dead.</li>
+            </ol>
+            Source: <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules">Rules</a>
+            <div title="Gimmicks" style="margin-left:75px">
+            <h3>Gimmicks</h3>
+            These simple rules that may seem easy to understand and implement, have one caveat that can be overlooked at first glance.<br>
+            If we make use of a matrix made of integers to emulate the grid, where 1 represents a live cell and 0 a dead cell, we must make an algorithm that evaluates every element of the matrix and switches 1s to 0s and viceversa when the right conditions are met.<br>
+            For instance, this could be our matrix:<br>
+            <table class="gol_matrix">
+                <tr>
+                    <td>0</td><td>1</td><td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td><td>1</td><td>0</td>
+                </tr>
+            </table>
+            We start updating all the cells, starting with the one on the top left (matrix[0][0]).<br>
+            To do this, we calculate the number of live neighbors of matrix[0][0] (3).<br>
+            Given that matrix[0][0] is dead and has 3 neighbors, it should become a live cell. So we update its state:<br>
+            <table class="gol_matrix">
+                <tr>
+                    <td>1</td><td>1</td><td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td><td>1</td><td>0</td>
+                </tr>
+            </table>
+            We continue updating the next cell, the one on the top right (matrix[0][1]).<br>
+            To do this, we calculate the number of live neighbors of matrix[0][1] (4).<br>
+            Given that matrix[0][1] is alive and has 4 neighbors, it should die. So we update its state.<br>
+            <table class="gol_matrix">
+                <tr>
+                    <td>1</td><td>0</td><td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td><td>1</td><td>0</td>
+                </tr>
+            </table>           
+            At this point, we have already made a mistake, beacuse matrix[0][1] should actually be alive.<br>
+            The reason for this mistake is that we have been evaluating the same matrix we have been updating, so after the first substitution, we are not evaluating the original matrix anymore.<br>
+            This is not the way the automaton is intended to play out, so we will need a secondary matrix. We will either copy the original matrix on to the secondary and use the secondary to evaluate as we modify the original or the other way around.<br>
+            It must be taken into account however, that if we update the secondary matrix, we must update the original matrix once all cells have been evaluated.
+            <br>
+            <br>
+            <table> <!--ReqH23-->
+                <tr>
+                    <td colspan="3" align="right">This is what we have done:</td>
+                    <td>Original</td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>1</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>1</td><td>0</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+                 <tr>
+                    <td colspan="3" rowspan="2">This is what we should have done:</td>
+                    <td>Original</td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Secondary</td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>1</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        &rarr;
+                    </td>
+                    <td>
+                    <table class="gol_matrix">
+                        <tr>
+                            <td>1</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>1</td><td>0</td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+            </table>
+            </div>
+        </div>
+	<div title="Algoritm">
+		These are some of the functions used to manage the logic of the game.<br>
+		<code>
+			function neighbors (matrix, row, col) {<br>
+			&#09;let count = 0;	// int<br>
+			&#09;if (row &gt; 0) { 	// There is a cell on top<br>
+			&#09;&#09;count+=matrix[row-1][col];<br>
+			&#09;&#09;if (col &gt; 0) { 	// There is a cell on the top left<br>
+			&#09;&#09;&#09;count+=matrix[row-1][col-1];<br>
+			&#09;&#09;}<br>
+			&#09;&#09;if (col &lt; matrix[row-1].length - 1) {	// There is a cell on the top right<br>
+			&#09;&#09;&#09;count+=matrix[row-1][col+1];<br>
+			&#09;&#09;}<br>
+			&#09;}<br>
+			&#09;if (row &lt; matrix.length - 1) {	// There is a cell below<br>
+			&#09;&#09;count+=matrix[row+1][col];<br>
+			&#09;&#09;if (col &gt; 0) {	// There is a cell below left<br>
+			&#09;&#09;&#09;count+=matrix[row+1][col-1];<br>
+			&#09;&#09;}<br>
+			&#09;&#09;if (col &lt; matrix[row+1].length - 1) {	// There is a cell below right<br>
+			&#09;&#09;&#09;count+=matrix[row+1][col+1];<br>
+			&#09;&#09;}<br>
+			&#09;}<br>
+			&#09;if (col &gt; 0) {	// There is a cell to the left<br>
+			&#09;&#09;count+=matrix[row][col-1];<br>
+			&#09;}<br>
+			&#09;if (col &lt; matrix.length - 1) {	// There is a cell to the right<br>
+			&#09;&#09;count+=matrix[row][col+1];<br>
+			&#09;}<br>
+			&#09;return count;<br>
+			}<br><a href="https://www.github.com/alexZeLoCO/CPM/tree/master/ConwaysGameOfLife/CGL_no_OOP/">Source code</a>
+			<br>
+			function updateCell (matrix, row, col) {<br>
+			&#09;let neighbors = neighbors(matrix, row, col);	// Number of live neighbors<br>
+			&#09;if (neighbors !== 2 || neighbors !== 3) {<br>
+			&#09;&#09;return 0;<br>
+			&#09;}<br>
+			&#09;if (matrix[row][col] === 0 &amp;&amp; n === 3) {<br>
+			&#09;&#09;return 1;<br>
+			&#09;}<br>
+			&#09;return matrix[row][col];<br>
+			}<br>
+		</code>
+	</div>
+        </section> 
+        <footer style="float:right">Rodríguez López, Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022, 11<sup>th</sup> of April</time></footer> <!--ReqH5-->
+    </body>
+</html>
