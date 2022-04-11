@@ -1,0 +1,23 @@
+1. Title						OK
+2. Charcode						OK
+3. Auth, description, keywords				OK
+4. Header						OK
+5. Footer						OK
+6. Paragraphs						OK
+7. Tag something as important				OK (<strong>?)
+8. Tag something as special or different		?
+9. Add a definition					OK
+10. Add code						OK
+11. Link to external site and visualization sth (?)	OK check
+12. Link to external images or videos			OK
+13. Link to internal images or videos			OK
+14. Mail with subject					OK
+15. Links to 2 internal pages				OK
+16. Add image						OK
+17. Add video						OK
+18. Add alternate video (subtitle)			OK check
+19. Add sections 					OK
+20. Add div						OK
+21. Add ordered list					OK
+22. Add unordered list inside an ordered list		OK
+23. Add table with rowspan and colspan			OK
