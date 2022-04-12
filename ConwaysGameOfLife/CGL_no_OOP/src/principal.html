@@ -8,16 +8,24 @@
         <meta name="description" content="Home-made Conway's Game of Life algorithm"> <!--ReqH3-->
         <meta name="keywords" content="HTML, CSS, JavaScript, Conway's Game of Life, Mathematics, Automata"> <!--ReqH3-->
         <meta name="place" content="Asturias, Spain">
+        <link rel="stylesheet" href="estilos.css" type="text/css">
         <style>
             .right_image {padding-right:100px}
             .gol_matrix {font-size:20px; font-family:monospace; border:1px black solid; border-collapse: collapse}
-	        .gol_matrix td {border:1px black solid; width:1em; height: 1em;}
+	        .gol_matrix td {border:1px black solid}
+            body * {padding-left:15px}
+
+            p.IMPORTANTE {font-family:Arial}       /*ReqS2*/
+            h1.IMPORTANTE {font-family:sans-serif} /*ReqS2*/
+            #TITULO_H1 {font-size:22px}            /*ReqS4*/
+            p.strong {text-decoration:underline}     /*RecS9*/
+            body {background-image:url("../img/mat-life-stable-puffer-animation.gif")} /*ReqS15*/
 
         </style>
     </head>
-    <body style="margin-left:60px">
+    <body style="margin-left:0px">
         <header> <!--ReqH4-->
-            <h1>Conway's Game of Life</h1>
+            <h1 id="TITULO_H1">Conway's Game of Life</h1>
             <p>Made by Alejandro Rodríguez López,&nbsp;&nbsp;&nbsp;&nbsp;'Alex'</p>
         </header> <!--ReqH4-->
         <br>
@@ -25,9 +33,9 @@
         <table style="width:100%">
             <tr>
                 <td>
-        <div title="What is Conway's Game of Life?"> <!--ReqH20-->
+        <div title="What is Conway's Game of Life?" class="article"> <!--ReqH20-->
             <p> <!--ReqH6-->
-                <h2>What is Conway's Game of Life?</h2>
+                <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>  <!--ReqS5-->
                 Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid, depending on a number of conditions.<br>
                 It is described as a zero-player game, as the 'player' only controls the starting state of the grid.<br>
                 Any given cell in the grid can have one of two states: Alive (represented by a 1) or dead (represented by a 0).<br>
@@ -45,9 +53,9 @@
         <table style="width:100%">
             <tr>
                 <td>
-        <div title="Who created this automaton?"> <!--ReqH20-->
+        <div title="Who created this automaton?" class="article"> <!--ReqH20-->
             <p> <!--ReqH6-->
-                <h2>Who created this automaton?</h2>
+                <h2 id="TITULO" class="IMPORTANTE">Who created this automaton?</h2> <!--ReqS5-->
                 Conway's Game of Life was invented by the mathematician John Horton Conway (26 December 1937, Liverpool, England - 11 April 2020, New Jersey, United States).<br>
                 Some of John Horton Conway's areas of research are:
                 <ul>
@@ -80,8 +88,8 @@
 		</tr>
 	</table>
         <section title="Templates & Designs">
-            <div title="Templates & Designs">
-                <h2>Templates and Designs</h2>
+            <div title="Templates & Designs" class="article">
+                <h2 id="TITULO" class="IMPORTANTE">Templates and Designs</h2> <!--ReqS5-->
                 There are plenty of patters that are easily produced during the execution of any simulation. In a similar manner, many starting designs have been studied and named.<br>
                 These can be organized into types depending on their 'movement'. 
                 <ol> <!--ReqH22-->
@@ -136,18 +144,19 @@
         Did I miss any important template that should be added? <a href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>    <!--ReqH14-->
 		A demonstration of Conway's Game of Life and some of these templates:<br>
 		<video width="640" height="300" autoplay loop>
-  			<source src="../img/cgol_demo.mp4" type="video/mp4">
+  			<source src="../img/cgol_demo.mp4" type="video/mp4">  <!--ReqH17-->
 			The video is not loading correctly. Source: https://www.youtube.com/watch?v=aSFL7PXj15M<br>
             Or try the internal link:<a href="../img/cgol_demo.mp4"> Conway's Game of Life Demo</a>
 		</video> 
 		<br>
-		<a href="https://www.youtube.com/watch?v=aSFL7PXj15M">Source</a><br>
+		<a href="https://www.youtube.com/watch?v=aSFL7PXj15M">Source</a><br>    <!--ReqH18-->
         Link to Demo (internal file): <a href="../img/cgol_demo.mp4">here</a> <!--ReqH13-->
             </div>
         </section>  
+    </section>
         <section title="Technicalities"> <!--ReqH19-->
-        <div title="What are the rules?"> <!--ReqH20-->
-            <h2>What are the rules?</h2>
+        <div title="What are the rules?" class="article"> <!--ReqH20-->
+            <h2 id="TITULO" class="IMPORTANTE">What are the rules?</h2> <!--ReqS5-->
             There are 4 simple rules. These are applied on every cycle to determine the state of the next iteration.
             <ol> <!--ReqH21-->
                 <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
@@ -156,7 +165,7 @@
                 <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
             </ol>
             These rules can be simplified which will ease the implementation.
-            <ol> <!--ReqH21-->
+            <ol class="IMPORTANTE"> <!--ReqH21--><!--ReqS5-->
                 <li>Any live cell with two or three live neighbours survives.</li>
                 <li>Any dead cell with three live neighbours becomes a live cell.</li>
                 <li>All other live cells die in the next generation. Similarly, all other dead cells stay dead.</li>
@@ -203,7 +212,11 @@
             It must be taken into account however, that if we update the secondary matrix, we must update the original matrix once all cells have been evaluated.
             <br>
             <br>
-            <table> <!--ReqH23-->
+            <table class="gol_matrix"> <!--ReqH23-->
+                <tr>
+                    <td colspan="4"></td>
+                    <td colspan="6">Matrixes</td>
+                </tr>
                 <tr>
                     <td colspan="3" align="right">This is what we have done:</td>
                     <td>Original</td>
@@ -326,7 +339,8 @@
             </table>
             </div>
         </div>
-	<div title="Algoritm">
+	<div title="Algorithm" class="article">
+        <h2 id="TITULO" class="IMPORTANTE">Algorithm</h2>   <!--ReqS5-->
 		These are some of the functions used to manage the logic of the game.<br>
 		<code>
 			function neighbors (matrix, row, col) {<br>
@@ -356,7 +370,7 @@
 			&#09;&#09;count+=matrix[row][col+1];<br>
 			&#09;}<br>
 			&#09;return count;<br>
-			}<br><a href="https://www.github.com/alexZeLoCO/CPM/tree/master/ConwaysGameOfLife/CGL_no_OOP/">Source code</a>
+			}<br>
 			<br>
 			function updateCell (matrix, row, col) {<br>
 			&#09;let neighbors = neighbors(matrix, row, col);	// Number of live neighbors<br>
@@ -370,7 +384,7 @@
 			}<br>
 		</code>
 	</div>
-        </section> 
+        </section> <!--Technic-->
         <footer style="float:right">Rodríguez López, Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022, 11<sup>th</sup> of April</time></footer> <!--ReqH5-->
     </body>
 </html>
