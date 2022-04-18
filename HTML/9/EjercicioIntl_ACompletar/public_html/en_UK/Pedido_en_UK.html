@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Ejercicio Intl (en_UK)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>@import url("../css/Pedido.css")</style>
+        <script type="text/javascript">
+            var MyLocales='en';
+            // Variables globales (sin var) necesarias para Pedido.js
+            numberFormat=
+            currencyFormat=
+            dateFormat=
+        </script>
+        <script type="text/javascript" src="../code/Pedido.js"></script>
+    </head>
+    <body>
+        <form name="Ruta">
+            <p>Number of screws: <input id="inNPa" type="number"> <span id="pNPa" class="Unidades"></span></p>
+            <p>Total weight: <input id="inPeso" type="number"> <span id="pPeso" class="Peso"></span></p>
+            <p>One screw price: <input id="inPre" type="number"> <span id="pPrecio" class="Precio"></span></p>
+            <input name="Calculate" value="Calculate" type="button" >
+        </form>
+        <p>Each screw's weight: <span id="PesoT" class="Peso"></span><br>
+           Total price: <span id="PreT" class="Precio"></span><br> 
+           Estimated arrival date: <span id="FE" class="Fecha"></span></p>
+    </body>
+</html>
