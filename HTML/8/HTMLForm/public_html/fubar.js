@@ -85,7 +85,7 @@ function checkAll () {
 	if (!document.getElementById('typeMale').checked && !document.getElementById('typeFemale').checked) {
 		alert ("ERR. Gender is mandatory");
 		return false;
-	}
+	}	
 	if ((new Date().getFullYear() - document.getElementById('bd').valueAsDate.getFullYear()) >= 18 &&
 		!checkId(document.getElementById('idInput').value)) {
 		alert ("ERR. ID is mandatory");
