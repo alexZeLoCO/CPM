@@ -10,18 +10,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="fubar.js"></script>
 	</head>
-	<body>
+	<body onload="isAdult(document.getElementById('bd').valueAsDate)">
 		<script>
 			alert('Hola mundo');
 		</script>
-		<form name="dataForm" action="mailto:UO281827@uniovi.es?subject=Resultados%20de%20Formulario" method="post" enctype="text/plain"> <!-- novalidate anula los patrones de todos los campos -->
+		<form name="dataForm" action="mailto:UO281827@uniovi.es?subject=Resultados%20de%20Formulario" onsubmit="return checkAll()" method="post" enctype="text/plain" novalidate> <!-- novalidate anula los patrones de todos los campos -->
 			<fieldset> <legend>Personal</legend>
 				<p>
-					Name: <input name="name" type="text">
-					Surnames: <input name="sur" type="text">
+					Name: <input id='name' name="name" type="text">
+					Surnames: <input id='sname' name="sur" type="text">
 				</p>
 				<p>
-					Birth date: <input onchange="isAdult(this.valueAsDate)" name="bd" type="date">
+					Birth date: <input id='bd' onchange="isAdult(this.valueAsDate)" name="bd" type="date">
 				</p>
 				<p id="idPara">
 					ID: <input id="idInput" oninput="changedId()" name="id" type="text" pattern="[0-9]{8}[A-Z]" required title="ID must be like: 00000000A">&nbsp;&nbsp;(i.e: 12345678A)

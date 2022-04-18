@@ -57,9 +57,40 @@ function changedId() {
 }
 
 function isAdult(date) {
-	if ((new Date().getFullYear() - date.getFullYear()) < 18) {
+	if ((new Date().getFullYear() - date.getFullYear()) < 18 ||
+		date === null) {
 		document.getElementById("idPara").hidden = true;
 	} else {
 		document.getElementById("idPara").hidden = false;
 	}
+}
+
+
+function checkAll () {
+	if (document.getElementById("name").value.length === 0) {
+		alert("ERR. Name is mandatory");
+		document.getElementById("name").focus();
+		return false;
+	}
+	if (document.getElementById("sname").value.length === 0) {
+		alert ("ERR. Surname is mandatory");
+		document.getElementById("sname").focus();
+		return false;
+	}
+	if (!document.getElementById('bd').valueAsDate) {
+		alert ("ERR. Date is mandatory");
+		document.getElementById('bd').focus();
+		return false;
+	}
+	if (!document.getElementById('typeMale').checked && !document.getElementById('typeFemale').checked) {
+		alert ("ERR. Gender is mandatory");
+		return false;
+	}
+	if ((new Date().getFullYear() - document.getElementById('bd').valueAsDate.getFullYear()) >= 18 &&
+		!checkId(document.getElementById('idInput').value)) {
+		alert ("ERR. ID is mandatory");
+		document.getElementById('idInput').focus();
+		return false;
+	}
+	return true;
 }
