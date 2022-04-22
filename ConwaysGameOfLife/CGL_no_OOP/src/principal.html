@@ -35,6 +35,7 @@
             padding-left: 15px
         }
 
+        /*ReqS2*/
         p.IMPORTANTE {
             font-family: Arial
         }
@@ -44,33 +45,77 @@
             font-family: sans-serif
         }
 
-        /*ReqS2*/
+        /*ReqS4*/
         #TITULO_H1 {
             font-size: 22px
         }
 
-        /*ReqS4*/
+        /*ReqS9*/
         p.strong {
             text-decoration: underline
         }
 
-        /*ReqS9*/
+        /*ReqS15*/
         body {
             background-image: url("../img/mat-life-stable-puffer-animation.gif");
             color: white
         }
 
-        /*ReqS15*/
         body>section {
             background-color: black;
             margin: 10px;
             margin-bottom: 100px;
             border: 5px white solid
         }
+
+        /*ReqC20*/
+        table tr td {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 5px;
+            margin-right: 5px
+        }
     </style>
+    <script src="CGL_no_OOP.js"></script>
+    <script>
+        //ReqF18
+        function templateChanged(template) {
+            document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template));
+            console.log(getPrintout(newTemplate(template)));
+        }
+
+        function passwordUpdated() {
+            let pass = document.getElementById('PASSWD').value;
+            console.log("Password: " + pass);
+            let cap = 0;
+            let sym = 0;
+            let num = 0;
+            let SYMBOLS = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            for (let i = 0; i < pass.length; i++) {
+                if (pass.charAt(i) >= 'A' && pass.charAt(i) <= 'Z') {
+                    cap++;
+                }
+                if (pass.charAt(i) >= 0 && pass.charAt(i) <= 9) {
+                    num++;
+                }
+                if (SYMBOLS.test(pass.charAt(i))) {
+                    sym++;
+                }
+            }
+            console.log("Password content: cap=" + cap + " sym=" + sym + " num=" + num);
+            if (cap == 0 || sym == 0 || num == 0) {
+                console.log("PASSWORD INVALIDATED")
+                document.getElementById('PASSWD').style.color = 'RED';
+                return false;
+            }
+            console.log("PASSWORD VALIDATED")
+            document.getElementById('PASSWD').style.color = 'GREEN';
+            return true;
+        }
+    </script>
 </head>
 
-<body style="margin-left:0px">
+<body style="margin-left:0px" onload="templateChanged('')">
     <header>
         <!--ReqH4-->
         <h1 id="TITULO_H1">Conway's Game of Life</h1>
@@ -97,11 +142,12 @@
                         (represented by a 0).<br>
                         Before staring, the user must mark which cells are alive, once started, these cells will
                         survive, die and come back to life depending on the number of alive neighbors it has.<br>
-                        This automata does not seem to have much capabilities, however it is <dfn><strong>Turing
-                                complete</strong></dfn>
-                        <!--ReqH9 ReqH7-->, so it is capable of simulating a Turing Machine, and any code from any
+                        This automata does not seem to have much capabilities
+                        <!--ReqH9 ReqH7-->, however it is <dfn><strong>Turing complete</strong></dfn>
+                        so it is capable of simulating a Turing Machine, and any code from any<br>
                         programming language given the right inputs.
                         </p>
+                        <br>
                         Visit <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia - Conway's Game of
                             Life</a> to see more.
                     </div>
@@ -265,10 +311,10 @@
                     Or try the internal link:<a href="../img/cgol_demo.mp4"> Conway's Game of Life Demo</a>
                 </video>
                 <br>
-                <a href="https://www.youtube.com/watch?v=aSFL7PXj15M">Source</a><br>
                 <!--ReqH18-->
-                Link to Demo (internal file): <a href="../img/cgol_demo.mp4">here</a>
+                <a href="https://www.youtube.com/watch?v=aSFL7PXj15M">Source</a><br>
                 <!--ReqH13-->
+                Link to Demo (internal file): <a href="../img/cgol_demo.mp4">here</a>
             </div>
         </section>
     </section>
@@ -279,13 +325,17 @@
             <h2 id="TITULO" class="IMPORTANTE">What are the rules?</h2>
             <!--ReqS5-->
             There are 4 simple rules. These are applied on every cycle to determine the state of the next iteration.
-            <ol>
-                <!--ReqH21-->
-                <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-                <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-                <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-            </ol>
+            <!--RezH8-->
+            <i>
+                <ol>
+                    <!--ReqH21-->
+                    <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+                    <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                    <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+                    <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+                    </li>
+                </ol>
+            </i>
             These rules can be simplified which will ease the implementation.
             <ol class="IMPORTANTE">
                 <!--ReqH21-->
@@ -521,8 +571,9 @@
             </div>
         </div>
         <div title="Algorithm" class="article">
-            <h2 id="TITULO" class="IMPORTANTE">Algorithm</h2>
             <!--ReqS5-->
+            <!--ReqH10-->
+            <h2 id="TITULO" class="IMPORTANTE">Algorithm</h2>
             These are some of the functions used to manage the logic of the game.<br>
             <code>
 			function neighbors (matrix, row, col) {<br>
@@ -568,7 +619,184 @@
         </div>
     </section>
     <!--Technic-->
-    <footer style="float:right">Rodríguez López, Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022,
+
+    <!----------------------------FORM---------------------------->
+    <!--ReqF1, ReqF2, ReqF3, ReqF4, ReqF5-->
+    <section>
+        <form name="Form" novalidate autocomplete="off" target="_blank"
+            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="post">
+            <!--ReqF6-->
+            <fieldset>
+                <legend title="Information">Information</legend>
+                <table>
+                    <tr>
+                        <td>
+                            Username:
+                        </td>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            Phone:
+                        </td>
+                        <td>
+                            Website:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--ReqF7-->
+                            <input id="USER" name="USER" type="text"> <br>
+                        </td>
+                        <td>
+                            <!--ReqF8-->
+                            <input
+                                onchange="if (!passwordUpdated()) alert('It is recommended that the password contains a capital letter, a number and a symbol. The current password is missing some.')"
+                                id="PASSWD" name="PASSWD" type="password"> <br>
+                        </td>
+                        <td>
+                            <!--ReqF9-->
+                            <input onchange="phoneUpdated()" id="PHONE" name="PHONE" type="number"> <br>
+                        </td>
+                        <td>
+                            <!--ReqF10-->
+                            <input id="WEB" name="WEB" type="url">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <!--ReqF11-->
+                <legend title="Templates">Templates</legend>
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend title="Oscillators">Oscillators</legend>
+                                <!--ReqF18 (templateChanged(this.id))-->
+                                <input onclick="templateChanged(this.id)" id="Blinker" name="Template" type="radio"
+                                    checked>Blinker<br>
+                                <input onclick="templateChanged(this.id)" id="Beacon" name="Template"
+                                    type="radio">Beacon<br>
+                                <input onclick="templateChanged(this.id)" id="Toad" name="Template"
+                                    type="radio">Toad<br>
+                            </fieldset>
+                        </td>
+                        <td rowspan="3">
+                            <div style="size:100%; font-size:xx-large; text-align:center" id="templatePreview"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend title="Spaceships">Spaceships</legend>
+                                <input onclick="templateChanged(this.id)" id="Glider" name="Template"
+                                    type="radio">Glider<br>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend title="Methuselahs">Methuselahs</legend>
+                                <input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
+                                    type="radio">Pentomino<br>
+                                <input onclick="templateChanged(this.id)" id="Wikipedia" name="Template"
+                                    type="radio">Wikipedia<br>
+                                <input onclick="templateChanged(this.id)" id="Diehard" name="Template"
+                                    type="radio">Diehard<br>
+                                <input onclick="templateChanged(this.id)" id="Diamond" name="Template"
+                                    type="radio">Diamond<br>
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <!--ReqF12-->
+                <legend title="Actions">Actions</legend>
+                <input id="Simulate" name="Simulate" type="checkbox" checked>Simulate<br>
+                <input id="Limit" name="Limit" type="checkbox" checked>Limit simulation<br>
+            </fieldset>
+            <fieldset>
+                <!--ReqF13-->
+                <legend title="Color">Color</legend>
+                <input id="Color" name="Color" type="color">Output color<br>
+            </fieldset>
+            <fieldset>
+                <legend title="Template">Templates</legend>
+                <table>
+                    <tr>
+                        <td>
+                            Live Cell Character
+                        </td>
+                        <td>
+                            Dead Cell Character
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--ReqF14-->
+                            <select id="LiveCellChar">
+                                <optgroup label="Letters">
+                                    <option value="X">X</option>
+                                    <option value="B">B</option>
+                                    <option value="K">K</option>
+                                </optgroup>
+                                <optgroup label="Numbers">
+                                    <option value="1">1</option>
+                                    <option value="6">6</option>
+                                    <option value="8">8</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="DeadCellChar">
+                                <optgroup label="Letters">
+                                    <option value="Q">Q</option>
+                                    <option value="L">L</option>
+                                    <option value="J">J</option>
+                                </optgroup>
+                                <optgroup label="Numbers">
+                                    <option value="0">0</option>
+                                    <option value="7">7</option>
+                                    <option value="1">1</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <!--ReqF15-->
+                <legend title="Image">Attach Image</legend>
+                <input type="file" name="File" id="File">
+            </fieldset>
+            <fieldset>
+                <!--ReqF16-->
+                <legend title="Date">Date</legend>
+                <input type="date" name="Date" id="Date">
+            </fieldset>
+            <fieldset>
+                <!--ReqF17-->
+                <input type="submit" name="submit" id="sumbit">
+                <input type="reset" name="reset" id="reset">
+            </fieldset>
+        </form>
+        <!--
+            TODO: ReqF20
+            TODO: ReqJ21
+            TODO: ReqF22
+            TODO: ReqF23
+            TODO: ReqJ24
+            TODO: ReqF25
+            TODO: ReqJ26
+            TODO: ReqF27
+            TODO: ReqJ28
+        -->
+    </section>
+    <footer style="float:right; margin-bottom:5px; margin-left:5px">Rodríguez López,
+        Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022,
             11<sup>th</sup> of April</time></footer>
     <!--ReqH5-->
 </body>
