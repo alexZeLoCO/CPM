@@ -4,27 +4,35 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang='es'>
     <head>
         <title>Ejercicio Intl (es_ES)</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>@import url("../css/Pedido.css")</style>
         <script type="text/javascript">
-            var MyLocales='es';
+            var myLocales='es';
             // Variables globales (sin var) necesarias para Pedido.js
-            numberFormat=
-            currencyFormat=
-            dateFormat=
+            numberFormat=new Intl.NumberFormat(myLocales, {
+		    maximumFractionDigits:5
+	    });
+            currencyFormat=new Intl.NumberFormat(myLocales, {
+		    style:"currency",
+		    currency:"EUR"
+	    });
+            dateFormat=new Intl.DateTimeFormat(myLocales, {
+			dateStyle:"full",
+			timeStyle:"full"	
+	    });
         </script>
         <script type="text/Javascript" src="../code/Pedido.js"></script>
     </head>
     <body>
         <form name="Ruta">
-            <p>Intruzca nº de tornillos: <input id="inNPa" type="number"> <span id="pNPa" class="Unidades"></span></p>
+            <p>Intruzca nº de tornillos: <input oninput="writeNumber(this.id, 'pNPa')" id="inNPa" type="number"> <span id="pNPa" class="Unidades"></span></p>
             <p>Introduzca peso total: <input id="inPeso" type="number"> <span id="pPeso" class="Peso"></span></p>
             <p>Indique precio de un tornillo: <input id="inPre" type="number" > <span id="pPrecio" class="Precio"></span></p>
-            <input name="Calcula" value="Calcula" type="button">
+            <input name="Calcula" value="Calcula" type="button" onclick='calc("inNPa", "inPeso", "inPre", "PesoT", "PreT", "FE")'>
         </form>
         <p>Peso de cada tornillo: <span id="PesoT" class="Peso"></span><br>
            Precio total: <span id="PreT" class="Precio"></span><br> 

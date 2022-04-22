@@ -11,3 +11,4 @@ and open the template in the editor.
 .Peso     {}
 .Precio   {font-weight: bold}
 .Fecha    {color: darkgreen}
+.Fecha:lang(en) {color: darkblue};
