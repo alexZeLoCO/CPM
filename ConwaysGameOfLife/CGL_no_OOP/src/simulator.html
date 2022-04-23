@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- href="pag2.html?var|var2"
-var a = queryString.split['|']-->
 <html>
     <head title="Alex' Game of Life">
         <meta charse="UTF-8">
@@ -9,22 +7,29 @@ var a = queryString.split['|']-->
         <script src="CGL_no_OOP.js"></script>
         <script>
             function setup () {
-                document.getElementById('output').innerHTML = "Simulating: " + document.getElementById('iters').value + " iterations of " + document.getElementById('template').value + "<br>";
-                play(document.getElementById('template').value, document.getElementById('iters').value);
+                let src = window.location.href.split('?')[1].split('|');
+                let template = src[0];
+                let aliveChar = src[1];
+                let deadChar = src[2];
+                let limit = src[3];
+                let iterations = src[4];
+                let iterations_txt = iterations;
+                if (iterations == "") {
+                    iterations = 0;
+                    iterations_txt = "all"
+                }
+                document.getElementById('output').innerHTML = "Simulating: " + iterations_txt + " iterations of " + template + "<br>";
+                console.log("Template: " + template + " Limit: " + limit + " Iterations: " + iterations + " Alive: " + aliveChar + " Dead: " + deadChar);
+                play(template, iterations, aliveChar, deadChar);
             }
         </script>
        <style>
             .output {font-family:monospace; text-align:center; font-size:17px}
+            html {background-color: black}
         </style>
     </head>
-    <body>
-        <a href="principal.html">Back</a>
-        <form action="foo" method="get"> <fieldset> <legend>Template</legend>
-            Template: <input type="text" name="template" id="template"><br>
-            Iterations: <input type="number" name="iterations" id="iters"><br>
-            <input id="start" type="button" value="Submit" onclick="setup()">
-            </fieldset> 
-        </form>
+    <body onload="setup()">
+        <a href="./principal.html">Back</a>
         <p class="output" id="output"></p>
     </body>
 </html>

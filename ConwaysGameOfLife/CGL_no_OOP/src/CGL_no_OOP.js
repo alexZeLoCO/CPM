@@ -53,14 +53,6 @@ class Factory {
         [0, 0, 0, 0, 0]];
     }
 
-    static newWikipedia() {
-        return [[0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0],
-        [0, 0, 1, 1, 0],
-        [0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0]];
-    }
-
     static newDiehard() {
         return [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
@@ -108,26 +100,28 @@ function newTemplate(name) {
             return Factory.newGlider(); break;
         case 'Pentomino':
             return Factory.newPentomino(); break;
-        case 'Wikipedia':
-            return Factory.newWikipedia(); break;
+        case 'Diehard':
+            return Factory.newDiehard(); break;
+        case 'Diamond':
+            return Factory.newDiamond(); break;
     }
 }
 
-function getPrintout(board) {
+function getPrintout(board, alive, dead) {
     let out = "";
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
-            out += board[i][j] + " ";
+            out += ((board[i][j]) ? alive : dead) + " ";
         }
         out += "<br>";
     }
     return out;
 }
 
-function showBoard(board) {
+function showBoard(board, alive, dead) {
     document.getElementById("output").innerHTML =
         document.getElementById("output").innerHTML + "<br>" +
-        getPrintout(board);
+        getPrintout(board, alive, dead);
 }
 
 function output(text) {
@@ -228,14 +222,34 @@ function newEmptyBoard(size) {
     return board;
 }
 
-function play(name, iters) {
+function areDifferent (boardA, boardB) {
+    if (boardA.length !== boardB.length) {
+        return true;
+    }
+    for (let i = 0 ; i < boardA.length ; i++) {
+        if (boardA[i].length !== boardB[i].length) {
+            return true;
+        }
+        for (let j = 0 ; j < boardA[i].length; j++) {
+            if (boardA[i][j] !== boardB[i][j]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function play(name, iters, alive, dead) {
     let board = merge(newEmptyBoard(50), newTemplate(name));
     let aux_board = merge(newEmptyBoard(board.length), newTemplate(name));
-    for (let i = 0; i < iters; i++) {
-        separator(i + 1, board[0].length);
-        showBoard(board);
-        //TODO: Add mask on showBoard(board, liveChar, liveColor, deadChar, deadColor)
+    let previous_board = newEmptyBoard(board.length);
+    for (let i = 1; i != iters && areDifferent(board, previous_board); i++) {
+        sync(previous_board, board);
+        separator(i, board[0].length);
+        showBoard(board, alive, dead);
         sync(board, update(board, aux_board));
+        console.log("board ("+i+"):\n" + getPrintout(board, 1, 0));
+        console.log("previous_board ("+i+"):\n" + getPrintout(previous_board, 1, 0));
     }
-    separator("Fin de Simulación", board[0].length);
+    separator("End of Simulation", board[0].length);
 }

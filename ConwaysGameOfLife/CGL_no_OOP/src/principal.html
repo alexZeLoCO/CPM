@@ -62,10 +62,11 @@
         }
 
         body>section {
-            background-color: black;
+            /*ReqS22*/
+            background-color: black !important; 
             margin: 10px;
             margin-bottom: 100px;
-            border: 5px white solid
+            border: 1px white solid
         }
 
         /*ReqC20*/
@@ -75,13 +76,22 @@
             margin-left: 5px;
             margin-right: 5px
         }
+
+        .inputField {
+            border:0px GREEN solid;
+            background-color: rgb(40,40,40);
+        }
+
     </style>
     <script src="CGL_no_OOP.js"></script>
+    <script src="codigo.js"></script>
     <script>
         //ReqF18
         function templateChanged(template) {
-            document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template));
-            console.log(getPrintout(newTemplate(template)));
+            console.log("Loading template: " + template);
+            document.getElementById('templatePreviewTitle').innerHTML = "Previewing: " + template;
+            document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template), 1, 0);
+            templateFormatChanged(null, null);
         }
 
         function passwordUpdated() {
@@ -90,7 +100,7 @@
             let cap = 0;
             let sym = 0;
             let num = 0;
-            let SYMBOLS = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            let SYMBOLS = /[!@#$%^&*()_+\-=\[\]{};':"\\€|,.<>\/?]+/;
             for (let i = 0; i < pass.length; i++) {
                 if (pass.charAt(i) >= 'A' && pass.charAt(i) <= 'Z') {
                     cap++;
@@ -105,17 +115,80 @@
             console.log("Password content: cap=" + cap + " sym=" + sym + " num=" + num);
             if (cap == 0 || sym == 0 || num == 0) {
                 console.log("PASSWORD INVALIDATED")
+                /*ReqF20*/
+                alert('Password must have a symbol, a number and a capital letter.');
+                document.getElementById('PASSWD').focus();
+                /*ReqF19*/
                 document.getElementById('PASSWD').style.color = 'RED';
                 return false;
             }
             console.log("PASSWORD VALIDATED")
+            /*ReqF19*/
             document.getElementById('PASSWD').style.color = 'GREEN';
             return true;
         }
+
+        function switchFocus(id) {
+            console.log("Switching focus of " + id + ". Current focus is " + ((document.activeElement.id === "") ? "NULL" : document.activeElement.id));
+            if (document.getElementById(id) === document.activeElement) {
+                document.getElementById(id).style.border = '1px GREEN solid';
+                return true;
+            } 
+            document.getElementById(id).style.border = '0px GREEN solid';
+            return false;
+        }
+
+        function checkAll () {
+            if (!passwordUpdated()) {
+                return false;
+            }
+            if (document.getElementById('USER').value === "") {
+                alert('User name is mandatory');
+                console.log('USERNAME EMPTY');
+                document.getElementById('USER').focus();
+                return false;
+            }
+            if (document.getElementById('Simulate').checked) {
+                window.open(
+                "./simulator.html?"+
+                document.getElementById('templatePreviewTitle').innerHTML.split(' ')[1]+"|"+
+                document.getElementById('LiveCellChar').value+"|"+
+                document.getElementById('DeadCellChar').value+"|"+
+                document.getElementById('Limit').checked + "|" +
+                document.getElementById('Limit_value').value
+                );
+            }
+            return true;
+        }
+
+        function limitTriggered (checked) {
+            if (checked) {
+                document.getElementById('Limit_value').hidden = false;
+            } else {
+                document.getElementById('Limit_value').hidden = true;
+            }
+        }
+
+        function simulationTriggered (checked) {
+            if (checked) {
+                document.getElementById('Limit_set').hidden = false;
+            } else {
+                document.getElementById('Limit_set').hidden = true;
+            }
+            limitTriggered(document.getElementById('Limit').checked);
+        }
+
+        function limitValueTriggered (value) {
+            if (value < 0) {
+                console.log("Illegal value");
+                document.getElementById('Limit_value').value = 0;
+            }
+        }
+
     </script>
 </head>
 
-<body style="margin-left:0px" onload="templateChanged('')">
+<body style="margin-left:0px" onload="templateChanged('Blinker')">
     <header>
         <!--ReqH4-->
         <h1 id="TITULO_H1">Conway's Game of Life</h1>
@@ -130,7 +203,7 @@
                 <td>
                     <div title="What is Conway's Game of Life?" class="article">
                         <!--ReqH20-->
-                        <p>
+                        <artcile>
                             <!--ReqH6-->
                         <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>
                         <!--ReqS5-->
@@ -146,7 +219,7 @@
                         <!--ReqH9 ReqH7-->, however it is <dfn><strong>Turing complete</strong></dfn>
                         so it is capable of simulating a Turing Machine, and any code from any<br>
                         programming language given the right inputs.
-                        </p>
+                        </artcile> 
                         <br>
                         Visit <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia - Conway's Game of
                             Life</a> to see more.
@@ -163,7 +236,7 @@
                 <td>
                     <div title="Who created this automaton?" class="article">
                         <!--ReqH20-->
-                        <p>
+                        <article>
                             <!--ReqH6-->
                         <h2 id="TITULO" class="IMPORTANTE">Who created this automaton?</h2>
                         <!--ReqS5-->
@@ -176,7 +249,7 @@
                             <li>Algorithmics</li>
                             <li>Geometry</li>
                         </ul>
-                        </p>
+                        </article>
                         Visit <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">Wikipedia - John Horton
                             Conway</a> to see more.
                     </div>
@@ -624,7 +697,7 @@
     <!--ReqF1, ReqF2, ReqF3, ReqF4, ReqF5-->
     <section>
         <form name="Form" novalidate autocomplete="off" target="_blank"
-            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="post">
+            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="POST" onsubmit="return checkAll()" enctype="multipart/form-data">
             <!--ReqF6-->
             <fieldset>
                 <legend title="Information">Information</legend>
@@ -646,21 +719,23 @@
                     <tr>
                         <td>
                             <!--ReqF7-->
-                            <input id="USER" name="USER" type="text"> <br>
+                            <!--ReqF22-->
+                            <input class="inputField" id="USER" name="USER" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
-                            <!--ReqF8-->
-                            <input
-                                onchange="if (!passwordUpdated()) alert('It is recommended that the password contains a capital letter, a number and a symbol. The current password is missing some.')"
-                                id="PASSWD" name="PASSWD" type="password"> <br>
+                            <input class="inputField" onchange="passwordUpdated()" id="PASSWD" name="PASSWD" type="password" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <!--ReqF9-->
-                            <input onchange="phoneUpdated()" id="PHONE" name="PHONE" type="number"> <br>
+                            <input class="inputField" onchange="phoneUpdated()" id="PHONE" name="PHONE" type="number" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <!--ReqF10-->
-                            <input id="WEB" name="WEB" type="url">
+                            <!--ReqF23-->
+                            <input class="inputField" id="WEB" name="WEB" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)" onkeyup="webUpdated()">
+                        </td>
+                        <td>
+                            <div id="WEBOutput"></div>
                         </td>
                     </tr>
                 </table>
@@ -670,28 +745,33 @@
                 <legend title="Templates">Templates</legend>
                 <table style="width:100%">
                     <tr>
+                        <th>Template</th>
+                        <th id="templatePreviewTitle">Previewing: Blinker</th>
+                    </tr>
+                    <tr>
                         <td>
                             <fieldset>
                                 <legend title="Oscillators">Oscillators</legend>
                                 <!--ReqF18 (templateChanged(this.id))-->
-                                <input onclick="templateChanged(this.id)" id="Blinker" name="Template" type="radio"
-                                    checked>Blinker<br>
-                                <input onclick="templateChanged(this.id)" id="Beacon" name="Template"
-                                    type="radio">Beacon<br>
-                                <input onclick="templateChanged(this.id)" id="Toad" name="Template"
-                                    type="radio">Toad<br>
+                                <span onclick="templateUpdated('Blinker')"><input onclick="templateChanged(this.id)" id="Blinker" name="Template" type="radio"
+                                    checked>Blinker<br></span>
+                                <!--ReqF25-->
+                                <span onclick="templateUpdated('Beacon')"><input onclick="templateChanged(this.id)" id="Beacon" name="Template"
+                                    type="radio">Beacon<br></span>
+                                <span onclick="templateUpdated('Toad')"><input onclick="templateChanged(this.id)" id="Toad" name="Template"
+                                    type="radio">Toad<br></span>
                             </fieldset>
                         </td>
                         <td rowspan="3">
-                            <div style="size:100%; font-size:xx-large; text-align:center" id="templatePreview"></div>
+                            <div class="gol_matrix" style="size:100%; font-size:xx-large; text-align:center" id="templatePreview"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <fieldset>
                                 <legend title="Spaceships">Spaceships</legend>
-                                <input onclick="templateChanged(this.id)" id="Glider" name="Template"
-                                    type="radio">Glider<br>
+                                <span onclick="templateUpdated('Glider')"><input onclick="templateChanged(this.id)" id="Glider" name="Template"
+                                    type="radio">Glider<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -699,14 +779,12 @@
                         <td>
                             <fieldset>
                                 <legend title="Methuselahs">Methuselahs</legend>
-                                <input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
-                                    type="radio">Pentomino<br>
-                                <input onclick="templateChanged(this.id)" id="Wikipedia" name="Template"
-                                    type="radio">Wikipedia<br>
-                                <input onclick="templateChanged(this.id)" id="Diehard" name="Template"
-                                    type="radio">Diehard<br>
-                                <input onclick="templateChanged(this.id)" id="Diamond" name="Template"
-                                    type="radio">Diamond<br>
+                                <span onclick="templateUpdated('Pentomino')"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
+                                    type="radio">Pentomino<br></span>
+                                <span onclick="templateUpdated('Diehard')"><input onclick="templateChanged(this.id)" id="Diehard" name="Template"
+                                    type="radio">Diehard<br></span>
+                                <span onclick="templateUpdated('Diamond')"><input onclick="templateChanged(this.id)" id="Diamond" name="Template"
+                                    type="radio">Diamond<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -715,13 +793,16 @@
             <fieldset>
                 <!--ReqF12-->
                 <legend title="Actions">Actions</legend>
-                <input id="Simulate" name="Simulate" type="checkbox" checked>Simulate<br>
-                <input id="Limit" name="Limit" type="checkbox" checked>Limit simulation<br>
+                <input onclick="simulationTriggered(this.checked)" id="Simulate" name="Simulate" type="checkbox" checked>Simulate<br>
+                <div id="Limit_set">
+                <input onclick="limitTriggered(this.checked)" id="Limit" name="Limit" type="checkbox" checked>Limit simulation&nbsp;&nbsp;&nbsp;&nbsp;
+                <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value" type="number">
+                </div>
             </fieldset>
             <fieldset>
                 <!--ReqF13-->
                 <legend title="Color">Color</legend>
-                <input id="Color" name="Color" type="color">Output color<br>
+                <input id="LiveCellColor" name="Live Color" type="color">Live color
             </fieldset>
             <fieldset>
                 <legend title="Template">Templates</legend>
@@ -737,30 +818,42 @@
                     <tr>
                         <td>
                             <!--ReqF14-->
-                            <select id="LiveCellChar">
+                            <!--ReqJ21-->
+                            <select id="LiveCellChar" onchange="templateFormatChanged(this.value, null)">
                                 <optgroup label="Letters">
                                     <option value="X">X</option>
                                     <option value="B">B</option>
                                     <option value="K">K</option>
                                 </optgroup>
                                 <optgroup label="Numbers">
-                                    <option value="1">1</option>
+                                    <option value="1" selected="selected">1</option>
                                     <option value="6">6</option>
                                     <option value="8">8</option>
+                                </optgroup>
+                                <optgroup label="Symbols">
+                                    <option value="@">@</option>
+                                    <option value="_">_</option>
+                                    <option value=".">.</option>
                                 </optgroup>
                             </select>
                         </td>
                         <td>
-                            <select id="DeadCellChar">
+                            <!--ReqJ21-->
+                            <select id="DeadCellChar" onchange="templateFormatChanged(null, this.value)">
                                 <optgroup label="Letters">
                                     <option value="Q">Q</option>
                                     <option value="L">L</option>
                                     <option value="J">J</option>
                                 </optgroup>
                                 <optgroup label="Numbers">
-                                    <option value="0">0</option>
+                                    <option value="0" selected="selected">0</option>
                                     <option value="7">7</option>
                                     <option value="1">1</option>
+                                </optgroup>
+                                <optgroup label="Symbols">
+                                    <option value="@">@</option>
+                                    <option value="_">_</option>
+                                    <option value=".">.</option>
                                 </optgroup>
                             </select>
                         </td>
@@ -780,20 +873,11 @@
             <fieldset>
                 <!--ReqF17-->
                 <input type="submit" name="submit" id="sumbit">
-                <input type="reset" name="reset" id="reset">
+                <!--ReqF27-->
+                <input onclick="document.getElementById('ResetTemplate').click()" type="reset" name="reset" id="reset">
+                <input onclick="resetTemplate()" type="button" name="ResetTemplate" id="ResetTemplate" value="Reset Template">
             </fieldset>
         </form>
-        <!--
-            TODO: ReqF20
-            TODO: ReqJ21
-            TODO: ReqF22
-            TODO: ReqF23
-            TODO: ReqJ24
-            TODO: ReqF25
-            TODO: ReqJ26
-            TODO: ReqF27
-            TODO: ReqJ28
-        -->
     </section>
     <footer style="float:right; margin-bottom:5px; margin-left:5px">Rodríguez López,
         Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022,
