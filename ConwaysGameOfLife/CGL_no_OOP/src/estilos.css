@@ -1,17 +1,111 @@
-.IMPORTANTE {color:rgb(251, 159, 26); text-align: center;}    /*ReqC1, ReqC7*/
-#TITULO {font-size:18px}                                        /*ReqC3*/
-* {font-style:normal}                                           /*ReqC6*/
-h1 {text-align: center}                                         /*ReqC7*/
-p {text-indent: 50px; opacity: 0.5}                             /*ReqC8*/
-section > * {margin-left: 5px; padding: 5px}                    /*ReqC10*/
-a:hover {color: ORANGE}                                       /*ReqC11*/
-a:visited {color: RED}                                        /*ReqC11*/ 
-a:link {color: CYAN}                                          /*ReqC11*/
-ul:first-child {font-weight:bold}                               /*ReqC12*/
-ul:first-letter {text-transform:capitalize}                     /*ReqC12*/
-li:not(:first-letter) {text-transform:lowercase;                /*ReqC12 FIXME:*/ 
-    text-shadow:aqua 2px 4px 7}                               /*ReqC12*/
-.article:first-letter {border:1px WHITE solid;                /*ReqC13*/
-    border-top-style:dotted; border-bottom-style:dotted;        /*ReqC13*/ 
-    border-left-style:dashed; border-right-style:dashed}        /*ReqC13*/
-p:first-line {font-weight: 500}                                 /*ReqC14*/
+/*ReqC1, ReqC7*/
+.IMPORTANTE {
+    color: rgb(251, 159, 26);
+    text-align: center;
+}
+
+/*ReqC3*/
+#TITULO {
+    font-size: 18px
+}
+
+/*ReqC6*/
+* {
+    font-style: normal
+}
+
+/*ReqC7*/
+h1 {
+    text-align: center
+}
+
+/*ReqC8*/
+p {
+    text-indent: 50px;
+    opacity: 0.5;
+    /*ReqS21*/
+    position: relative;
+}
+
+div {
+    /*ReqS21*/
+    position: relative;
+}
+
+header {
+    /*ReqS21*/
+    position: relative;
+}
+
+/*ReqC10*/
+section>* {
+    margin-left: 5px;
+    padding: 5px
+}
+
+/*ReqC11*/
+a:hover {
+    color: ORANGE
+}
+
+/*ReqC11*/
+a:visited {
+    color: RED
+}
+
+/*ReqC11*/
+a:link {
+    color: CYAN
+}
+
+/*ReqC12*/
+ul:first-child {
+    font-weight: bold
+}
+
+/*ReqC12*/
+ul:first-letter {
+    text-transform: capitalize
+}
+
+/*ReqC12*/
+li:not(:first-letter) {
+    text-transform: lowercase;
+    /*ReqC12 FIXME:*/
+    text-shadow: aqua 2px 4px 7
+}
+
+/*ReqC13*/
+.article:first-letter {
+    /*ReqC13*/
+    border: 1px WHITE solid;
+    /*ReqC13*/
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    border-left-style: dashed;
+    border-right-style: dashed
+}
+
+/*ReqC14*/
+p:first-line {
+    font-weight: 500
+}
+
+ol {
+    /*ReqC16*/
+    list-style-type: lower-greek;
+    /*ReqC18*/
+    position: relative
+}
+
+ul {
+    /*ReqC17*/
+    list-style-image: url("../img/white_square_small.png");
+    /*ReqC18*/
+    position: relative
+}
+
+table {
+    /*ReqC20*/
+    caption-side: top
+}

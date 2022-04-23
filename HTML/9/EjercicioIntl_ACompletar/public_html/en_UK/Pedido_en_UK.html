@@ -4,18 +4,18 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang='en'>
     <head>
-        <title>Ejercicio Intl (en_UK)</title>
+        <title>Ejercicio Intl (en_GB)</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>@import url("../css/Pedido.css")</style>
         <script type="text/javascript">
-            var MyLocales='en';
+            var myLocales='en';
             // Variables globales (sin var) necesarias para Pedido.js
-            numberFormat=
-            currencyFormat=
-            dateFormat=
+            numberFormat=new Intl.NumberFormat(myLocales, {maxmumFractionDigits:5});
+            currencyFormat=new Intl.NumberFormat(myLocales, {style:"currency", currency:"GBP"});
+            dateFormat=new Intl.DateTimeFormat(myLocales, {dateStyle:"full"});
         </script>
         <script type="text/javascript" src="../code/Pedido.js"></script>
     </head>
