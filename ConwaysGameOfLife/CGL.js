@@ -155,7 +155,7 @@ class CGL {
     merge (m) {
         for (let i = 0 ; i < m.length ; i++) {
             for (let j = 0 ; j < m[i].length ; j++) {
-                this.board[this.board.length/2+i][this.board[0].length/2+j] = m[i][j];
+                this.board[Math.floor(this.board.length/2)-Math.floor(m.length/2)+i][Math.floor(this.board[0].length/2)-Math.floor(m[0].length/2)+j] = m[i][j];
             }
         }
     }
@@ -278,4 +278,4 @@ class CGL {
     }
 }
 
-CGL = new CGL("Diamond", 1200, 50, false);
+CGL = new CGL("Diamond", 40, 20, false);
