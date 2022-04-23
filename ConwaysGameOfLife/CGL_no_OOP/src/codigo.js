@@ -42,4 +42,5 @@ function templateUpdated (id) {
 //ReqJ28
 function resetTemplate () {
     document.getElementById('Blinker').click()
+    disencouragementNote();
 }

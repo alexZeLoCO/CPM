@@ -57,8 +57,13 @@
 
         /*ReqS15*/
         body {
+            margin:0px;
             background-image: url("../img/mat-life-stable-puffer-animation.gif");
             color: white
+        }
+
+        html {
+            background-color: BLACK;
         }
 
         body>section {
@@ -167,11 +172,13 @@
             } else {
                 document.getElementById('Limit_value').hidden = true;
             }
+            disencouragementNote();
         }
 
         function simulationTriggered (checked) {
             if (checked) {
                 document.getElementById('Limit_set').hidden = false;
+                disencouragementNote();
             } else {
                 document.getElementById('Limit_set').hidden = true;
             }
@@ -183,6 +190,22 @@
                 console.log("Illegal value");
                 document.getElementById('Limit_value').value = 0;
             }
+            disencouragementNote();
+        }
+
+        function disencouragementNote () {
+            if (document.getElementById('Simulate').checked && document.getElementById('Pentomino').checked) {
+                if (!document.getElementById('Limit').checked) {
+                    document.getElementById('disencouragementNote').hidden = false;
+                    return false;
+                }
+                if (document.getElementById('Limit_value').value == 0) {
+                    document.getElementById('disencouragementNote').hidden = false;
+                    return false;
+                }
+            }
+            document.getElementById('disencouragementNote').hidden = true;
+            return true;
         }
 
     </script>
@@ -763,7 +786,7 @@
                             </fieldset>
                         </td>
                         <td rowspan="3">
-                            <div class="gol_matrix" style="size:100%; font-size:xx-large; text-align:center" id="templatePreview"></div>
+                            <div class="gol_matrix" style="size:100%; font-size:xx-large; text-align:center; border:1px WHITE solid" id="templatePreview"></div>
                         </td>
                     </tr>
                     <tr>
@@ -779,7 +802,7 @@
                         <td>
                             <fieldset>
                                 <legend title="Methuselahs">Methuselahs</legend>
-                                <span onclick="templateUpdated('Pentomino')"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
+                                <span onclick="templateUpdated('Pentomino'); disencouragementNote()"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
                                     type="radio">Pentomino<br></span>
                                 <span onclick="templateUpdated('Diehard')"><input onclick="templateChanged(this.id)" id="Diehard" name="Template"
                                     type="radio">Diehard<br></span>
@@ -796,7 +819,8 @@
                 <input onclick="simulationTriggered(this.checked)" id="Simulate" name="Simulate" type="checkbox" checked>Simulate<br>
                 <div id="Limit_set">
                 <input onclick="limitTriggered(this.checked)" id="Limit" name="Limit" type="checkbox" checked>Limit simulation&nbsp;&nbsp;&nbsp;&nbsp;
-                <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value" type="number">
+                <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value" type="number"><br>
+                <div id="disencouragementNote" style="color:RED" hidden>The simulation of this template is seriously disencouraged without limiting the iterations.</div>
                 </div>
             </fieldset>
             <fieldset>
