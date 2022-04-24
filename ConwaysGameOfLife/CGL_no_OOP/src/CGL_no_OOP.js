@@ -43,8 +43,83 @@ class Factory {
         [0, 0, 0, 0, 0]];
     }
 
+    static newLWSS() {
+        return [[0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0, 1, 0],
+                [0, 1, 1, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0]];
+    }
+
+    static newMWSS () {
+        return [[0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0, 1, 0],
+                [0, 1, 1, 1, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0]];
+    }
+
+    static newHWSS () {
+        return [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0, 0, 1, 0],
+                [0, 1, 1, 1, 1, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    }
+
+    // Guns
+    static newGGG () {
+        return Factory.newAbstract (38, 11, [
+            [],
+            [25],
+            [23, 25],
+            [13, 14, 21, 22, 35, 36],
+            [12, 16, 21, 22, 35, 36],
+            [1, 2, 11, 17, 21, 22],
+            [1, 2, 11, 15, 17, 18, 23, 25],
+            [11, 17, 25],
+            [12, 16],
+            [13, 14],
+            []
+        ]);
+    }
+
+    static newSGG () {
+        return Factory.newAbstract(37, 25, [
+            [],
+            [],
+            [2, 3, 9, 10],
+            [2, 3, 9, 10],
+            [],
+            [6, 7],
+            [6, 7],
+            [],
+            [],
+            [],
+            [],
+            [24, 25, 27, 28],
+            [23, 29],
+            [23, 30, 33, 34],
+            [23, 24, 25, 29, 33, 34],
+            [28],
+            [],
+            [],
+            [],
+            [22, 23],
+            [22],
+            [23, 24, 25],
+            [25],
+            [],
+            []
+        ]);
+    }
+
     // Methuselahs
-    // FIXME: None of these seem to work. I may need a matrix bigger than my screen for them to become stable.
     static newPentomino() {
         return [[0, 0, 0, 0, 0],
         [0, 0, 1, 0, 0],
@@ -74,9 +149,26 @@ class Factory {
         [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     }
+
+    static newAbstract (x_size, y_size, pattern) {
+        let out = [];
+        for (let i = 0 ; i < y_size ; i++) {
+            out[i] = [];
+            for (let j = 0 ; j < x_size ; j++) {
+                out[i][j] = 0;
+            }
+        }
+        for (let i = 0 ; i < pattern.length ; i++) {
+            for (let j = 0 ; j < pattern[i].length; j++) {
+                out[i][pattern[i][j]] = 1;
+            }
+        }
+       return out; 
+    }
 }
 
 class Logic {
+
     static sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -98,6 +190,16 @@ function newTemplate(name) {
             return Factory.newToad(); break;
         case 'Glider':
             return Factory.newGlider(); break;
+        case 'LWSS':
+            return Factory.newLWSS(); break;
+        case 'MWSS':
+            return Factory.newMWSS(); break;
+        case 'HWSS':
+            return Factory.newHWSS(); break;
+        case 'GGG':
+            return Factory.newGGG(); break;
+        case 'SGG':
+            return Factory.newSGG(); break;
         case 'Pentomino':
             return Factory.newPentomino(); break;
         case 'Diehard':
@@ -204,7 +306,7 @@ function merge(board, template) {
     for (let i = 0; i < template.length; i++) {
         for (let j = 0; j < template[i].length; j++) {
             let a = Math.floor(board.length / 2) - Math.floor(template.length / 2);
-            let b = Math.floor(board[i].length / 2) - Math.floor(template.length / 2);
+            let b = Math.floor(board[i].length / 2) - Math.floor(template[i].length / 2);
             board[a + i][b + j] = template[i][j];
         }
     }

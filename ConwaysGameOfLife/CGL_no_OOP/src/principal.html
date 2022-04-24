@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Alex' Game of life</title>
     <!--ReqH1-->
@@ -94,9 +93,10 @@
         //ReqF18
         function templateChanged(template) {
             console.log("Loading template: " + template);
-            document.getElementById('templatePreviewTitle').innerHTML = "Previewing: " + template;
+            document.getElementById('templatePreviewTitle').innerHTML = template;
             document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template), 1, 0);
             templateFormatChanged(null, null);
+            discouragementNote();
         }
 
         function passwordUpdated() {
@@ -144,7 +144,7 @@
         }
 
         function checkAll () {
-            if (!passwordUpdated()) {
+            if (!passwordUpdated() || !phoneUpdated()) {
                 return false;
             }
             if (document.getElementById('USER').value === "") {
@@ -156,7 +156,7 @@
             if (document.getElementById('Simulate').checked) {
                 window.open(
                 "./simulator.html?"+
-                document.getElementById('templatePreviewTitle').innerHTML.split(' ')[1]+"|"+
+                document.getElementById('templatePreviewTitle').innerHTML +"|"+
                 document.getElementById('LiveCellChar').value+"|"+
                 document.getElementById('DeadCellChar').value+"|"+
                 document.getElementById('Limit').checked + "|" +
@@ -172,13 +172,13 @@
             } else {
                 document.getElementById('Limit_value').hidden = true;
             }
-            disencouragementNote();
+            discouragementNote();
         }
 
         function simulationTriggered (checked) {
             if (checked) {
                 document.getElementById('Limit_set').hidden = false;
-                disencouragementNote();
+                discouragementNote();
             } else {
                 document.getElementById('Limit_set').hidden = true;
             }
@@ -190,28 +190,111 @@
                 console.log("Illegal value");
                 document.getElementById('Limit_value').value = 0;
             }
-            disencouragementNote();
+            discouragementNote();
         }
 
-        function disencouragementNote () {
-            if (document.getElementById('Simulate').checked && document.getElementById('Pentomino').checked) {
+        function discouragementNote () {
+            if (document.getElementById('Simulate').checked && (
+                document.getElementById('Pentomino').checked || document.getElementById('GGG').checked || document.getElementById('SGG').checked ||
+                document.getElementById('Blinker').checked  || document.getElementById('Beacon').checked || document.getElementById('Toad'))
+                ) {
                 if (!document.getElementById('Limit').checked) {
-                    document.getElementById('disencouragementNote').hidden = false;
+                    document.getElementById('discouragementNote').hidden = false;
                     return false;
                 }
                 if (document.getElementById('Limit_value').value == 0) {
-                    document.getElementById('disencouragementNote').hidden = false;
+                    document.getElementById('discouragementNote').hidden = false;
                     return false;
                 }
             }
-            document.getElementById('disencouragementNote').hidden = true;
+            document.getElementById('discouragementNote').hidden = true;
             return true;
+        }
+
+        function phoneUpdated () {
+            let phone = document.getElementById('PHONE').value;
+            console.log("PHONE: " + phone);
+            let num = 0;
+            for (let i = 0; i < phone.length; i++) {
+                if (phone.charAt(i) >= 0 && phone.charAt(i) <= 9) {
+                    num++;
+                } else {
+                    console.log("PHONE INVALIDATED")
+                    /*ReqF20*/
+                    document.getElementById('PHONE').focus();
+                    /*ReqF19*/
+                    document.getElementById('PHONE').style.color = 'RED';
+                    return false;
+                }
+            }
+            if (num !== 9 && num !== 0) {
+                console.log("PHONE INVALIDATED")
+                /*ReqF20*/
+                document.getElementById('PHONE').focus();
+                /*ReqF19*/
+                document.getElementById('PHONE').style.color = 'RED';
+                return false;
+            }
+            console.log("PHONE VALIDATED")
+            /*ReqF19*/
+            document.getElementById('PHONE').style.color = 'GREEN';
+            return true;
+        }
+
+        function _preset(template) {
+            document.getElementById('LiveCellChar').value = '@';
+            document.getElementById('DeadCellChar').value = '.';
+
+            document.getElementById('Simulate').checked = true;
+            document.getElementById('Limit_value').value = 100;
+
+            console.log(template);
+            switch(template) {
+                case 'GGG': 
+                    console.log('Setting GGG deafult');
+                    document.getElementById('Limit').checked = true;
+                    break;
+                case 'SGG': 
+                    console.log('Setting SGG deafult');
+                    document.getElementById('Limit').checked = true;
+                    document.getElementById('Limit_value').value = 200;
+                    break;
+                case 'Pentomino': 
+                    console.log('Setting Pentomino deafult');
+                    document.getElementById('Limit').checked = true;
+                    break;
+                case 'Diehard': 
+                    console.log('Setting Diehard deafult');
+                    document.getElementById('Limit').checked = true;
+                    break;
+                case 'Blinker':
+                    console.log('Setting Blinker deafult');
+                    document.getElementById('Limit').checked = true;
+                    document.getElementById('Limit_value').value = 20;
+                    break;
+                case 'Beacon':
+                    console.log('Setting Beacon deafult');
+                    document.getElementById('Limit').checked = true;
+                    document.getElementById('Limit_value').value = 20;
+                    break;
+                case 'Toad': 
+                    console.log('Setting Toad deafult');
+                    document.getElementById('Limit').checked = true;
+                    document.getElementById('Limit_value').value = 20;
+                    break;
+                default:
+                    console.log('Setting default deafult');
+                    document.getElementById('Limit').checked = false;
+                    document.getElementById('Limit_value').value = 0;
+                    break;
+            }
+            templateFormatChanged();
         }
 
     </script>
 </head>
 
-<body style="margin-left:0px" onload="templateChanged('Blinker')">
+<body style="margin-left:0px" onload="templateChanged('Blinker');">
     <header>
         <!--ReqH4-->
         <h1 id="TITULO_H1">Conway's Game of Life</h1>
@@ -721,7 +804,7 @@
     <!--ReqF1, ReqF2, ReqF3, ReqF4, ReqF5-->
     <section>
         <form name="Form" novalidate autocomplete="off" target="_blank"
-            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="POST" onsubmit="return checkAll()" enctype="multipart/form-data">
+            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="POST" onsubmit="return checkAll()" enctype="text/plain">
             <!--ReqF6-->
             <fieldset>
                 <legend title="Information">Information</legend>
@@ -744,14 +827,14 @@
                         <td>
                             <!--ReqF7-->
                             <!--ReqF22-->
-                            <input class="inputField" id="USER" name="USER" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
+                            <input class="inputField" pattern="[A-Z][a-Z]" id="USER" name="USER" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <input class="inputField" onchange="passwordUpdated()" id="PASSWD" name="PASSWD" type="password" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <!--ReqF9-->
-                            <input class="inputField" onchange="phoneUpdated()" id="PHONE" name="PHONE" type="number" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
+                            <input class="inputField" pattern="[0-9]{9}" onchange="phoneUpdated()" id="PHONE" name="PHONE" type="tel" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <!--ReqF10-->
@@ -770,7 +853,7 @@
                 <table style="width:100%">
                     <tr>
                         <th>Template</th>
-                        <th id="templatePreviewTitle">Previewing: Blinker</th>
+                        <th>Previewing: <div id="templatePreviewTitle">Blinker</div></th>
                     </tr>
                     <tr>
                         <td>
@@ -796,6 +879,23 @@
                                 <legend title="Spaceships">Spaceships</legend>
                                 <span onclick="templateUpdated('Glider')"><input onclick="templateChanged(this.id)" id="Glider" name="Template"
                                     type="radio">Glider<br></span>
+                                <span onclick="templateUpdated('LWSS')"><input onclick="templateChanged(this.id)" id="LWSS" name="Template"
+                                    type="radio">Light Weight Space Ship<br></span>
+                                <span onclick="templateUpdated('MWSS')"><input onclick="templateChanged(this.id)" id="MWSS" name="Template"
+                                    type="radio">Medium Weight Space Ship<br></span>
+                                <span onclick="templateUpdated('HWSS')"><input onclick="templateChanged(this.id)" id="HWSS" name="Template"
+                                    type="radio">Heavy Weight Space Ship<br></span>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend title="Guns">Guns</legend>
+                                <span onclick="templateUpdated('GGG')"><input onclick="templateChanged(this.id)" id="GGG" name="Template"
+                                    type="radio">Gosper Glider Gun<br></span>
+                                <span onclick="templateUpdated('SGG')"><input onclick="templateChanged(this.id)" id="SGG" name="Template"
+                                    type="radio">Simkin Glider Gun<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -803,7 +903,7 @@
                         <td>
                             <fieldset>
                                 <legend title="Methuselahs">Methuselahs</legend>
-                                <span onclick="templateUpdated('Pentomino'); disencouragementNote()"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
+                                <span onclick="templateUpdated('Pentomino')"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
                                     type="radio">Pentomino<br></span>
                                 <span onclick="templateUpdated('Diehard')"><input onclick="templateChanged(this.id)" id="Diehard" name="Template"
                                     type="radio">Diehard<br></span>
@@ -821,7 +921,7 @@
                 <div id="Limit_set">
                 <input onclick="limitTriggered(this.checked)" id="Limit" name="Limit" type="checkbox" checked>Limit simulation&nbsp;&nbsp;&nbsp;&nbsp;
                 <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value" type="number"><br>
-                <div id="disencouragementNote" style="color:RED" hidden>The simulation of this template is seriously disencouraged without limiting the iterations.</div>
+                <div id="discouragementNote" style="color:RED" hidden>The simulation of this template is seriously discouraged without limiting the iterations.</div>
                 </div>
             </fieldset>
             <fieldset>
@@ -830,7 +930,7 @@
                 <input id="LiveCellColor" name="Live Color" type="color">Live color
             </fieldset>
             <fieldset>
-                <legend title="Template">Templates</legend>
+                <legend title="Characters">Characters</legend>
                 <table>
                     <tr>
                         <td>
@@ -838,6 +938,9 @@
                         </td>
                         <td>
                             Dead Cell Character
+                        </td>
+                        <td rowspan="2">
+                            <input id="preset" name="preset" type="button" onclick="_preset(document.getElementById('templatePreviewTitle').innerHTML)" value="Recommended settings">
                         </td>
                     </tr>
                     <tr>
@@ -909,5 +1012,4 @@
             11<sup>th</sup> of April</time></footer>
     <!--ReqH5-->
 </body>
-
 </html>

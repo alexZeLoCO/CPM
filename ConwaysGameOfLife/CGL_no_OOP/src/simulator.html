@@ -14,7 +14,7 @@
                 let limit = src[3];
                 let iterations = src[4];
                 let iterations_txt = iterations;
-                if (iterations == "") {
+                if (iterations == "" || iterations == 0) {
                     iterations = 0;
                     iterations_txt = "all"
                 }
