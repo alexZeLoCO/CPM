@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--ReqI1-->
+<html lang="en_US">
+    <head title="Alex' Game of Life">
+        <meta charse="UTF-8">
+        <meta name="viewport" content="width=device-width" initial-scale=1>
+        <meta title="Alex' Game of Life">
+        <script src="Il8.js"></script>
+        <script>
+            var locale = 'en';
+            //ReqI2
+            numberf = new Intl.NumberFormat(locale, {
+                maximumFractionDigits: 2
+            });
+            //ReqI3
+            currencyf = new Intl.NumberFormat(locale, {
+                style:'currency',
+                currency:"EUR"
+            });
+            //ReqI4
+            longDatef = new Intl.DateTimeFormat(locale, {
+                dateStyle:'full',
+                timeStyle:'full'
+            });
+            //ReqI5
+            shortDatef = new Intl.DateTimeFormat(locale, {
+                dateStyle:'short',
+                timeStyle:'short'
+            });
+        </script>
+		<style>
+			body {
+				background-color: BLACK;
+				color: WHITE
+			}
+			input {
+				background-color: rgb(40, 40, 40);
+				color: WHITE
+			}
+	
+			/*ReqI11*/
+			div:lang(es_ES) {
+				color: YELLOW
+			}
+			/*ReqI11*/
+			div:lang(en_US) {
+				color: BLUE
+			}
+		</style>
+    </head>
+    <body>
+        <a href="principal.html">Back</a><br>
+        <p>
+            <!--ReqI6-->
+            Input number A: <input oninput='aUpdated(this.value)' id="numA" name="numA" type="number"><br>
+            Input number B: <input oninput='bUpdated(this.value)' id="numB" name="numB" type="number"><br>
+            Input number C: <input oninput='cUpdated(this.value)' id="numC" name="numC" type="number"><br>
+            <!--ReqI7-->
+            Input date    : <input id="date" name="date" type="date">
+            <input type="button" value="Set date" id="dateSet" name="dateSet" onclick="dateUpdated(document.getElementById('date').value)">
+        </p>
+        <p>
+            <!--ReqI8-->
+            <div id="output">(A+B)/7 = 0</div>
+            <!--ReqI9-->
+            <div id="currencyOutput">C-B = 0</div>
+            <!--ReqI10-->
+			<div>today - date =</div><div id="dateOutput"> </div>
+            <div>today - date =</div><div id="dateShortOutput"> </div>
+        </p>
+    </body>
+</html>
