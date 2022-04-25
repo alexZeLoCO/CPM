@@ -1,9 +1,9 @@
 //ReqJ21
 function templateFormatChanged (liveCellChar, deadCellChar) {
-    if (liveCellChar == null) {
+    if (liveCellChar === null) {
         liveCellChar = document.getElementById('LiveCellChar').value;
     }
-    if (deadCellChar == null) {
+    if (deadCellChar === null) {
         deadCellChar = document.getElementById('DeadCellChar').value;
     }
     templateUpdated(document.getElementById('templatePreviewTitle').innerHTML);
@@ -25,6 +25,6 @@ function templateUpdated (id) {
 
 //ReqJ28
 function resetTemplate () {
-    document.getElementById('Blinker').click()
+    document.getElementById('Blinker').click();
     disencouragementNote();
 }

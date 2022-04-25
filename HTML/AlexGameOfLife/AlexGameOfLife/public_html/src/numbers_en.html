@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <!--ReqI1-->
-<html lang="es-ES">
-    <head title="Alex' Game of Life">
-        <meta charse="UTF-8">
-        <meta name="viewport" content="width=device-width" initial-scale=1>
-        <meta title="Alex' Game of Life">
+<html lang="en-US">
+    <head title="Numbers">
+	    <title>Numbers</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="Il8.js"></script>
         <script>
-            var locale = 'es';
+            var locale = 'en';
             //ReqI2
             numberf = new Intl.NumberFormat(locale, {
                 maximumFractionDigits: 2
@@ -33,6 +33,7 @@
 				background-color: BLACK;
 				color: WHITE
 			}
+        
 			input {
 				background-color: rgb(40, 40, 40);
 				color: WHITE
@@ -42,6 +43,7 @@
 			div:lang(es-ES) {
 				color: YELLOW
 			}
+
 			/*ReqI17*/
 			div:lang(en-US) {
 				color: BLUE
@@ -52,12 +54,13 @@
         <a href="principal.html">Back</a><br>
         <p>
             <!--ReqI6-->
-            Introducir numero A: <input lang='es-ES' oninput='aUpdated(this.value)' id="numA" name="numA" type="number"><br>
-            Introducir numero B: <input lang='es-ES' oninput='bUpdated(this.value)' id="numB" name="numB" type="number"><br>
-            Introducir numero C: <input lang='es-ES' oninput='cUpdated(this.value)' id="numC" name="numC" type="number"><br>
+            <!--ReqI11-->
+            Input number A: <input lang='en-US' oninput='aUpdated(this.value)' id="numA" name="numA" type="number"><br>
+            Input number B: <input lang='en-US' oninput='bUpdated(this.value)' id="numB" name="numB" type="number"><br>
+            Input number C: <input lang='en-US' oninput='cUpdated(this.value)' id="numC" name="numC" type="number"><br>
             <!--ReqI7-->
-            Introducir fecha: <input id="date" name="date" type="date">
-            <input type="button" value="seleccionar fecha" id="dateSet" name="dateSet" onclick="dateUpdated(document.getElementById('date').value)">
+            Input date    : <input id="date" name="date" type="date">
+            <input type="button" value="Set date" id="dateSet" name="dateSet" onclick="dateUpdated(document.getElementById('date').value)">
         </p>
         <p>
             <!--ReqI8-->
@@ -65,8 +68,8 @@
             <!--ReqI9-->
             <div id="currencyOutput">C-B = 0</div>
             <!--ReqI10-->
-			<div>hoy - fecha =</div><div id="dateOutput"> </div>
-            <div>hoy - fecha =</div><div id="dateShortOutput"> </div>
+			<div>today - date =</div><div id="dateOutput"> </div>
+            <div>today - date =</div><div id="dateShortOutput"> </div>
         </p>
     </body>
 </html>

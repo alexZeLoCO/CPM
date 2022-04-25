@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es_ES">
-    <head title="Alex' Game of Life">
-        <meta charse="UTF-8">
-        <meta name="viewport" content="width=device-width" initial-scale=1>
-        <meta title="Alex' Game of Life">
+<html lang="es-ES">
+    <head title="Alex' Game of life">
+	    <title>Alex' Game of life</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="CGL_no_OOP.js"></script>
         <script>
             function setup () {
@@ -14,9 +14,9 @@
                 let limit = src[3];
                 let iterations = src[4];
                 let iterations_txt = iterations;
-                if (iterations == "" || iterations == 0) {
+                if (iterations === "" || iterations === 0) {
                     iterations = 0;
-                    iterations_txt = "all"
+                    iterations_txt = "all";
                 }
                 document.getElementById('output').innerHTML = "Simulating: " + iterations_txt + " iterations of " + template + "<br>";
                 console.log("Template: " + template + " Limit: " + limit + " Iterations: " + iterations + " Alive: " + aliveChar + " Dead: " + deadChar);
@@ -25,7 +25,7 @@
         </script>
        <style>
             .output {font-family:monospace; text-align:center; font-size:17px}
-            body {background-color: black}
+            body {background-color: black; color: WHITE}
         </style>
     </head>
     <body onload="setup()">
