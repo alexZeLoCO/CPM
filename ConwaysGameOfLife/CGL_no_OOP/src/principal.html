@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang='en-US'>
 <head>
-    <title>Alex' Game of life</title>
     <!--ReqH1-->
-    <meta charse="UTF-8">
+    <title>Alex' Game of life</title>
+	
     <!--ReqH2-->
+    <meta charse="UTF-8">
+	
     <meta name="viewport" content="width=device-width" initial-scale=1>
-    <meta name="author" content="Rodríguez López, Alejandro">
+
     <!--ReqH3-->
-    <meta name="description" content="Home-made Conway's Game of Life algorithm">
+    <meta name="author" content="Rodríguez López, Alejandro">
+
     <!--ReqH3-->
     <meta name="keywords" content="HTML, CSS, JavaScript, Conway's Game of Life, Mathematics, Automata">
-    <!--ReqH3-->
+
     <meta name="place" content="Asturias, Spain">
     <link rel="stylesheet" href="estilos.css" type="text/css">
     <style>
@@ -36,22 +39,23 @@
 
         /*ReqS2*/
         p.IMPORTANTE {
-            font-family: Arial
+            font-family: Arial; /* Only seen directly in the body */
         }
 
         /*ReqS2*/
         h1.IMPORTANTE {
-            font-family: sans-serif
+            font-family: sans-serif; /* Only seen directly in the body */
         }
 
         /*ReqS4*/
         #TITULO_H1 {
-            font-size: 22px
+            font-size: 22px; /* OK */
         }
 
         /*ReqS9*/
         p.strong {
-            text-decoration: underline
+            text-decoration: underline; /* FIXME: */
+			color: RED
         }
 
         /*ReqS15*/
@@ -300,6 +304,7 @@
         <h1 id="TITULO_H1">Conway's Game of Life</h1>
         <p>Made by Alejandro Rodríguez López,&nbsp;&nbsp;&nbsp;&nbsp;'Alex'</p>
     </header>
+	<p><strong>STRONG</strong></p>
     <!--ReqH4-->
     <br>
     <section title="General information">
@@ -309,8 +314,8 @@
                 <td>
                     <div title="What is Conway's Game of Life?" class="article">
                         <!--ReqH20-->
+                        <!--ReqH6-->
                         <artcile>
-                            <!--ReqH6-->
                         <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>
                         <!--ReqS5-->
                         Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid,
@@ -321,8 +326,8 @@
                         (represented by a 0).<br>
                         Before staring, the user must mark which cells are alive, once started, these cells will
                         survive, die and come back to life depending on the number of alive neighbors it has.<br>
-                        This automata does not seem to have much capabilities
-                        <!--ReqH9 ReqH7-->, however it is <dfn><strong>Turing complete</strong></dfn>
+                        This automata does not seem to have much capabilities,
+						however it is <!--ReqH9 ReqH7--><dfn><strong>Turing complete</strong></dfn>
                         so it is capable of simulating a Turing Machine, and any code from any<br>
                         programming language given the right inputs.
                         </artcile> 
@@ -332,8 +337,8 @@
                     </div>
                 </td>
                 <td>
-                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right">
-                    <!--ReqH16-->
+					<!--ReqH16-->
+                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right" width="500px" height="250px" title="Gosper Glider Gun">
                 </td>
             </tr>
         </table>
@@ -363,7 +368,7 @@
                 <td>
                     <img class="right_image"
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/John_H_Conway_2005_%28cropped%29.jpg/250px-John_H_Conway_2005_%28cropped%29.jpg"
-                        align="right">
+                        align="right" title="John Horton Conway">
                 </td>
             </tr>
         </table>
@@ -371,13 +376,13 @@
         <table width=100% style="border:2px black solid">
             <tr>
                 <td>
-                    <a href="simulator.html">Home-made Simulator</a>
                     <!--ReqH15-->
+                    <a href="simulator.html">Home-made Simulator</a>
                 </td>
                 <td>
+                    <!--ReqH15-->
                     <a href="numbers_en.html">Numbers (EN)</a>
                     <a href="numeros_es.html">Numeros (ES)</a>
-                    <!--ReqH15-->
                 </td>
                 <td>
                     <a href="https://www.github.com/alexZeLoCO/CPM/tree/master/ConwaysGameOfLife/CGL_no_OOP/">Gihub
@@ -392,13 +397,12 @@
                 There are plenty of patters that are easily produced during the execution of any simulation. In a
                 similar manner, many starting designs have been studied and named.<br>
                 These can be organized into types depending on their 'movement'.
+                <!--ReqH22-->
                 <ol>
-                    <!--ReqH22-->
                     <li>
-                        Still lifes (or stable). These do not move. <a
-                            href="https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)#Examples">More
-                            examples</a>
+                        Still lifes (or stable). These do not move.
                         <!--ReqH11-->
+						<a href="https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)#Examples">More examples</a>
                         <ul>
                             <li><a href="https://conwaylife.com/w/images/4/48/Block.png">Block</a></li>
                             <!--ReqH12-->
@@ -480,13 +484,13 @@
                         </ul>
                     </li>
                 </ol>
-                Did I miss any important template that should be added? <a
-                    href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>
+                Did I miss any important template that should be added? 
                 <!--ReqH14-->
+				<a href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>
                 A demonstration of Conway's Game of Life and some of these templates:<br>
+                <!--ReqH17-->
                 <video width="640" height="300" autoplay loop>
                     <source src="../img/cgol_demo.mp4" type="video/mp4">
-                    <!--ReqH17-->
                     The video is not loading correctly. Source: https://www.youtube.com/watch?v=aSFL7PXj15M<br>
                     Or try the internal link:<a href="../img/cgol_demo.mp4"> Conway's Game of Life Demo</a>
                 </video>
@@ -498,17 +502,17 @@
             </div>
         </section>
     </section>
+    <!--ReqH19-->
     <section title="Technicalities">
-        <!--ReqH19-->
+        <!--ReqH20-->
         <div title="What are the rules?" class="article">
-            <!--ReqH20-->
             <h2 id="TITULO" class="IMPORTANTE">What are the rules?</h2>
             <!--ReqS5-->
             There are 4 simple rules. These are applied on every cycle to determine the state of the next iteration.
-            <!--RezH8-->
+            <!--ReqH8-->
             <i>
+                <!--ReqH21-->
                 <ol>
-                    <!--ReqH21-->
                     <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
                     <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
                     <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
@@ -586,8 +590,8 @@
                 original matrix once all cells have been evaluated.
                 <br>
                 <br>
+                <!--ReqH23-->
                 <table class="gol_matrix">
-                    <!--ReqH23-->
                     <tr>
                         <td colspan="4"></td>
                         <td colspan="6">Matrixes</td>
@@ -752,9 +756,9 @@
         </div>
         <div title="Algorithm" class="article">
             <!--ReqS5-->
-            <!--ReqH10-->
             <h2 id="TITULO" class="IMPORTANTE">Algorithm</h2>
             These are some of the functions used to manage the logic of the game.<br>
+            <!--ReqH10-->
             <code>
 			function neighbors (matrix, row, col) {<br>
 			&#09;let count = 0;	// int<br>
@@ -1007,9 +1011,9 @@
             </fieldset>
         </form>
     </section>
-    <footer style="float:right; margin-bottom:5px; margin-left:5px">Rodríguez López,
-        Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-11">2022,
-            11<sup>th</sup> of April</time></footer>
     <!--ReqH5-->
+    <footer style="float:right; margin-bottom:5px; margin-left:5px">Rodríguez López,
+        Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-24">2022,
+            24<sup>th</sup> of April</time></footer>
 </body>
 </html>
