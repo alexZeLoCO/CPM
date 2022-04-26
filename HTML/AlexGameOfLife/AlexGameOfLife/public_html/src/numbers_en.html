@@ -5,12 +5,12 @@
 	    <title>Numbers</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="Il8.js"></script>
+        <script src="Iln8.js"></script>
         <script>
             var locale = 'en';
             //ReqI2
             numberf = new Intl.NumberFormat(locale, {
-                maximumFractionDigits: 2
+                minimumFractionDigits: 2
             });
             //ReqI3
             currencyf = new Intl.NumberFormat(locale, {
@@ -27,6 +27,10 @@
                 dateStyle:'short',
                 timeStyle:'short'
             });
+	    //DefI4
+	    intf = new Intl.NumberFormat(locale, {
+		maximumFractionDigits: 0
+	    });
         </script>
 		<style>
 			body {
@@ -48,14 +52,29 @@
 			div:lang(en-US) {
 				color: BLUE
 			}
+
+			/*DefI1*/
+			p:lang(es) {
+				color: GREEN
+			}
+
+			/*DefI1*/
+			p:lang(it) {
+				color: RED 
+			}
 		</style>
     </head>
     <body>
         <a href="principal.html">Back</a><br>
         <p>
+		<!--DefI1-->
+		<p><span lang='it'>italiano</span><span lang='es'>italiano</span></p>
             <!--ReqI6-->
             <!--ReqI11-->
-            Input number A: <input lang='en-US' oninput='aUpdated(this.value)' id="numA" name="numA" type="number"><br>
+            Input number A: <input lang='en-US' oninput='aUpdated(this.value, "random")' id="numA" name="numA" type="number"><br>
+	    <!--DefI3 DefI4-->
+	    <span id="defOutput">0 [0]</span>
+	    <span id="random">0</span>
             Input number B: <input lang='en-US' oninput='bUpdated(this.value)' id="numB" name="numB" type="number"><br>
             Input number C: <input lang='en-US' oninput='cUpdated(this.value)' id="numC" name="numC" type="number"><br>
             <!--ReqI7-->
@@ -68,7 +87,7 @@
             <!--ReqI9-->
             <div id="currencyOutput">C-B = 0</div>
             <!--ReqI10-->
-			<div>today - date =</div><div id="dateOutput"> </div>
+	<div>today - date =</div><div id="dateOutput"> </div>
             <div>today - date =</div><div id="dateShortOutput"> </div>
         </p>
     </body>

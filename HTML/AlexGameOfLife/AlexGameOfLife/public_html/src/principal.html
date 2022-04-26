@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang='en-US'>
 <head title='Conways Game of life'>
-    <!--ReqH1-->
-    <title>Conways Game of life</title>
+    <!--ReqH1--><!--DefH1-->
+    <title>Defensa UO281827</title>
 	
     <!--ReqH2-->
     <meta charset="UTF-8">
@@ -12,12 +12,49 @@
     <!--ReqH3-->
     <meta name="author" content="Rodríguez López, Alejandro">
 
-    <!--ReqH3-->
-    <meta name="keywords" content="HTML, CSS, JavaScript, Conway's Game of Life, Mathematics, Automata">
+    <!--ReqH3--><!--DefH2-->
+    <meta name="keywords" content="HTML, CSS, JavaScript, Conway's Game of Life, Mathematics, Automata, CPM2022, Defensa">
 
     <meta name="place" content="Asturias, Spain">
     <link rel="stylesheet" href="estilos.css" type="text/css">
     <style>
+
+	/*DEFCSS*/
+	/*DefC1*/
+	.palabrareservada {
+		color: darkmagenta;
+		font-style: italic
+	}
+
+	/*DefC2*/
+	#tabla {
+		caption-side: bottom		
+	}
+
+	/*DefC3*/
+	.mayor {
+		font-size:100%
+	}
+	
+	/*DefC4*/
+	ul li :hover {
+		font-variant:versalitas	
+	}
+
+	/*DefC5*/
+	figure+p:first-letter {
+		font-size: 150%;
+		color:darkred
+	}
+
+	/*DefC6*/
+	#transparente:hover {
+		opacity:0
+	}
+
+	
+
+	/*------------*/
         .right_image {
             padding-right: 100px
         }
@@ -319,6 +356,34 @@
             templateFormatChanged();
         }
 
+	//DefJS4
+	function comprobar () {
+		if (document.getElementById('PASSWD').value.length === 5) {
+			alert('Tiene longitud 5');
+		} else {
+			alert('NO tiene longitud 5');
+		}
+	}
+
+	//DefJS5
+	function fecha (fecha) {
+		let out = new Date (fecha);
+		out.setDate(out.getDate()-3);
+		alert(out);
+	}
+
+	//DefJS6
+	function defOutput () {
+		if (document.getElementById('nA').value < -25 || document.getElementById('nA').value > 25) {
+			document.getElementById('nA').value = 0;
+			return 0;
+		}
+		if (document.getElementById('nB').value < -25 || document.getElementById('nB').value > 25) {
+			document.getElementById('nB').value = 0;
+			return 0;
+		}
+		document.getElementById('defOutput').innerHTML = document.getElementById('nA').value * document.getElementById('nB').value;
+	}
     </script>
 </head>
 
@@ -341,10 +406,18 @@
                         <article>
                         <!--ReqS5-->
                         <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>
-                        Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid,
+				<section>
+					<!--DefH5-->
+					<em>Quick Rundown</em><br>
+					<!--DefC3-->
+					<p id="transparente"><span class="IMPORTANTE mayor">Conway's Game of Life</span>is an Automaton, capable of creating and terminating cells in a grid,
                         depending on a number of conditions.<br>
                         It is described as a zero-player game, as the 'player' only controls the starting state of the
-                        grid.<br>
+                        grid.</p>
+				</section>
+				<section>
+					<!--DefH5-->
+					<span style="font-style: italic">Usage</span><br>
                         Any given cell in the grid can have one of two states: Alive (represented by a 1) or dead
                         (represented by a 0).<br>
                         Before staring, the user must mark which cells are alive, once started, these cells will
@@ -353,6 +426,7 @@
 						however it is <!--ReqH9 ReqH7--><dfn><strong>Turing complete</strong></dfn>
                         so it is capable of simulating a Turing Machine, and any code from any<br>
                         programming language given the right inputs.
+				</section>
                         </article> 
                         <br>
                         Visit <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia - Conway's Game of
@@ -360,8 +434,9 @@
                     </div>
                 </td>
                 <td>
-					<!--ReqH16-->
-                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right" width="500" height="250" title="Gosper Glider Gun">
+			<!--ReqH16-->
+			<!--DefH6-->
+                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right" width="100" height="100" title="Defensa Web Lunes">
                 </td>
             </tr>
         </table>
@@ -421,7 +496,8 @@
                 similar manner, many starting designs have been studied and named.<br>
                 These can be organized into types depending on their 'movement'.
                 <!--ReqH22-->
-                <ol>
+		<!--DefH7-->
+                <ol style="color:YELLOW">
                     <li>
                         Still lifes (or stable). These do not move.
                         <!--ReqH11-->
@@ -534,7 +610,8 @@
             There are 4 simple rules. These are applied on every cycle to determine the state of the next iteration.
             <!--ReqH8-->
                 <!--ReqH21-->
-                <ol>
+		<!--DefH7-->
+                <ol style="color:RED">
                     <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
                     <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
                     <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
@@ -611,8 +688,32 @@
                 original matrix once all cells have been evaluated.
                 <br>
                 <br>
+		<!--DefH8-->
+		<table style="border: 1px white solid; border-collapse: collapse">
+			<!--DefH9-->
+			<caption>Tabla Defensa Web Lunes</caption>
+			<tr>
+				<td style='border:1px white solid'>This is what we have done:</td><td style='border:1px white solid'>Original</td><td style='border:1px white solid' colspan="2"><table class="gol_matrix">
+                                <tr><td>0</td><td>1</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td></tr>
+                            </table></td>
+			</tr>
+			<tr>
+				<td style='border:1px white solid' colspan="2" rowspan="2">&rarr;</td><td style='border:1px white solid'><table class="gol_matrix">
+                                <tr><td>1</td><td>1</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td></tr>
+                            </table></td><td style='border:1px white solid'>&rarr;</td>
+			</tr>
+			<tr>
+				<td style='border:1px white solid' colspan="2"><table class="gol_matrix">
+                                <tr><td>1</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td></tr>
+                            </table></td>
+			</tr>
+		</table>
                 <!--ReqH23-->
-                <table class="gol_matrix">
+		<!--DefC2-->
+                <table class="gol_matrix" id='tabla'>
                     <tr><th colspan="4"></th><th colspan="5">Matrixes</th></tr>
                     <tr>
                         <td colspan="3" align="right">This is what we have done:</td>
@@ -696,7 +797,8 @@
             These are some of the functions used to manage the logic of the game.<br>
             <!--ReqH10-->
             <code>
-			function neighbors (matrix, row, col) {<br>
+		    <!--DefC1-->
+		    <span class='palabrareservada'>function</span> neighbors (matrix, row, col) {<br>
 			&#09;let count = 0;	// int<br>
 			&#09;if (row &gt; 0) { 	// There is a cell on top<br>
 			&#09;&#09;count+=matrix[row-1][col];<br>
@@ -743,7 +845,8 @@
     <!--FORM-->
     <!--ReqF1, ReqF2, ReqF3, ReqF4, ReqF5-->
     <section>
-        <form name="Form" novalidate autocomplete="off" target="_blank"
+	    <!--DefJS1-->
+        <form name="Form" autocomplete="off" target="_blank"
             action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="POST" onsubmit="return checkAll()" enctype="text/plain">
             <!--ReqF6-->
             <fieldset>
@@ -763,7 +866,8 @@
                         </td>
                         <td>
                             <!--ReqF8-->
-                            <input class='inputField' onchange="passwordUpdated()" id="PASSWD" name="PASSWD" type="password" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
+			    <!--DefJS2-->
+                            <input maxlength='5' class='inputField' onchange="passwordUpdated()" id="PASSWD" name="PASSWD" type="password" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
                         </td>
                         <td>
                             <!--ReqF9-->
@@ -784,6 +888,33 @@
                 <legend title="Templates">Templates</legend>
                 <table style="width:100%">
                     <tr> <th>Template</th> <th>Previewing: <div id="templatePreviewTitle">Blinker</div></th> </tr>
+		    <tr>
+			<!--DefJS3-->
+			<select>
+                                <optgroup label="Oscillators">
+                                    <option value="Blinker" selected="selected">Blinker</option>
+                                    <option value="Beacon">Beacon</option>
+                                    <option value="Toad">Toad</option>
+                                </optgroup>
+                                <optgroup label="Spaceships">
+                                    <option value="Glider">Glider</option>
+                                    <option value="LWSS">Ligh Weight Space Ship</option>
+                                    <option value="MWSS">Medium Weight Space Ship</option>
+                                    <option value="HWSS">Heavy Weight Space Ship</option>
+                                </optgroup>
+                                <optgroup label="Guns">
+                                    <option value="GGG">Gosper Glider Gun</option>
+                                    <option value="SGG">Simkin Glider Gun</option>
+                                </optgroup>
+				<optgroup label="Methuselahs">
+					<option value="Pentomino">Pentomino</option>
+					<option value="Diehard">Diehard</option>
+					<option value="Diamond">Diamond</option>
+				</optgroup>	
+                            </select>
+		   	<!--DefJS4--> 
+                	<input onclick="comprobar()" type="button" value="Comprobar">
+		    </tr>
                     <tr>
                         <td>
                             <fieldset>
@@ -924,8 +1055,13 @@
             <fieldset>
                 <!--ReqF16-->
                 <legend title="Date">Date</legend>
-                <input class='inputField' type="date" name="Date" id="Date">
+		<!--DefJS5-->
+                <input class='inputField' onchange="fecha(this.value)" type="date" name="Date" id="Date">
             </fieldset>
+	    <!--DefJS6-->
+	    <input oninput="defOutput()" id="nA" type="number">
+	    <input oninput="defOutput()" id="nB" type="number">
+	    <span id="defOutput">0</span>
             <fieldset>
                 <!--ReqF17-->
                 <input type="submit" name="submit" id="sumbit">
@@ -936,9 +1072,9 @@
             </fieldset>
         </form>
     </section>
-    <!--ReqH5-->
-    <footer style="float:right; margin-bottom:5px; margin-left:5px">Rodríguez López,
-        Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-24">2022,
-            24<sup>th</sup> of April</time></footer>
+    <!--ReqH5--><!--DefH3--><!--DefH4-->
+    <footer style="float:right; margin-bottom:5px; margin-left:5px">
+	    <a href="mailto:UO281827@uniovi.es"> Rodríguez </a>López, Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-25">25 de Abril de 2022</time>
+    </footer>
 </body>
 </html>
