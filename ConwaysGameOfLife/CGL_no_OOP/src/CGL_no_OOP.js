@@ -45,36 +45,36 @@ class Factory {
 
     static newLWSS() {
         return [[0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 1, 0, 0, 1, 0],
-                [0, 1, 0, 0, 0, 0, 0],
-                [0, 1, 0, 0, 0, 1, 0],
-                [0, 1, 1, 1, 1, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0]];
+        [0, 0, 1, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]];
     }
 
-    static newMWSS () {
+    static newMWSS() {
         return [[0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 1, 0, 0, 0],
-                [0, 0, 1, 0, 0, 0, 1, 0],
-                [0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 1, 0, 0, 0, 0, 1, 0],
-                [0, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0]];
+        [0, 0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 1, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0]];
     }
 
-    static newHWSS () {
+    static newHWSS() {
         return [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 1, 1, 0, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0],
-                [0, 1, 0, 0, 0, 0, 0, 0, 0],
-                [0, 1, 0, 0, 0, 0, 0, 1, 0],
-                [0, 1, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0]];
+        [0, 0, 0, 0, 1, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 1, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]];
     }
 
     // Guns
-    static newGGG () {
-        return Factory.newAbstract (38, 11, [
+    static newGGG() {
+        return Factory.newAbstract(38, 11, [
             [],
             [25],
             [23, 25],
@@ -89,7 +89,7 @@ class Factory {
         ]);
     }
 
-    static newSGG () {
+    static newSGG() {
         return Factory.newAbstract(37, 25, [
             [],
             [],
@@ -150,24 +150,109 @@ class Factory {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     }
 
-    static newAbstract (x_size, y_size, pattern) {
+    static newAbstract(x_size, y_size, pattern) {
         let out = [];
-        for (let i = 0 ; i < y_size ; i++) {
+        console.log(x_size, y_size, pattern);
+        for (let i = 0; i < y_size; i++) {
             out[i] = [];
-            for (let j = 0 ; j < x_size ; j++) {
+            for (let j = 0; j < x_size; j++) {
                 out[i][j] = 0;
             }
         }
-        for (let i = 0 ; i < pattern.length ; i++) {
-            for (let j = 0 ; j < pattern[i].length; j++) {
+        console.log(out);
+        for (let i = 0; i < pattern.length; i++) {
+            for (let j = 0; j < pattern[i].length; j++) {
                 out[i][pattern[i][j]] = 1;
             }
         }
-       return out; 
+        console.log(out);
+        return out;
+    }
+}
+
+class SITR {
+    constructor(string) {
+        this.string = string;
+        this.idx = 0;
+    }
+
+    hasNext() {
+        return this.string.length != this.idx;
+    }
+
+    next() {
+        return this.string.charAt(this.idx++);
+    }
+}
+
+class QuickList {
+
+    constructor() {
+        this.data = [];
+        this.size = 0;
+    }
+
+    add(int) {
+        this.data[this.size++] = int;
+    }
+
+    get(int) {
+        return this.data[int];
+    }
+
+    size() {
+        return this.size;
+    }
+
+    toArray() {
+        return this.data;
     }
 }
 
 class Logic {
+
+    static maxLength(data) {
+        let max = 0;
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[i].length; j++) {
+                if (data[i][j] > max) {
+                    max = data[i][j];
+                }
+            }
+        }
+        return max;
+    }
+
+    static parse(string) {
+        let out = [];
+        let row = 0;
+        let sitr = new SITR(string);
+        sitr.next(); // skip '['
+        while (sitr.hasNext()) {
+            let current = sitr.next();
+            switch (current) {
+                case '[':
+                    out[row++] = new QuickList();
+                    break;
+                case ']':
+                    break;
+                case ',':
+                    break;
+                case ' ':
+                    break;
+                case '%':
+                    sitr.next(); // 2
+                    sitr.next(); // 0
+                    break;
+                default:
+                    out[row - 1].add(parseInt(current));
+            }
+        }
+        for (let i = 0; i < out.length; i++) {
+            out[i] = out[i].toArray();
+        }
+        return out;
+    }
 
     static sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -206,24 +291,28 @@ function newTemplate(name) {
             return Factory.newDiehard(); break;
         case 'Diamond':
             return Factory.newDiamond(); break;
+        default:
+            let data = Logic.parse(name);
+            return Factory.newAbstract(Logic.maxLength(data) + 1, data.length, data); break;
     }
 }
 
-function getPrintout(board, alive, dead) {
+function getPrintout(board, alive, dead, aliveColor, deadColor) {
     let out = "";
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
-            out += ((board[i][j]) ? alive : dead) + " ";
+            out += ((board[i][j]) ? ("<span style='padding:0px; color:" + aliveColor + "'>" + alive + "</span>") : ("<span style='padding:0px; color:" + deadColor + "'>" + dead + "</span>")) + " ";
+            //out += ((board[i][j]) ? ("<span style='padding:0px; color:" + aliveColor + "'>" + alive + "</span>") : ) + " ";
         }
         out += "<br>";
     }
     return out;
 }
 
-function showBoard(board, alive, dead) {
+function showBoard(board, alive, dead, aliveColor, deadColor) {
     document.getElementById("output").innerHTML =
         document.getElementById("output").innerHTML + "<br>" +
-        getPrintout(board, alive, dead);
+        getPrintout(board, alive, dead, aliveColor, deadColor);
 }
 
 function output(text) {
@@ -324,15 +413,15 @@ function newEmptyBoard(size) {
     return board;
 }
 
-function areDifferent (boardA, boardB) {
+function areDifferent(boardA, boardB) {
     if (boardA.length !== boardB.length) {
         return true;
     }
-    for (let i = 0 ; i < boardA.length ; i++) {
+    for (let i = 0; i < boardA.length; i++) {
         if (boardA[i].length !== boardB[i].length) {
             return true;
         }
-        for (let j = 0 ; j < boardA[i].length; j++) {
+        for (let j = 0; j < boardA[i].length; j++) {
             if (boardA[i][j] !== boardB[i][j]) {
                 return true;
             }
@@ -341,17 +430,17 @@ function areDifferent (boardA, boardB) {
     return false;
 }
 
-function play(name, iters, alive, dead) {
+function play(name, iters, alive, dead, aliveColor, deadColor) {
     let board = merge(newEmptyBoard(50), newTemplate(name));
     let aux_board = merge(newEmptyBoard(board.length), newTemplate(name));
     let previous_board = newEmptyBoard(board.length);
     for (let i = 1; i != iters && areDifferent(board, previous_board); i++) {
         sync(previous_board, board);
         separator(i, board[0].length);
-        showBoard(board, alive, dead);
+        showBoard(board, alive, dead, aliveColor, deadColor);
         sync(board, update(board, aux_board));
-        console.log("board ("+i+"):\n" + getPrintout(board, 1, 0));
-        console.log("previous_board ("+i+"):\n" + getPrintout(previous_board, 1, 0));
+        console.log("board (" + i + "):\n" + getPrintout(board, 1, 0));
+        console.log("previous_board (" + i + "):\n" + getPrintout(previous_board, 1, 0));
     }
     separator("End of Simulation", board[0].length);
 }

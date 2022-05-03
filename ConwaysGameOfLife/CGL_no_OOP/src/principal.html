@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang='en-US'>
+
 <head>
     <!--ReqH1-->
     <title>Alex' Game of life</title>
-	
+
     <!--ReqH2-->
     <meta charse="UTF-8">
-	
+
     <meta name="viewport" content="width=device-width" initial-scale=1>
 
     <!--ReqH3-->
@@ -39,28 +40,32 @@
 
         /*ReqS2*/
         p.IMPORTANTE {
-            font-family: Arial; /* Only seen directly in the body */
+            font-family: Arial;
+            /* Only seen directly in the body */
         }
 
         /*ReqS2*/
         h1.IMPORTANTE {
-            font-family: sans-serif; /* Only seen directly in the body */
+            font-family: sans-serif;
+            /* Only seen directly in the body */
         }
 
         /*ReqS4*/
         #TITULO_H1 {
-            font-size: 22px; /* OK */
+            font-size: 22px;
+            /* OK */
         }
 
         /*ReqS9*/
         p.strong {
-            text-decoration: underline; /* FIXME: */
-			color: RED
+            text-decoration: underline;
+            /* FIXME: */
+            color: RED
         }
 
         /*ReqS15*/
         body {
-            margin:0px;
+            margin: 0px;
             background-image: url("../img/mat-life-stable-puffer-animation.gif");
             color: white
         }
@@ -71,7 +76,7 @@
 
         body>section {
             /*ReqS22*/
-            background-color: black !important; 
+            background-color: black !important;
             margin: 10px;
             margin-bottom: 100px;
             border: 1px white solid
@@ -86,55 +91,26 @@
         }
 
         .inputField {
-            border:0px GREEN solid;
-            background-color: rgb(40,40,40);
+            border: 0px GREEN solid;
+            background-color: rgb(40, 40, 40)
         }
-
     </style>
     <script src="CGL_no_OOP.js"></script>
     <script src="codigo.js"></script>
     <script>
         //ReqF18
         function templateChanged(template) {
+            if (template == null) {
+                template = document.getElementById('templatePreviewTitle').innerHTML;
+            }
+            if (template.charAt(0) !== '[') {
+                document.getElementById('customCB').checked = false;
+                customTriggered(false);
+            }
             console.log("Loading template: " + template);
             document.getElementById('templatePreviewTitle').innerHTML = template;
-            document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template), 1, 0);
-            templateFormatChanged(null, null);
+            document.getElementById('templatePreview').innerHTML = getPrintout(newTemplate(template), document.getElementById('LiveCellChar').value, document.getElementById('DeadCellChar').value, document.getElementById('liveColor').value, document.getElementById('deadColor').value);
             discouragementNote();
-        }
-
-        function passwordUpdated() {
-            let pass = document.getElementById('PASSWD').value;
-            console.log("Password: " + pass);
-            let cap = 0;
-            let sym = 0;
-            let num = 0;
-            let SYMBOLS = /[!@#$%^&*()_+\-=\[\]{};':"\\€|,.<>\/?]+/;
-            for (let i = 0; i < pass.length; i++) {
-                if (pass.charAt(i) >= 'A' && pass.charAt(i) <= 'Z') {
-                    cap++;
-                }
-                if (pass.charAt(i) >= 0 && pass.charAt(i) <= 9) {
-                    num++;
-                }
-                if (SYMBOLS.test(pass.charAt(i))) {
-                    sym++;
-                }
-            }
-            console.log("Password content: cap=" + cap + " sym=" + sym + " num=" + num);
-            if (cap == 0 || sym == 0 || num == 0) {
-                console.log("PASSWORD INVALIDATED")
-                /*ReqF20*/
-                alert('Password must have a symbol, a number and a capital letter.');
-                document.getElementById('PASSWD').focus();
-                /*ReqF19*/
-                document.getElementById('PASSWD').style.color = 'RED';
-                return false;
-            }
-            console.log("PASSWORD VALIDATED")
-            /*ReqF19*/
-            document.getElementById('PASSWD').style.color = 'GREEN';
-            return true;
         }
 
         function switchFocus(id) {
@@ -142,35 +118,29 @@
             if (document.getElementById(id) === document.activeElement) {
                 document.getElementById(id).style.border = '1px GREEN solid';
                 return true;
-            } 
+            }
             document.getElementById(id).style.border = '0px GREEN solid';
             return false;
         }
 
-        function checkAll () {
-            if (!passwordUpdated() || !phoneUpdated()) {
-                return false;
-            }
-            if (document.getElementById('USER').value === "") {
-                alert('User name is mandatory');
-                console.log('USERNAME EMPTY');
-                document.getElementById('USER').focus();
-                return false;
-            }
+        function checkAll() {
+            console.log(document.getElementById('customCB').checked + " " + document.getElementById('customTemplate').value);
             if (document.getElementById('Simulate').checked) {
                 window.open(
-                "./simulator.html?"+
-                document.getElementById('templatePreviewTitle').innerHTML +"|"+
-                document.getElementById('LiveCellChar').value+"|"+
-                document.getElementById('DeadCellChar').value+"|"+
-                document.getElementById('Limit').checked + "|" +
-                document.getElementById('Limit_value').value
+                    "./simulator.html?" +
+                    ((document.getElementById('customCB').checked) ? document.getElementById('customTemplate').value : document.getElementById('templatePreviewTitle').innerHTML) + "|" +
+                    document.getElementById('LiveCellChar').value + "|" +
+                    document.getElementById('DeadCellChar').value + "|" +
+                    document.getElementById('liveColor').value + "|" +
+                    document.getElementById('deadColor').value + "|" +
+                    document.getElementById('Limit').checked + "|" +
+                    document.getElementById('Limit_value').value
                 );
             }
             return true;
         }
 
-        function limitTriggered (checked) {
+        function limitTriggered(checked) {
             if (checked) {
                 document.getElementById('Limit_value').hidden = false;
             } else {
@@ -179,7 +149,7 @@
             discouragementNote();
         }
 
-        function simulationTriggered (checked) {
+        function simulationTriggered(checked) {
             if (checked) {
                 document.getElementById('Limit_set').hidden = false;
                 discouragementNote();
@@ -189,7 +159,7 @@
             limitTriggered(document.getElementById('Limit').checked);
         }
 
-        function limitValueTriggered (value) {
+        function limitValueTriggered(value) {
             if (value < 0) {
                 console.log("Illegal value");
                 document.getElementById('Limit_value').value = 0;
@@ -197,11 +167,11 @@
             discouragementNote();
         }
 
-        function discouragementNote () {
+        function discouragementNote() {
             if (document.getElementById('Simulate').checked && (
                 document.getElementById('Pentomino').checked || document.getElementById('GGG').checked || document.getElementById('SGG').checked ||
-                document.getElementById('Blinker').checked  || document.getElementById('Beacon').checked || document.getElementById('Toad'))
-                ) {
+                document.getElementById('Blinker').checked || document.getElementById('Beacon').checked || document.getElementById('Toad'))
+            ) {
                 if (!document.getElementById('Limit').checked) {
                     document.getElementById('discouragementNote').hidden = false;
                     return false;
@@ -215,36 +185,6 @@
             return true;
         }
 
-        function phoneUpdated () {
-            let phone = document.getElementById('PHONE').value;
-            console.log("PHONE: " + phone);
-            let num = 0;
-            for (let i = 0; i < phone.length; i++) {
-                if (phone.charAt(i) >= 0 && phone.charAt(i) <= 9) {
-                    num++;
-                } else {
-                    console.log("PHONE INVALIDATED")
-                    /*ReqF20*/
-                    document.getElementById('PHONE').focus();
-                    /*ReqF19*/
-                    document.getElementById('PHONE').style.color = 'RED';
-                    return false;
-                }
-            }
-            if (num !== 9 && num !== 0) {
-                console.log("PHONE INVALIDATED")
-                /*ReqF20*/
-                document.getElementById('PHONE').focus();
-                /*ReqF19*/
-                document.getElementById('PHONE').style.color = 'RED';
-                return false;
-            }
-            console.log("PHONE VALIDATED")
-            /*ReqF19*/
-            document.getElementById('PHONE').style.color = 'GREEN';
-            return true;
-        }
-
         function _preset(template) {
             document.getElementById('LiveCellChar').value = '@';
             document.getElementById('DeadCellChar').value = '.';
@@ -252,22 +192,25 @@
             document.getElementById('Simulate').checked = true;
             document.getElementById('Limit_value').value = 100;
 
+            document.getElementById('liveColor').value = '#ff0000';
+            document.getElementById('deadColor').value = '#000000';
+
             console.log(template);
-            switch(template) {
-                case 'GGG': 
+            switch (template) {
+                case 'GGG':
                     console.log('Setting GGG deafult');
                     document.getElementById('Limit').checked = true;
                     break;
-                case 'SGG': 
+                case 'SGG':
                     console.log('Setting SGG deafult');
                     document.getElementById('Limit').checked = true;
                     document.getElementById('Limit_value').value = 200;
                     break;
-                case 'Pentomino': 
+                case 'Pentomino':
                     console.log('Setting Pentomino deafult');
                     document.getElementById('Limit').checked = true;
                     break;
-                case 'Diehard': 
+                case 'Diehard':
                     console.log('Setting Diehard deafult');
                     document.getElementById('Limit').checked = true;
                     break;
@@ -281,7 +224,7 @@
                     document.getElementById('Limit').checked = true;
                     document.getElementById('Limit_value').value = 20;
                     break;
-                case 'Toad': 
+                case 'Toad':
                     console.log('Setting Toad deafult');
                     document.getElementById('Limit').checked = true;
                     document.getElementById('Limit_value').value = 20;
@@ -292,7 +235,33 @@
                     document.getElementById('Limit_value').value = 0;
                     break;
             }
-            templateFormatChanged();
+            if (template.charAt(0) == '[') {
+                document.getElementById('Limit').checked = true;
+                document.getElementById('Limit_value').value = 100;
+            }
+            templateChanged();
+        }
+
+        function getYellow(color) {
+            console.log(color);
+            document.getElementById('templatePreview').innerHTML =
+                "<span style=color:" + color + "> RED </span > ";
+        }
+
+        function colorFormat(color) {
+            color = color.split('#')[1];
+            let out = [];
+            out[0] = color.slice(0, 2);
+            out[1] = color.slice(2, 4);
+            out[2] = color.slice(4, 6);
+            return out;
+        }
+
+        function customTriggered(check) {
+            if (!check) {
+                document.getElementById('customTemplate').value = "";
+            }
+            document.getElementById('custom').hidden = !check;
         }
 
     </script>
@@ -304,7 +273,7 @@
         <h1 id="TITULO_H1">Conway's Game of Life</h1>
         <p>Made by Alejandro Rodríguez López,&nbsp;&nbsp;&nbsp;&nbsp;'Alex'</p>
     </header>
-	<p><strong>STRONG</strong></p>
+    <p><strong>STRONG</strong></p>
     <!--ReqH4-->
     <br>
     <section title="General information">
@@ -316,29 +285,32 @@
                         <!--ReqH20-->
                         <!--ReqH6-->
                         <artcile>
-                        <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>
-                        <!--ReqS5-->
-                        Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid,
-                        depending on a number of conditions.<br>
-                        It is described as a zero-player game, as the 'player' only controls the starting state of the
-                        grid.<br>
-                        Any given cell in the grid can have one of two states: Alive (represented by a 1) or dead
-                        (represented by a 0).<br>
-                        Before staring, the user must mark which cells are alive, once started, these cells will
-                        survive, die and come back to life depending on the number of alive neighbors it has.<br>
-                        This automata does not seem to have much capabilities,
-						however it is <!--ReqH9 ReqH7--><dfn><strong>Turing complete</strong></dfn>
-                        so it is capable of simulating a Turing Machine, and any code from any<br>
-                        programming language given the right inputs.
-                        </artcile> 
+                            <h2 id="TITULO" class="IMPORTANTE">What is Conway's Game of Life?</h2>
+                            <!--ReqS5-->
+                            Conway's Game of Life is an Automaton, capable of creating and terminating cells in a grid,
+                            depending on a number of conditions.<br>
+                            It is described as a zero-player game, as the 'player' only controls the starting state of
+                            the
+                            grid.<br>
+                            Any given cell in the grid can have one of two states: Alive (represented by a 1) or dead
+                            (represented by a 0).<br>
+                            Before staring, the user must mark which cells are alive, once started, these cells will
+                            survive, die and come back to life depending on the number of alive neighbors it has.<br>
+                            This automata does not seem to have much capabilities,
+                            however it is
+                            <!--ReqH9 ReqH7--><dfn><strong>Turing complete</strong></dfn>
+                            so it is capable of simulating a Turing Machine, and any code from any<br>
+                            programming language given the right inputs.
+                        </artcile>
                         <br>
                         Visit <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Wikipedia - Conway's Game of
                             Life</a> to see more.
                     </div>
                 </td>
                 <td>
-					<!--ReqH16-->
-                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right" width="500px" height="250px" title="Gosper Glider Gun">
+                    <!--ReqH16-->
+                    <img class="right_image" src="../img/Gospers_glider_gun.gif" align="right" width="500px"
+                        height="250px" title="Gosper Glider Gun">
                 </td>
             </tr>
         </table>
@@ -349,17 +321,18 @@
                         <!--ReqH20-->
                         <article>
                             <!--ReqH6-->
-                        <h2 id="TITULO" class="IMPORTANTE">Who created this automaton?</h2>
-                        <!--ReqS5-->
-                        Conway's Game of Life was invented by the mathematician John Horton Conway (26 December 1937,
-                        Liverpool, England - 11 April 2020, New Jersey, United States).<br>
-                        Some of John Horton Conway's areas of research are:
-                        <ul>
-                            <li>Number Theory</li>
-                            <li>Combinatorial Game Theory</li>
-                            <li>Algorithmics</li>
-                            <li>Geometry</li>
-                        </ul>
+                            <h2 id="TITULO" class="IMPORTANTE">Who created this automaton?</h2>
+                            <!--ReqS5-->
+                            Conway's Game of Life was invented by the mathematician John Horton Conway (26 December
+                            1937,
+                            Liverpool, England - 11 April 2020, New Jersey, United States).<br>
+                            Some of John Horton Conway's areas of research are:
+                            <ul>
+                                <li>Number Theory</li>
+                                <li>Combinatorial Game Theory</li>
+                                <li>Algorithmics</li>
+                                <li>Geometry</li>
+                            </ul>
                         </article>
                         Visit <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">Wikipedia - John Horton
                             Conway</a> to see more.
@@ -380,11 +353,6 @@
                     <a href="simulator.html">Home-made Simulator</a>
                 </td>
                 <td>
-                    <!--ReqH15-->
-                    <a href="numbers_en.html">Numbers (EN)</a>
-                    <a href="numeros_es.html">Numeros (ES)</a>
-                </td>
-                <td>
                     <a href="https://www.github.com/alexZeLoCO/CPM/tree/master/ConwaysGameOfLife/CGL_no_OOP/">Gihub
                         Repository</a>
                 </td>
@@ -402,7 +370,8 @@
                     <li>
                         Still lifes (or stable). These do not move.
                         <!--ReqH11-->
-						<a href="https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)#Examples">More examples</a>
+                        <a href="https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)#Examples">More
+                            examples</a>
                         <ul>
                             <li><a href="https://conwaylife.com/w/images/4/48/Block.png">Block</a></li>
                             <!--ReqH12-->
@@ -484,9 +453,9 @@
                         </ul>
                     </li>
                 </ol>
-                Did I miss any important template that should be added? 
+                Did I miss any important template that should be added?
                 <!--ReqH14-->
-				<a href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>
+                <a href="mailto:UO281827@uniovi.es?subject=CGL%20Templates">Let me know!</a><br>
                 A demonstration of Conway's Game of Life and some of these templates:<br>
                 <!--ReqH17-->
                 <video width="640" height="300" autoplay loop>
@@ -613,9 +582,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -630,9 +597,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -665,9 +630,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -682,9 +645,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -716,9 +677,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -733,9 +692,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td>
-                            &rarr;
-                        </td>
+                        <td> &rarr; </td>
                         <td>
                             <table class="gol_matrix">
                                 <tr>
@@ -807,88 +764,48 @@
     <!----------------------------FORM---------------------------->
     <!--ReqF1, ReqF2, ReqF3, ReqF4, ReqF5-->
     <section>
-        <form name="Form" novalidate autocomplete="off" target="_blank"
-            action="mailto:UO281827@uniovi.es?subject=Form%20Output" method="POST" onsubmit="return checkAll()" enctype="text/plain">
-            <!--ReqF6-->
-            <fieldset>
-                <legend title="Information">Information</legend>
-                <table>
-                    <tr>
-                        <td>
-                            Username:
-                        </td>
-                        <td>
-                            Password:
-                        </td>
-                        <td>
-                            Phone:
-                        </td>
-                        <td>
-                            Website:
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <!--ReqF7-->
-                            <!--ReqF22-->
-                            <input class="inputField" pattern="[A-Z][a-Z]" id="USER" name="USER" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
-                        </td>
-                        <td>
-                            <input class="inputField" onchange="passwordUpdated()" id="PASSWD" name="PASSWD" type="password" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
-                        </td>
-                        <td>
-                            <!--ReqF9-->
-                            <input class="inputField" pattern="[0-9]{9}" onchange="phoneUpdated()" id="PHONE" name="PHONE" type="tel" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)"> <br>
-                        </td>
-                        <td>
-                            <!--ReqF10-->
-                            <!--ReqF23-->
-                            <input class="inputField" id="WEB" name="WEB" type="text" onfocus="switchFocus(this.id)" onblur="switchFocus(this.id)" onkeyup="webUpdated()">
-                        </td>
-                        <td>
-                            <div id="WEBOutput"></div>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
+        <form name="Form" target="_blank" onsubmit="checkAll()">
             <fieldset>
                 <!--ReqF11-->
                 <legend title="Templates">Templates</legend>
                 <table style="width:100%">
                     <tr>
                         <th>Template</th>
-                        <th>Previewing: <div id="templatePreviewTitle">Blinker</div></th>
+                        <th>Previewing: <div id="templatePreviewTitle">Blinker</div>
+                        </th>
                     </tr>
                     <tr>
                         <td>
                             <fieldset>
                                 <legend title="Oscillators">Oscillators</legend>
                                 <!--ReqF18 (templateChanged(this.id))-->
-                                <span onclick="templateUpdated('Blinker')"><input onclick="templateChanged(this.id)" id="Blinker" name="Template" type="radio"
-                                    checked>Blinker<br></span>
+                                <span onclick="templateUpdated('Blinker')"><input onclick="templateChanged(this.id)"
+                                        id="Blinker" name="Template" type="radio" checked>Blinker<br></span>
                                 <!--ReqF25-->
-                                <span onclick="templateUpdated('Beacon')"><input onclick="templateChanged(this.id)" id="Beacon" name="Template"
-                                    type="radio">Beacon<br></span>
-                                <span onclick="templateUpdated('Toad')"><input onclick="templateChanged(this.id)" id="Toad" name="Template"
-                                    type="radio">Toad<br></span>
+                                <span onclick="templateUpdated('Beacon')"><input onclick="templateChanged(this.id)"
+                                        id="Beacon" name="Template" type="radio">Beacon<br></span>
+                                <span onclick="templateUpdated('Toad')"><input onclick="templateChanged(this.id)"
+                                        id="Toad" name="Template" type="radio">Toad<br></span>
                             </fieldset>
                         </td>
                         <td rowspan="3">
-                            <div class="gol_matrix" style="size:100%; font-size:xx-large; text-align:center; border:1px WHITE solid" id="templatePreview"></div>
+                            <div class="gol_matrix"
+                                style="size:100%; font-size:xx-large; text-align:center; border:1px WHITE solid"
+                                id="templatePreview"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <fieldset>
                                 <legend title="Spaceships">Spaceships</legend>
-                                <span onclick="templateUpdated('Glider')"><input onclick="templateChanged(this.id)" id="Glider" name="Template"
-                                    type="radio">Glider<br></span>
-                                <span onclick="templateUpdated('LWSS')"><input onclick="templateChanged(this.id)" id="LWSS" name="Template"
-                                    type="radio">Light Weight Space Ship<br></span>
-                                <span onclick="templateUpdated('MWSS')"><input onclick="templateChanged(this.id)" id="MWSS" name="Template"
-                                    type="radio">Medium Weight Space Ship<br></span>
-                                <span onclick="templateUpdated('HWSS')"><input onclick="templateChanged(this.id)" id="HWSS" name="Template"
-                                    type="radio">Heavy Weight Space Ship<br></span>
+                                <span onclick="templateUpdated('Glider')"><input onclick="templateChanged(this.id)"
+                                        id="Glider" name="Template" type="radio">Glider<br></span>
+                                <span onclick="templateUpdated('LWSS')"><input onclick="templateChanged(this.id)"
+                                        id="LWSS" name="Template" type="radio">Light Weight Space Ship<br></span>
+                                <span onclick="templateUpdated('MWSS')"><input onclick="templateChanged(this.id)"
+                                        id="MWSS" name="Template" type="radio">Medium Weight Space Ship<br></span>
+                                <span onclick="templateUpdated('HWSS')"><input onclick="templateChanged(this.id)"
+                                        id="HWSS" name="Template" type="radio">Heavy Weight Space Ship<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -896,10 +813,10 @@
                         <td>
                             <fieldset>
                                 <legend title="Guns">Guns</legend>
-                                <span onclick="templateUpdated('GGG')"><input onclick="templateChanged(this.id)" id="GGG" name="Template"
-                                    type="radio">Gosper Glider Gun<br></span>
-                                <span onclick="templateUpdated('SGG')"><input onclick="templateChanged(this.id)" id="SGG" name="Template"
-                                    type="radio">Simkin Glider Gun<br></span>
+                                <span onclick="templateUpdated('GGG')"><input onclick="templateChanged(this.id)"
+                                        id="GGG" name="Template" type="radio">Gosper Glider Gun<br></span>
+                                <span onclick="templateUpdated('SGG')"><input onclick="templateChanged(this.id)"
+                                        id="SGG" name="Template" type="radio">Simkin Glider Gun<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -907,12 +824,12 @@
                         <td>
                             <fieldset>
                                 <legend title="Methuselahs">Methuselahs</legend>
-                                <span onclick="templateUpdated('Pentomino')"><input onclick="templateChanged(this.id)" id="Pentomino" name="Template"
-                                    type="radio">Pentomino<br></span>
-                                <span onclick="templateUpdated('Diehard')"><input onclick="templateChanged(this.id)" id="Diehard" name="Template"
-                                    type="radio">Diehard<br></span>
-                                <span onclick="templateUpdated('Diamond')"><input onclick="templateChanged(this.id)" id="Diamond" name="Template"
-                                    type="radio">Diamond<br></span>
+                                <span onclick="templateUpdated('Pentomino')"><input onclick="templateChanged(this.id)"
+                                        id="Pentomino" name="Template" type="radio">Pentomino<br></span>
+                                <span onclick="templateUpdated('Diehard')"><input onclick="templateChanged(this.id)"
+                                        id="Diehard" name="Template" type="radio">Diehard<br></span>
+                                <span onclick="templateUpdated('Diamond')"><input onclick="templateChanged(this.id)"
+                                        id="Diamond" name="Template" type="radio">Diamond<br></span>
                             </fieldset>
                         </td>
                     </tr>
@@ -921,93 +838,108 @@
             <fieldset>
                 <!--ReqF12-->
                 <legend title="Actions">Actions</legend>
-                <input onclick="simulationTriggered(this.checked)" id="Simulate" name="Simulate" type="checkbox" checked>Simulate<br>
+                <input onclick="simulationTriggered(this.checked)" id="Simulate" name="Simulate" type="checkbox"
+                    checked>Simulate<br>
                 <div id="Limit_set">
-                <input onclick="limitTriggered(this.checked)" id="Limit" name="Limit" type="checkbox" checked>Limit simulation&nbsp;&nbsp;&nbsp;&nbsp;
-                <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value" type="number"><br>
-                <div id="discouragementNote" style="color:RED" hidden>The simulation of this template is seriously discouraged without limiting the iterations.</div>
+                    <input onclick="limitTriggered(this.checked)" id="Limit" name="Limit" type="checkbox" checked>Limit
+                    simulation&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input onchange="limitValueTriggered(this.value)" id="Limit_value" name="Limit_value"
+                        type="number"><br>
+                    <div id="discouragementNote" style="color:RED" hidden>The simulation of this template is seriously
+                        discouraged without limiting the iterations.</div>
+                    <input onchange="customTriggered(this.checked)" id="customCB" name="custom" type="checkbox"> custom
+                    template
+                    <div hidden="true" id="custom"><input onchange="templateChanged(this.value)" id="customTemplate"
+                            name="customTemplate" type="text"> [[0,
+                        5],
+                        [], [5, 6]]
+                        will have live cells on (0, 0), (0, 5), (2, 5) and (2, 6)</div>
                 </div>
             </fieldset>
             <fieldset>
-                <!--ReqF13-->
-                <legend title="Color">Color</legend>
-                <input id="LiveCellColor" name="Live Color" type="color">Live color
-            </fieldset>
-            <fieldset>
-                <legend title="Characters">Characters</legend>
+                <legend>Customization</legend>
                 <table>
                     <tr>
                         <td>
-                            Live Cell Character
+                            <fieldset>
+                                <legend title="Characters">Characters</legend>
+                                <table>
+                                    <tr>
+                                        <td> Live Cell Character </td>
+                                        <td> Dead Cell Character </td>
+                                        <td rowspan="2">
+                                            <input id="preset" name="preset" type="button"
+                                                onclick="_preset(document.getElementById('templatePreviewTitle').innerHTML)"
+                                                value="Recommended settings">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <!--ReqF14-->
+                                            <!--ReqJ21-->
+                                            <select id="LiveCellChar" onchange="templateChanged()">
+                                                <optgroup label="Letters">
+                                                    <option value="X">X</option>
+                                                    <option value="B">B</option>
+                                                    <option value="K">K</option>
+                                                </optgroup>
+                                                <optgroup label="Numbers">
+                                                    <option value="1" selected="selected">1</option>
+                                                    <option value="6">6</option>
+                                                    <option value="8">8</option>
+                                                </optgroup>
+                                                <optgroup label="Symbols">
+                                                    <option value="@">@</option>
+                                                    <option value="_">_</option>
+                                                    <option value=".">.</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!--ReqJ21-->
+                                            <select id="DeadCellChar" onchange="templateChanged()">
+                                                <optgroup label="Letters">
+                                                    <option value="Q">Q</option>
+                                                    <option value="L">L</option>
+                                                    <option value="J">J</option>
+                                                </optgroup>
+                                                <optgroup label="Numbers">
+                                                    <option value="0" selected="selected">0</option>
+                                                    <option value="7">7</option>
+                                                    <option value="1">1</option>
+                                                </optgroup>
+                                                <optgroup label="Symbols">
+                                                    <option value="@">@</option>
+                                                    <option value="_">_</option>
+                                                    <option value=".">.</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                         </td>
                         <td>
-                            Dead Cell Character
-                        </td>
-                        <td rowspan="2">
-                            <input id="preset" name="preset" type="button" onclick="_preset(document.getElementById('templatePreviewTitle').innerHTML)" value="Recommended settings">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <!--ReqF14-->
-                            <!--ReqJ21-->
-                            <select id="LiveCellChar" onchange="templateFormatChanged(this.value, null)">
-                                <optgroup label="Letters">
-                                    <option value="X">X</option>
-                                    <option value="B">B</option>
-                                    <option value="K">K</option>
-                                </optgroup>
-                                <optgroup label="Numbers">
-                                    <option value="1" selected="selected">1</option>
-                                    <option value="6">6</option>
-                                    <option value="8">8</option>
-                                </optgroup>
-                                <optgroup label="Symbols">
-                                    <option value="@">@</option>
-                                    <option value="_">_</option>
-                                    <option value=".">.</option>
-                                </optgroup>
-                            </select>
-                        </td>
-                        <td>
-                            <!--ReqJ21-->
-                            <select id="DeadCellChar" onchange="templateFormatChanged(null, this.value)">
-                                <optgroup label="Letters">
-                                    <option value="Q">Q</option>
-                                    <option value="L">L</option>
-                                    <option value="J">J</option>
-                                </optgroup>
-                                <optgroup label="Numbers">
-                                    <option value="0" selected="selected">0</option>
-                                    <option value="7">7</option>
-                                    <option value="1">1</option>
-                                </optgroup>
-                                <optgroup label="Symbols">
-                                    <option value="@">@</option>
-                                    <option value="_">_</option>
-                                    <option value=".">.</option>
-                                </optgroup>
-                            </select>
+                            <fieldset>
+                                <!--ReqF13-->
+                                <legend title="Color">Color</legend>
+                                <input id="liveColor" name="Live Color" onchange="templateChanged()" type="color"
+                                    value="#FFFFFF">Live color
+                                <input id="deadColor" name="Dead Color" onchange="templateChanged()" type="color"
+                                    value="#000000">Dead color
+                            </fieldset>
                         </td>
                     </tr>
                 </table>
             </fieldset>
             <fieldset>
-                <!--ReqF15-->
-                <legend title="Image">Attach Image</legend>
-                <input type="file" name="File" id="File">
-            </fieldset>
-            <fieldset>
-                <!--ReqF16-->
-                <legend title="Date">Date</legend>
-                <input type="date" name="Date" id="Date">
-            </fieldset>
-            <fieldset>
+                <legend>Submit</legend>
                 <!--ReqF17-->
                 <input type="submit" name="submit" id="sumbit">
                 <!--ReqF27-->
                 <input onclick="document.getElementById('ResetTemplate').click()" type="reset" name="reset" id="reset">
-                <input onclick="resetTemplate()" type="button" name="ResetTemplate" id="ResetTemplate" value="Reset Template">
+                <input onclick="resetTemplate()" type="button" name="ResetTemplate" id="ResetTemplate"
+                    value="Reset Template">
             </fieldset>
         </form>
     </section>
@@ -1016,4 +948,5 @@
         Alejandro.&nbsp;&nbsp;&nbsp;&nbsp;<time datetime="2022-04-24">2022,
             24<sup>th</sup> of April</time></footer>
 </body>
+
 </html>
